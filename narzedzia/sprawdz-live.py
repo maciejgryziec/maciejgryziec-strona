@@ -111,8 +111,11 @@ check("Umami script", status == 200, f"HTTP {status}, Cache-Control={analytics_h
 status, _, list_js_body = request(APEX + "/list.js")
 list_js_text = list_js_body.decode("utf-8", "replace")
 check(
-    "warunkowy loader Umami",
-    status == 200 and 'localStorage.getItem("umami.disabled")' in list_js_text and 'data-umami-loader' in list_js_text,
+    "Umami wyłączone na nowej domenie",
+    status == 200
+    and "Statystyki na maciejgryziec.pl są obecnie wyłączone." in list_js_text
+    and "statystyki.automatyzacjesklepow.pl/script.js" not in list_js_text
+    and "data-umami-loader" not in list_js_text,
     f"HTTP {status}",
 )
 
@@ -140,8 +143,8 @@ check(
     script_src or "brak script-src",
 )
 check(
-    "CSP dopuszcza tylko własny JS + Umami",
-    "'self'" in script_src and "https://statystyki.automatyzacjesklepow.pl" in script_src,
+    "CSP bez zewnętrznego Umami",
+    "'self'" in script_src and "https://statystyki.automatyzacjesklepow.pl" not in script_src,
     script_src or "brak script-src",
 )
 check(
