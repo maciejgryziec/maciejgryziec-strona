@@ -1,95 +1,139 @@
-# Release scope — główna strona
+# Release scope — maciejgryziec.pl
 
-Ten release jest jednym spójnym przebudowaniem serwisu z pozycji „automatyzacje sklepów” w stronę sprzedażową **aplikacji, systemów, integracji i automatyzacji dla firm**, z zachowaniem klastra e-commerce.
+Stan produkcyjny: 2026-10-06.
+
+## Cel release’u
+
+Serwis działa jako osobna strona sprzedażowa Macieja Gryźca dla:
+- aplikacji i systemów dla firm,
+- dedykowanego oprogramowania,
+- integracji API,
+- automatyzacji procesów,
+- konfiguratorów i paneli B2B,
+- realizacji i poradników.
+
+Domena automatyzacjesklepow.pl pozostaje osobnym serwisem i nie jest przekierowywana globalnie na maciejgryziec.pl.
 
 ## Zakres funkcjonalny
 
-- nowa architektura informacji i nawigacja mobile,
-- rozbudowane landingi usługowe,
-- poradniki i automatyczny spis treści,
-- case studies PV Roof Configurator i panelu wypożyczalni,
-- formularz „Opisz projekt” z autosave/TXT,
-- kwalifikator pierwszego etapu,
+- architektura informacji i nawigacja mobile,
+- landingi usługowe,
+- poradniki i linkowanie wewnętrzne,
+- realizacje / case studies,
+- formularz „Opisz projekt” z autosave i eksportem TXT,
+- kwalifikator pierwszego etapu projektu,
 - kalkulator kosztu ręcznej pracy,
 - wyszukiwarka poradników,
 - first-touch UTM + źródło wewnętrzne,
-- spójny cennik,
-- „Co dalej?” / linkowanie wewnętrzne,
-- hub e-commerce,
+- cennik,
 - polityka prywatności i security.txt,
 - własne 404 / 50x,
-- feed.xml / llms.txt / sitemap + image sitemap,
-- per-page social previews,
-- JSON-LD / Service / Person / WebApplication / ItemList,
+- feed.xml / llms.txt / sitemap.xml,
+- JSON-LD / canonical / Open Graph / Twitter,
 - no-JS fallbacks,
-- print/PDF cennika,
 - responsive WebP.
 
 ## Zakres jakości / SEO
 
-- 46 wygenerowanych stron HTML,
-- 44 indeksowane URL-e w sitemapie,
-- 14 obrazów w image sitemap,
-- brak stron-sierot,
-- maks. 3 kliknięcia od homepage,
-- audyt kanibalizacji treści,
-- audyt canonical / OG / schema,
-- pełny Chrome runtime crawl wszystkich stron,
-- budżet assetów w CI + lokalny performance gate,
-- performance gate: cold 4G + 4×CPU, LCP ≤ 3,2 s, CLS ≤ 0,10, transfer ≤ 200 KB,
-- Accessibility Tree wszystkich stron,
-- external link audit,
-- cache-busting CSS/JS po hashach.
+Aktualny build:
+- 33 strony HTML,
+- 31 indeksowalnych URL-i w sitemap.xml,
+- brak krytycznej kanibalizacji treści,
+- poprawne canonical / OG / schema,
+- audyt statyczny: OK,
+- audyt Chrome: 0 błędów,
+- audyt CSP: 33/33 stron bez naruszeń,
+- asset budget: OK,
+- kontrast WCAG AA: OK,
+- build idempotentny,
+- release-check: OK.
 
-## Zakres infrastruktury
+## Infrastruktura
 
-- GitHub Actions build + audyt,
-- `.dockerignore`,
-- gotowy `deploy/nginx.conf`,
-- CSP/HSTS/nosniff/Referrer-Policy/Permissions-Policy,
-- gzip/cache,
-- blokady plików źródłowych/dotfiles,
-- `www → apex`,
-- `index.html → /`,
-- canonical redirect extensionless → `.html`,
-- `/healthz`,
-- custom 404/50x,
-- smoke test produkcji.
+- repo: maciejgryziec/maciejgryziec-strona,
+- branch: main,
+- hosting: Coolify na VPS,
+- bez Vercela,
+- aplikacja Coolify: mdd5pqas5vvybdfdgurcb7zq,
+- produkcyjny adres IPv4: 54.37.234.39,
+- build strategy: Static,
+- healthcheck: /healthz,
+- nginx: własna konfiguracja zsynchronizowana z deploy/nginx.conf.
 
-## Pliki źródłowe i wygenerowane
+Produkcja ma:
+- www → apex,
+- HTTP → HTTPS,
+- HSTS,
+- CSP,
+- nosniff,
+- Referrer-Policy,
+- Permissions-Policy,
+- gzip,
+- cache statycznych assetów,
+- blokady plików źródłowych i repo,
+- custom 404/50x.
 
-Serwis celowo trzyma:
-- źródła pod `zrodla/*.html`,
-- generator `narzedzia/buduj-nowa.py`,
-- **wygenerowane** HTML/CSS/JS/sitemap/feed w root repo.
+## DNS / TLS
 
-Po zmianie źródeł uruchom:
-`python3 narzedzia/buduj-nowa.py`
+- A @ → 54.37.234.39,
+- A www → 54.37.234.39,
+- rekordy widoczne w DNS OVH, Cloudflare i Google,
+- osobne certyfikaty Let’s Encrypt dla apex i www,
+- poczta OVH pozostawiona bez zmian.
 
-Wygenerowane artefakty muszą być commitowane razem ze źródłami. CI zatrzyma release, jeżeli build po checkout zmieni pliki.
+## Google Search Console
 
-## Pliki, których nie wolno commitować przypadkiem
+- własność domenowa maciejgryziec.pl zweryfikowana przez TXT DNS,
+- strona główna jest w indeksie Google,
+- wysłano ponowną prośbę o indeksowanie strony głównej,
+- ręcznie zgłoszono do indeksowania kluczowe nowe URL-e:
+  - dedykowane-oprogramowanie-dla-firm.html,
+  - realizacje.html,
+  - cennik.html,
+  - opisz-projekt.html,
+- sitemap.xml została zgłoszona.
 
-- `_audit*`,
-- lokalne `*.db`, `*.sqlite`,
-- backupy `*.bak`, `*.old`,
-- tymczasowe logi i screenshoty audytowe,
-- pliki z sekretami / lokalnymi ścieżkami.
+Uwaga: Search Console przy pierwszych próbach pokazywało „Nie udało się pobrać” dla sitemap.xml, mimo że plik publicznie zwraca HTTP 200, jest poprawnym XML-em i zawiera 31 URL-i. Nie zmieniać poprawnego pliku tylko z tego powodu; status należy sprawdzić ponownie po odświeżeniu cache Google po migracji DNS.
 
-## Przed stagingiem
+## Umami
 
-```bash
-./narzedzia/release-check.sh
-python3 narzedzia/audyt-chrome.py
-python3 narzedzia/audyt-csp.py
-python3 narzedzia/audyt-runtime.py
-python3 narzedzia/audyt-performance.py
-python3 narzedzia/audyt-linkow-zewnetrznych.py
-./narzedzia/review-release.sh
-```
+Dla maciejgryziec.pl działa osobna witryna w self-hosted Umami.
 
-Dopiero potem:
-- `git add -A`,
-- `git diff --cached --check`,
-- przegląd `git status`,
-- commit/push zgodnie z `DEPLOY-PLAN.md`.
+- nazwa: Maciej Gryziec,
+- domena: maciejgryziec.pl,
+- website ID: 7bf89ecf-f690-413f-863a-658c0a0f4baa,
+- stara witryna Automatyzacje Sklepów pozostaje osobna,
+- tracker ładuje się warunkowo z list.js,
+- użytkownik może wyłączyć analitykę lokalnie,
+- polityka prywatności opisuje self-hosted Umami,
+- produkcyjny CSP dopuszcza serwer Umami w script-src i connect-src,
+- test live potwierdził żądania do script.js i /api/send.
+
+## Produkcja
+
+Wdrożony release funkcjonalny:
+- commit 8063e7d — Enable dedicated Umami analytics for maciejgryziec.pl.
+
+Po wdrożeniu:
+- pełny narzedzia/sprawdz-live.py → PRODUKCJA OK,
+- healthz → 200,
+- wszystkie wymagane pliki techniczne → 200,
+- prywatne źródła/repo/docs → 404,
+- www redirect → 301,
+- tracker Umami → działa z osobnym website ID,
+- CSP live → poprawny.
+
+## Co dalej
+
+1. Nie zmieniać już infrastruktury maciejgryziec.pl bez konkretnej potrzeby.
+2. Sprawdzić Search Console po 1–2 dniach:
+   - sitemap,
+   - raport Strony,
+   - indeksację ręcznie zgłoszonych URL-i.
+3. Po 2–4 tygodniach przeanalizować:
+   - zapytania,
+   - CTR,
+   - strony z wyświetleniami,
+   - dane Umami.
+4. Dopiero na podstawie danych rozwijać SEO i landing pages.
+5. Kolejny osobny etap: LinkedIn i pozyskiwanie ruchu do konkretnych landingów z UTM.
