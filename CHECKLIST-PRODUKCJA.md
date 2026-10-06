@@ -31,7 +31,7 @@ Stan po migracji: 2026-10-06.
 
 ## 2. Produkcja maciejgryziec.pl
 
-Ostatni wdrożony commit: c980bfc — Align live smoke test with disabled Umami.
+Ostatni wdrożony release funkcjonalny: 8063e7d — Enable dedicated Umami analytics for maciejgryziec.pl. Późniejsze commity dotyczą dokumentacji/planu i nie zmieniają produkcyjnego obrazu strony.
 
 - [x] pełny deploy Static w Coolify zakończony sukcesem,
 - [x] healthcheck Coolify: GET http://localhost:80/healthz,
@@ -97,7 +97,7 @@ Zweryfikowano po migracji:
 Własność domenowa maciejgryziec.pl została zweryfikowana rekordem DNS TXT.
 
 - [x] Search Console — własność domeny zweryfikowana,
-- [x] https://maciejgryziec.pl/sitemap.xml zgłoszona,
+- [x] https://maciejgryziec.pl/sitemap.xml zgłoszona i odczytana przez Google ze statusem Sukces,
 - [x] strona główna jest już w indeksie Google,
 - [x] dla strony głównej wysłano ponowną prośbę o indeksowanie po migracji,
 - [x] wysłano priorytetowe prośby o indeksowanie:
@@ -105,8 +105,8 @@ Własność domenowa maciejgryziec.pl została zweryfikowana rekordem DNS TXT.
   - realizacje.html,
   - cennik.html,
   - opisz-projekt.html.
-- [ ] sitemap: Search Console przy pierwszym odczycie pokazało Nie udało się pobrać; sam plik ma HTTP 200, poprawny XML, 31 URL-i i jest wskazany w robots.txt. Najbardziej prawdopodobny powód: pierwszy fetch odbył się podczas propagacji DNS. Nie zmieniać poprawnego pliku — sprawdzić status ponownie po odświeżeniu cache Google.
-- [ ] po 1–2 dniach sprawdzić ponownie status sitemap i raport Strony,
+- [x] Search Console ponownie pobrało sitemap po propagacji DNS: status Sukces, wykryte 31 stron.
+- [x] status sitemap po propagacji DNS sprawdzony; pozostaje obserwować raport Strony i faktyczną indeksację,
 - [ ] po 2–4 tygodniach sprawdzić zapytania, CTR i strony z wyświetleniami,
 - [ ] nie oceniać SEO po 1–2 dniach od migracji.
 
@@ -134,11 +134,6 @@ Do decyzji przed traktowaniem strony jako finalnej strony działalności:
 - [ ] potwierdzenie, czy komunikat ceny netto jest właściwy dla sposobu rozliczania,
 - [ ] zasady ofertowania / ewentualny regulamin, jeśli rozpocznie się sprzedaż usług bezpośrednio przez stronę.
 
-## 9. LinkedIn — kolejny osobny etap
+## 9. LinkedIn — poza zakresem obecnych prac
 
-Nie mieszać z migracją domeny. Po stabilizacji indeksowania:
-- [ ] zaktualizować link w profilu LinkedIn,
-- [ ] uruchomić serię postów opartych o realizacje,
-- [ ] linkować do konkretnych landingów,
-- [ ] używać UTM,
-- [ ] po uruchomieniu osobnej analityki porównywać wejścia → kwalifikator → brief-start → CTA.
+Zgodnie z decyzją z 2026-10-06 LinkedIn nie jest teraz częścią wdrożenia. Priorytetem pozostaje utrzymanie obu stron, Search Console i analityki.

@@ -91,9 +91,9 @@ Produkcja ma:
   - realizacje.html,
   - cennik.html,
   - opisz-projekt.html,
-- sitemap.xml została zgłoszona.
-
-Uwaga: Search Console przy pierwszych próbach pokazywało „Nie udało się pobrać” dla sitemap.xml, mimo że plik publicznie zwraca HTTP 200, jest poprawnym XML-em i zawiera 31 URL-i. Nie zmieniać poprawnego pliku tylko z tego powodu; status należy sprawdzić ponownie po odświeżeniu cache Google po migracji DNS.
+- sitemap.xml została zgłoszona,
+- po propagacji DNS Google odczytało sitemapę poprawnie: status Sukces,
+- Search Console wykrywa 31 stron z mapy witryny.
 
 ## Umami
 
@@ -126,14 +126,11 @@ Po wdrożeniu:
 ## Co dalej
 
 1. Nie zmieniać już infrastruktury maciejgryziec.pl bez konkretnej potrzeby.
-2. Sprawdzić Search Console po 1–2 dniach:
-   - sitemap,
-   - raport Strony,
-   - indeksację ręcznie zgłoszonych URL-i.
+2. Search Console: sitemap jest już zielona; dalej obserwować raport Strony i indeksację ręcznie zgłoszonych URL-i.
 3. Po 2–4 tygodniach przeanalizować:
    - zapytania,
    - CTR,
    - strony z wyświetleniami,
    - dane Umami.
 4. Dopiero na podstawie danych rozwijać SEO i landing pages.
-5. Kolejny osobny etap: LinkedIn i pozyskiwanie ruchu do konkretnych landingów z UTM.
+5. LinkedIn pozostaje poza zakresem obecnych prac zgodnie z decyzją z 2026-10-06.
