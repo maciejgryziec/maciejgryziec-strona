@@ -9,6 +9,7 @@ WWW = "https://www.maciejgryziec.pl"
 CHECKER = "https://sprawdzarka.automatyzacjesklepow.pl"
 ANALYTICS = "https://statystyki.automatyzacjesklepow.pl"
 BOOTSTRAP_HASH = "sha256-9h4+QNjOt3CgNFpdn6iqbeII0Hyi4PqjGT1QhTZFYlc="
+UMAMI_WEBSITE_ID = "7bf89ecf-f690-413f-863a-658c0a0f4baa"
 
 class NoRedirect(HTTPRedirectHandler):
     def redirect_request(self, req, fp, code, msg, headers, newurl):
@@ -111,11 +112,12 @@ check("Umami script", status == 200, f"HTTP {status}, Cache-Control={analytics_h
 status, _, list_js_body = request(APEX + "/list.js")
 list_js_text = list_js_body.decode("utf-8", "replace")
 check(
-    "Umami wyłączone na nowej domenie",
+    "warunkowy loader Umami",
     status == 200
-    and "Statystyki na maciejgryziec.pl są obecnie wyłączone." in list_js_text
-    and "statystyki.automatyzacjesklepow.pl/script.js" not in list_js_text
-    and "data-umami-loader" not in list_js_text,
+    and "https://statystyki.automatyzacjesklepow.pl/script.js" in list_js_text
+    and UMAMI_WEBSITE_ID in list_js_text
+    and "data-umami-loader" in list_js_text
+    and "umami.disabled" in list_js_text,
     f"HTTP {status}",
 )
 
@@ -143,9 +145,17 @@ check(
     script_src or "brak script-src",
 )
 check(
-    "CSP bez zewnętrznego Umami",
-    "'self'" in script_src and "https://statystyki.automatyzacjesklepow.pl" not in script_src,
+    "CSP dopuszcza tylko własny JS + Umami",
+    "'self'" in script_src and "https://statystyki.automatyzacjesklepow.pl" in script_src,
     script_src or "brak script-src",
+)
+connect_src = ""
+if "connect-src " in csp:
+    connect_src = csp.split("connect-src ", 1)[1].split(";", 1)[0]
+check(
+    "CSP connect-src Umami",
+    "'self'" in connect_src and "https://statystyki.automatyzacjesklepow.pl" in connect_src,
+    connect_src or "brak connect-src",
 )
 check(
     "CSP hash bootstrapa no-js→js",

@@ -639,11 +639,23 @@ JS = r"""
 (function(){
   var spokoj = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var NS = "http://www.w3.org/2000/svg";
+  var UMAMI_URL = "https://statystyki.automatyzacjesklepow.pl/script.js";
+  var UMAMI_WEBSITE_ID = "7bf89ecf-f690-413f-863a-658c0a0f4baa";
+  function analyticsDisabled(){try{return localStorage.getItem("umami.disabled")==="1";}catch(e){return false;}}
+  function loadAnalytics(){
+    if(analyticsDisabled()){window.siteAnalyticsEnabled=false;return false;}
+    window.siteAnalyticsEnabled=true;
+    if(document.querySelector('script[data-umami-loader="1"]'))return true;
+    var sc=document.createElement("script");
+    sc.defer=true;
+    sc.src=UMAMI_URL;
+    sc.setAttribute("data-website-id",UMAMI_WEBSITE_ID);
+    sc.setAttribute("data-umami-loader","1");
+    document.head.appendChild(sc);
+    return true;
+  }
   window.siteTrack = window.siteTrack || function(name,data){try{if(window.umami&&typeof window.umami.track==="function")window.umami.track(name,data||{});}catch(e){}};
-
-  // Analityka maciejgryziec.pl jest celowo wyłączona do czasu
-  // utworzenia osobnego website ID w self-hosted Umami.
-  window.siteAnalyticsEnabled = false;
+  loadAnalytics();
 
   // kartony: rysowane izometrycznie na regale
   document.querySelectorAll("svg.kartony").forEach(function(svg){
@@ -1025,13 +1037,20 @@ JS = r"""
     });
   })();
 
-  // page-specific: statystyki są obecnie globalnie wyłączone na nowej domenie.
+  // page-specific: użytkownik może wyłączyć lub ponownie włączyć self-hosted Umami.
   (function(){
     var status=document.getElementById("umami-status"); if(!status)return;
     var off=document.getElementById("umami-off"),on=document.getElementById("umami-on");
-    status.textContent="Statystyki na maciejgryziec.pl są obecnie wyłączone.";
-    if(off){off.disabled=true;off.setAttribute("aria-disabled","true");}
-    if(on){on.disabled=true;on.setAttribute("aria-disabled","true");}
+    function disabled(){return analyticsDisabled();}
+    function render(){
+      var d=disabled();
+      status.textContent=d?"Statystyki na tym urządzeniu są wyłączone.":"Statystyki na tym urządzeniu są włączone.";
+      if(off){off.disabled=d;off.setAttribute("aria-disabled",d?"true":"false");}
+      if(on){on.disabled=!d;on.setAttribute("aria-disabled",!d?"true":"false");}
+    }
+    if(off)off.addEventListener("click",function(){try{localStorage.setItem("umami.disabled","1");}catch(e){}location.reload();});
+    if(on)on.addEventListener("click",function(){try{localStorage.removeItem("umami.disabled");}catch(e){}location.reload();});
+    render();
   })();
 
   // druk / zapis cennika jako PDF

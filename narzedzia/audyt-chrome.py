@@ -279,8 +279,13 @@ with server() as base:
     finally:
         k.zamknij()
 
-    # Prywatność: nowa domena nie ładuje trackera do czasu nadania osobnego ID.
-    k = open_page(base, "polityka-prywatnosci.html", 1100, 900, False)
+    # Prywatność: opt-out blokuje loader Umami przed załadowaniem strony.
+    k = Karta()
+    k.rozmiar(1100, 900, 1, False)
+    k.cmd("Page.addScriptToEvaluateOnNewDocument", source="""
+      try { localStorage.setItem('umami.disabled','1'); } catch(e) {}
+    """)
+    k.idz(f"{base}/polityka-prywatnosci.html?audit={time.time_ns()}", .55)
     try:
         tracker = bool(k.js('!!document.querySelector("script[data-umami-loader=\"1\"]")'))
         requests = k.js('performance.getEntriesByType("resource").filter(e=>e.name.includes("statystyki.automatyzacjesklepow.pl")).length') or 0
@@ -288,7 +293,7 @@ with server() as base:
         off_disabled = bool(k.js('document.querySelector("#umami-off") && document.querySelector("#umami-off").disabled'))
         on_disabled = bool(k.js('document.querySelector("#umami-on") && document.querySelector("#umami-on").disabled'))
         state = {"tracker":tracker,"requests":requests,"text":status_text,"off":off_disabled,"on":on_disabled}
-        check("privacy analytics disabled", not tracker and requests == 0 and "wyłączone" in status_text and off_disabled and on_disabled, str(state))
+        check("privacy analytics opt-out", not tracker and requests == 0 and "wyłączone" in status_text and off_disabled and not on_disabled, str(state))
     finally:
         k.zamknij()
 

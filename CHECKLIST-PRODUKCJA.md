@@ -112,11 +112,15 @@ Własność domenowa maciejgryziec.pl została zweryfikowana rekordem DNS TXT.
 
 ## 7. Analityka Umami
 
-- [x] tracker Umami jest celowo wyłączony na maciejgryziec.pl,
-- [x] nowa domena nie dziedziczy website ID starego serwisu,
-- [x] CSP nie dopuszcza zewnętrznego skryptu Umami,
-- [x] sprawdz-live.py jest zsynchronizowany z tą decyzją.
-- [ ] osobny etap: utworzyć oddzielną witrynę / website ID w self-hosted Umami i dopiero wtedy świadomie włączyć tracker oraz zaktualizować politykę/CSP.
+- [x] utworzona osobna witryna Umami dla maciejgryziec.pl,
+- [x] website ID: 7bf89ecf-f690-413f-863a-658c0a0f4baa,
+- [x] dane nie są mieszane z witryną Automatyzacje Sklepów,
+- [x] tracker jest ładowany warunkowo z list.js,
+- [x] użytkownik może wyłączyć statystyki lokalnie przez umami.disabled,
+- [x] polityka prywatności opisuje działanie self-hosted Umami,
+- [x] CSP dopuszcza wyłącznie własny JS, wymagany bootstrap i serwer Umami,
+- [x] audyt CSP: 33/33 stron bez naruszeń,
+- [x] audyt Chrome: opt-out blokuje tracker przed załadowaniem.
 
 ## 8. Dane firmy / prawne — wymagają potwierdzenia właściciela
 

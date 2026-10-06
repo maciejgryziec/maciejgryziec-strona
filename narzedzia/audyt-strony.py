@@ -416,18 +416,23 @@ for token in privacy_required:
     if token not in privacy:
         err("polityka-prywatnosci.html",f"brak wymaganej informacji: {token}")
 
-# Analityka dla maciejgryziec.pl jest celowo wyłączona do czasu utworzenia
-# osobnego website ID w self-hosted Umami. Nie wolno dziedziczyć ID starej domeny.
+# Umami jest ładowane warunkowo z list.js i ma osobny website ID dla maciejgryziec.pl.
 for pth in pages:
     txt=pth.read_text(encoding="utf-8")
-    if 'statystyki.automatyzacjesklepow.pl/script.js' in txt:
-        err(pth.name,"tracker Umami jest wyłączony na nowej domenie — usuń statyczny script")
-    if 'rel="preconnect" href="https://statystyki.automatyzacjesklepow.pl"' in txt:
-        err(pth.name,"preconnect do Umami mimo wyłączonej analityki")
+    if 'https://statystyki.automatyzacjesklepow.pl/script.js' in txt:
+        err(pth.name,"tracker Umami powinien być ładowany wyłącznie dynamicznie z list.js")
 
 site_js=(ROOT / "list.js").read_text(encoding="utf-8")
-if 'sc.src="https://statystyki.automatyzacjesklepow.pl/script.js"' in site_js and 'tracker celowo wyłączony' not in site_js:
-    err("list.js","nowa domena nie może używać starego website ID Umami")
+for token in (
+    'UMAMI_URL = "https://statystyki.automatyzacjesklepow.pl/script.js"',
+    'UMAMI_WEBSITE_ID = "7bf89ecf-f690-413f-863a-658c0a0f4baa"',
+    'data-umami-loader',
+    'umami.disabled',
+):
+    if token not in site_js:
+        err("list.js",f"brak konfiguracji Umami: {token}")
+if "426e2d75-f696-4c0a-ab60-79e76cf1d73c" in site_js:
+    err("list.js","list.js nadal zawiera website ID starej domeny")
 
 # Główne CTA sprzedażowe mają spójny tracking i nie używają surowego mailto/#.
 for pth in pages:
@@ -655,7 +660,8 @@ else:
         'Referrer-Policy',
         'Permissions-Policy',
         'Content-Security-Policy',
-        "script-src 'self' 'sha256-9h4+QNjOt3CgNFpdn6iqbeII0Hyi4PqjGT1QhTZFYlc=';",
+        "script-src 'self' 'sha256-9h4+QNjOt3CgNFpdn6iqbeII0Hyi4PqjGT1QhTZFYlc=' https://statystyki.automatyzacjesklepow.pl;",
+        "connect-src 'self' https://statystyki.automatyzacjesklepow.pl;",
         'location ^~ /zrodla/ { return 404; }',
         'location ^~ /narzedzia/ { return 404; }',
         'location ^~ /deploy/ { return 404; }',

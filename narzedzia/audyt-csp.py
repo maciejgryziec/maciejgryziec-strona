@@ -30,6 +30,13 @@ CSP = m.group(1).replace("; upgrade-insecure-requests", "")
 if "'unsafe-inline'" in CSP.split("script-src", 1)[1].split(";", 1)[0]:
     raise SystemExit("script-src nadal zawiera unsafe-inline")
 
+script_src = CSP.split("script-src ", 1)[1].split(";", 1)[0]
+connect_src = CSP.split("connect-src ", 1)[1].split(";", 1)[0]
+if "https://statystyki.automatyzacjesklepow.pl" not in script_src:
+    raise SystemExit("CSP nie dopuszcza skryptu Umami")
+if "https://statystyki.automatyzacjesklepow.pl" not in connect_src:
+    raise SystemExit("CSP nie dopuszcza połączeń do Umami")
+
 class Handler(SimpleHTTPRequestHandler):
     def end_headers(self):
         self.send_header("Content-Security-Policy", CSP)
@@ -109,4 +116,4 @@ if issues:
         print(" -", page, result)
     sys.exit(1)
 
-print("OK — wszystkie strony działają pod produkcyjną CSP bez unsafe-inline; dozwolony jest tylko hashowany bootstrap.")
+print("OK — wszystkie strony działają pod produkcyjną CSP bez unsafe-inline; dozwolone są własne skrypty, hashowany bootstrap i self-hosted Umami.")
