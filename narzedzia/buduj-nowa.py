@@ -402,7 +402,7 @@ body.ciemna .gora nav a{color:#fff}
 .ekran{position:absolute;background:#fff;border:1px solid #d9dbe2;box-shadow:0 40px 60px -30px rgba(20,30,70,.4);overflow:hidden}
 .ekran img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
 .ekran .screen-bg{display:block;width:100%;height:100%;background-size:cover;background-position:top left}
-@media(min-width:821px){.ekran.b .screen-bg{background-image:url("zdjecia/wypozyczalnia-pulpit-800.webp")}}
+@media(min-width:821px){.ekran.b .screen-bg{background-image:url("zdjecia/wypozyczalnia-pulpit-800.webp?v=20261006b")}}
 @media(max-width:820px){.ekran.b{display:none}}
 .ekran.a{left:6%;top:6%;width:58%;aspect-ratio:16/10;transform:translate(calc((1 - var(--w)) * -160px), calc(var(--t) * 40px)) rotate(-3deg);opacity:clamp(0, calc(var(--w) * 2.5), 1)}
 .ekran.b{left:44%;top:34%;width:50%;aspect-ratio:16/10;transform:translate(calc((1 - var(--w)) * 160px), calc(var(--t) * -40px)) rotate(2deg);opacity:clamp(0, calc(var(--w) * 2.5 - .4), 1)}
@@ -1229,7 +1229,7 @@ def ksiega():
     kaf = ''.join(f'<div class="kafel{" uwaga" if u else ""}"><b>{n}</b><span>{o}</span><i>' + ''.join(f'<em style="height:{h*10}%"></em>' for h in sl) + '</i></div>' for n,o,u,sl in mosty)
     panel = f'<div class="panel"><div class="gora-p">Strażnik połączeń <small>wtorek 8.09 · sprawdzono 06:00</small></div><div class="kafle">{kaf}</div><div class="dol"><div><b>12</b>mostów</div><div><b>1</b>ostrzeżenie</div><div><b>0</b>awarii</div><div><b>14 dni</b>od ostatniej naprawy</div></div></div>'
     karty = [("#5b6cff","Konfigurator","PV Roof Configurator",'<img src="zdjecia/photonroof-wymiary.jpg" alt="" fetchpriority="high" decoding="async">',"Konfigurator dachówek fotowoltaicznych","Klient sam rysuje dach, a wycena liczy się od razu w przeglądarce. <span>Wcześniej: telefon do handlowca i kilka dni czekania.</span>","realizacje.html#photonroof"),
-             ("#e6982f","Panel firmy","<span style=\"font-size:.72em\">Wypożyczalnia</span>",'<img data-carousel-src="zdjecia/wypozyczalnia-flota-800.webp" data-carousel-srcset="zdjecia/wypozyczalnia-flota-800.webp 800w, zdjecia/wypozyczalnia-flota.webp 1440w" data-carousel-sizes="(max-width: 820px) calc(100vw - 44px), 720px" alt="" width="1440" height="900" fetchpriority="low" decoding="async">',"Panel wypożyczalni samochodowej","Flota, najmy, faktury i kalendarz, który sam wykrywa podwójną rezerwację. <span>Przykład systemu szytego pod jedną branżę.</span>","realizacje.html#wypozyczalnia"),
+             ("#e6982f","Panel firmy","<span style=\"font-size:.72em\">Wypożyczalnia</span>",'<img data-carousel-src="zdjecia/wypozyczalnia-flota-800.webp?v=20261006b" data-carousel-srcset="zdjecia/wypozyczalnia-flota-800.webp?v=20261006b 800w, zdjecia/wypozyczalnia-flota.webp?v=20261006b 1440w" data-carousel-sizes="(max-width: 820px) calc(100vw - 44px), 720px" alt="" width="1440" height="900" fetchpriority="low" decoding="async">',"Panel wypożyczalni samochodowej","Flota, najmy, faktury i kalendarz, który sam wykrywa podwójną rezerwację. <span>Przykład systemu szytego pod jedną branżę.</span>","realizacje.html#wypozyczalnia"),
              ("#2f9e88","Narzędzie","Sprawdzarka",spr,"Sprawdzarka sklepu","Wpisujesz adres, dostajesz listę tego, co widać z zewnątrz: GPSR, Omnibus, EAN, mapa strony. <span>Bezpłatnie, działa dziś.</span>","https://automatyzacjesklepow.pl/sprawdzarka.html"),
              ("#c8473f","Abonament","Strażnik",panel,"Strażnik połączeń","Codziennie sprawdza, czy formularze, CRM, kalendarz, dokumenty i integracje nadal wymieniają dane. <span>Problem wychodzi w monitoringu, nie dopiero przy kliencie.</span>","cennik.html#straznik")]
     k = ''
@@ -1243,6 +1243,7 @@ def ekrany():
     return '<div class="ekrany"><div class="ekran a"><img src="zdjecia/photonroof-kreator3d.jpg" alt="" fetchpriority="high" decoding="async"></div><div class="ekran b" aria-hidden="true"><span class="screen-bg"></span></div></div>'
 
 ASSET_VERSION = hashlib.sha256((CSS + "\n" + JS).encode("utf-8")).hexdigest()[:10]
+CASE_IMAGE_VERSION = "20261006b"
 
 # ---------------------------------------------------------------- szkielet
 NAV = '<a href="dedykowane-oprogramowanie-dla-firm.html">Usługi</a><a href="realizacje.html">Realizacje</a><a href="jak-pracuje.html">Jak pracuję</a><a href="cennik.html">Cennik</a><a href="poradniki.html">Poradniki</a><a href="o-mnie.html">O mnie</a><a class="nav-cta" data-umami-event="klik-opisz-projekt" href="opisz-projekt.html">Opisz projekt</a>'
@@ -1419,14 +1420,18 @@ def uzupelnij_wymiary_obrazow(html_text):
         if not os.path.exists(webp_path):
             return caly
         w,_=WYMIARY_ZDJEC[plik]
+        case_asset = plik.startswith("photonroof-") or plik.startswith("wypozyczalnia-")
+        suffix = f"?v={CASE_IMAGE_VERSION}" if case_asset else ""
         webp_800=os.path.splitext(plik)[0] + "-800.webp"
         webp_800_path=os.path.join(REPO, "zdjecia", webp_800)
         if os.path.exists(webp_800_path):
-            srcset=f'zdjecia/{webp_800} 800w, zdjecia/{webp} {w}w'
+            srcset=f'zdjecia/{webp_800}{suffix} 800w, zdjecia/{webp}{suffix} {w}w'
             sizes='(max-width: 820px) calc(100vw - 44px), 720px'
             source=f'<source srcset="{srcset}" sizes="{sizes}" type="image/webp">'
         else:
-            source=f'<source srcset="zdjecia/{webp}" type="image/webp">'
+            source=f'<source srcset="zdjecia/{webp}{suffix}" type="image/webp">'
+        if suffix:
+            caly=caly.replace(f'src="zdjecia/{plik}"', f'src="zdjecia/{plik}{suffix}"', 1)
         caly=caly[:-1] + ' data-webp="1">'
         return f'<picture>{source}{caly}</picture>'
     return re.sub(r'<img\b[^>]*src="zdjecia/([^"]+)"[^>]*>', repl, html_text)
@@ -1469,10 +1474,10 @@ def rodzic_dla(nazwa):
     return None
 
 OG_MEDIA = {
-  "realizacje": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg", 1600, 833, "Kreator 3D PV Roof Configurator — przykład aplikacji webowej"),
-  "kalkulator-konfigurator-dla-klientow": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg", 1600, 833, "Kreator 3D i kalkulator PV Roof Configurator"),
-  "program-dla-wypozyczalni": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png", 1440, 740, "Kalendarz obłożenia w panelu wypożyczalni"),
-  "system-rezerwacji-dla-firm": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png", 1440, 740, "Przykład kalendarza rezerwacji zasobów"),
+  "realizacje": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg?v=20261006b", 1600, 833, "Kreator 3D PV Roof Configurator — przykład aplikacji webowej"),
+  "kalkulator-konfigurator-dla-klientow": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg?v=20261006b", 1600, 833, "Kreator 3D i kalkulator PV Roof Configurator"),
+  "program-dla-wypozyczalni": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png?v=20261006b", 1440, 740, "Kalendarz obłożenia w panelu wypożyczalni"),
+  "system-rezerwacji-dla-firm": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png?v=20261006b", 1440, 740, "Przykład kalendarza rezerwacji zasobów"),
 }
 
 def faq_zrodla(nazwa):
@@ -1504,8 +1509,8 @@ def glowa(tytul, opis, kanon, nazwa=None):
     PRELOAD = ''
     if nazwa == "realizacje":
         PRELOAD = ('\n<link rel="preload" as="image" '
-                   'href="zdjecia/photonroof-wymiary-800.webp" '
-                   'imagesrcset="zdjecia/photonroof-wymiary-800.webp 800w, zdjecia/photonroof-wymiary.webp 1600w" '
+                   'href="zdjecia/photonroof-wymiary-800.webp?v=20261006b" '
+                   'imagesrcset="zdjecia/photonroof-wymiary-800.webp?v=20261006b 800w, zdjecia/photonroof-wymiary.webp?v=20261006b 1600w" '
                    'imagesizes="(max-width: 820px) calc(100vw - 44px), 720px" '
                    'type="image/webp" fetchpriority="high">')
     og_image, og_w, og_h, og_alt = OG_MEDIA.get(nazwa, ("https://maciejgryziec.pl/og-image.png", 1200, 630, "Aplikacje, które pracują tak jak firma — Maciej Gryziec"))
