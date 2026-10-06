@@ -1,0 +1,90 @@
+/* Paleta B: „Granat i bursztyn" — jeden niebieski marki, spokojne tła, jeden ciepły akcent. Nakładka na list.css. */
+:root{--tekst:#1c1c21;--szary:#45464f;--blekit:#1550d0;--link:#1550d0;--kreska:#c6c6d0}
+a:hover{color:#00297a}
+body{background:#fbfaf7}
+.rozdzial.ciemny .slaby,.ciemny .cena{color:#c6c6d0}
+.rozdzial.ciemny a{color:#b5c4ff}
+
+/* czoło: ciemniejszy, spokojniejszy granat; bursztyn tylko tam, gdzie ma przyciągnąć wzrok */
+.start{background:#1e4aa8}
+.start h1 em{color:#f0b64a}
+.start .zacheta{color:#ffffff}
+.start .cta a{border-bottom-color:#f0b64a}
+.start .cta svg{stroke:#f0b64a}
+.start .cta span{color:#c9d4f2 !important}
+.start .drobne,.start .drobne a{color:#c9d4f2}
+.start .nadtytul{background:rgba(201,212,242,.16)}
+.mosty .pakiet{fill:#f0b64a;filter:drop-shadow(0 0 6px #f0b64a)}
+.mosty .kafel.glowny{fill:#1550d0}
+.dymek.zolty{background:#f0b64a;color:#1c1c21}.dymek.zolty::after{border-top-color:#f0b64a}
+
+/* światy */
+.bialy{background:#fbfaf7}
+.jasny{background:#e3e9f7}.jasny h2,.jasny h1 strong{color:#16295e}
+.piasek{background:#efe6d6}.piasek h2,.piasek h1 strong{color:#5a3f16}
+.szary{background:#eceef1}.szary h2{color:#1c1c21}
+.czern{background:#121318}
+.noc{background:#10234d}
+.ziel{background:#0f3d2e}
+.ksiega-tlo{background:#1e1f26}
+.faktura h2{color:#1c1c21}
+.koniec{background:#f3eee4}
+.stopka{background:#f3eee4;margin-left:0;padding-left:var(--lewy);max-width:none;border-top-color:#d9d2c4}
+
+/* schody: od dołu #00297a, #1c54d3, #638aff, #8da8ff, #b5c4ff; linia w ciemnym bursztynie, bez gradientu */
+.schody .stopien:nth-of-type(1) polygon:nth-child(1){fill:#00297a}.schody .stopien:nth-of-type(1) polygon:nth-child(2){fill:#1c54d3}.schody .stopien:nth-of-type(1) polygon:nth-child(3){fill:#00174d}
+.schody .stopien:nth-of-type(2) polygon:nth-child(1){fill:#1c54d3}.schody .stopien:nth-of-type(2) polygon:nth-child(2){fill:#3f6eee}.schody .stopien:nth-of-type(2) polygon:nth-child(3){fill:#003cab}
+.schody .stopien:nth-of-type(3) polygon:nth-child(1){fill:#638aff}.schody .stopien:nth-of-type(3) polygon:nth-child(2){fill:#8da8ff}.schody .stopien:nth-of-type(3) polygon:nth-child(3){fill:#3f6eee}
+.schody .stopien:nth-of-type(4) polygon:nth-child(1){fill:#8da8ff}.schody .stopien:nth-of-type(4) polygon:nth-child(2){fill:#b5c4ff}.schody .stopien:nth-of-type(4) polygon:nth-child(3){fill:#638aff}
+.schody .stopien:nth-of-type(5) polygon:nth-child(1){fill:#b5c4ff}.schody .stopien:nth-of-type(5) polygon:nth-child(2){fill:#dbe1ff}.schody .stopien:nth-of-type(5) polygon:nth-child(3){fill:#8da8ff}
+.schody .stopien:nth-of-type(3) text{fill:#00174d}.schody .stopien:nth-of-type(3) text.czas{fill:#00297a}
+.schody .stopien:nth-of-type(4) text,.schody .stopien:nth-of-type(5) text{fill:#1c1c21}
+.schody .stopien:nth-of-type(4) text.czas,.schody .stopien:nth-of-type(5) text.czas{fill:#45464f}
+.schody .tor{stroke:#8a5a00}
+.schody .grot{stroke:#8a5a00}
+
+/* faktury i dokument */
+.kartka .piecz,.dokument .upo{color:#8a5a00;border-color:#8a5a00;background:transparent}
+.dok .status{background:#e6f6ec;color:#157a42}
+.dok .naglowek small,.dok .strony b,.dok th,.dok .dol-dok,.dokument .naglowek small{color:#45464f}
+
+/* kartony zostają kartonowe, tylko podpisy ciemniejsze */
+.kartony text{fill:#3b2a12}.kartony .zero{fill:#ba1a1a}
+
+/* noc: płaski granat, góry w dwóch tonach, bursztynowe okna i księżyc w pełni */
+.gory polygon:nth-child(1){fill:#223f7a}.gory polygon:nth-child(2){fill:#1a3466}
+.miasto rect{fill:#0a1633}.miasto .okno{fill:#f0b64a}
+.ksiezyc{background:#f0b64a;box-shadow:0 0 60px rgba(240,182,74,.45)}.ksiezyc::after{display:none}
+.lampki b{background:#7cf2a5;box-shadow:0 0 10px #7cf2a5}
+.lampki{color:#c6c6d0}
+.noc .tekst p{color:#e4e6f0}
+
+/* paragon */
+.drukarka{background:linear-gradient(#2b2e3a,#121318)}
+.paragon .drobne,.paragon .poz.sz,.paragon .kod+p{color:#45464f}
+
+/* sprawdzarka: zieleń zostaje, przycisk bursztynowy */
+.ziel .tekst p{color:#e6efe9}
+.ziel .cena{color:#c2d3c9}
+.ziel input{border-color:#6f9e88;color:#e6efe9}
+.ziel input::placeholder{color:#a9bfb3}
+.ziel button{background:#f0b64a;color:#1c1c21}
+.raport .b,.spr .b{color:#ba1a1a}.raport .u,.spr .u{color:#8a5a00}.raport .o,.spr .o{color:#157a42}
+.raport .adres,.spr .gora-p small,.spr .wynik span{color:#45464f}
+.raport .adres i{color:#157a42}
+.spr .pasek-w i{background:linear-gradient(90deg,#ba1a1a,#8a5a00 50%,#157a42)}
+
+/* księga: karty w tonach marki, nie w tęczy */
+.kropy button{background:#767680}.kropy button.tu{background:#fff}
+.ksiega .strzalka{color:#b5c4ff}
+.karta:nth-of-type(1){background:#1e4aa8 !important}
+.karta:nth-of-type(2){background:#7a5520 !important}
+.karta:nth-of-type(3){background:#1a5240 !important}
+.karta:nth-of-type(4){background:#2b2e3a !important}
+.karta:nth-of-type(1) .opis{color:#c9d4f2}.karta:nth-of-type(2) .opis{color:#efe6d6}.karta:nth-of-type(3) .opis{color:#e6efe9}.karta:nth-of-type(4) .opis{color:#c6c6d0}
+.karta .opis b,.karta .opis a{color:#fff}
+.panel .kafel{border-left-color:#7cf2a5}.panel .kafel.uwaga{border-left-color:#f0b64a}
+.panel .kafel i em{background:#157a42}.panel .kafel.uwaga i em{background:#8a5a00}
+
+/* ciepłe tła: przycisk w ciemnym bursztynie z białym napisem (uwaga sędziego) */
+.piasek button,.koniec button{background:#8a5a00;color:#fff}

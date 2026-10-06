@@ -1,0 +1,97 @@
+/* Paleta A: „Jeden błękit, dwanaście tonów" — Material 3 z seeda #1550d0. Nakładka na list.css. */
+:root{--tekst:#1b1b1f;--szary:#45464f;--blekit:#1c54d3;--link:#1c54d3;--kreska:#c6c6d0}
+a:hover{color:#003cab}
+body{background:#fefbff}
+.rozdzial.ciemny .slaby,.ciemny .cena{color:#c6c6d0}
+.rozdzial.ciemny a{color:#b5c4ff}
+
+/* czoło */
+.start{background:#003cab}
+.start h1 em{color:#b5c4ff}
+.start .zacheta{color:#ffffff}
+.start .nadtytul{background:rgba(219,225,255,.16)}
+.start .nadtytul i{background:#91d888;box-shadow:0 0 10px #91d888}
+.start .cta a{border-bottom-color:#b5c4ff}
+.start .cta svg{stroke:#b5c4ff}
+.start .cta span{color:#dbe1ff !important}
+.start .drobne,.start .drobne a{color:#dbe1ff}
+.mosty .pakiet{fill:#b5c4ff;filter:drop-shadow(0 0 6px #b5c4ff)}
+.mosty .lampka{fill:#91d888}
+.mosty .kafel.glowny{fill:#1c54d3}
+.dymek.zolty{background:#dbe1ff;color:#00174d}.dymek.zolty::after{border-top-color:#dbe1ff}
+.dymek{color:#1b1b1f}
+
+/* światy */
+.bialy{background:#fefbff}
+.jasny{background:#eff0ff}.jasny h2,.jasny h1 strong{color:#00174d}
+.piasek{background:#ffd6f7}.piasek h2,.piasek h1 strong{color:#2b122a}
+.szary{background:#eae7ec}.szary h2{color:#00174d}
+.czern{background:#161b2c}
+.noc{background:#00174d}
+.ziel{background:#2b3042}
+.ksiega-tlo{background:#131316}
+.faktura h2{color:#00174d}
+.koniec{background:#00297a;color:#fff}
+.koniec h2,.koniec a{color:#fff}
+.stopka{background:#00297a;color:#c6c6d0;border-top-color:#003cab;margin-left:0;padding-left:var(--lewy);max-width:none}
+.stopka a{color:#dbe1ff}
+
+/* schody: 1–2 jasne z ciemnym napisem, 3 ton 50, 4–5 ciemne */
+.schody .stopien:nth-of-type(1) polygon:nth-child(1){fill:#8da8ff}.schody .stopien:nth-of-type(1) polygon:nth-child(2){fill:#b5c4ff}.schody .stopien:nth-of-type(1) polygon:nth-child(3){fill:#638aff}
+.schody .stopien:nth-of-type(2) polygon:nth-child(1){fill:#638aff}.schody .stopien:nth-of-type(2) polygon:nth-child(2){fill:#8da8ff}.schody .stopien:nth-of-type(2) polygon:nth-child(3){fill:#3f6eee}
+.schody .stopien:nth-of-type(3) polygon:nth-child(1){fill:#3f6eee}.schody .stopien:nth-of-type(3) polygon:nth-child(2){fill:#638aff}.schody .stopien:nth-of-type(3) polygon:nth-child(3){fill:#1c54d3}
+.schody .stopien:nth-of-type(4) polygon:nth-child(1){fill:#003cab}.schody .stopien:nth-of-type(4) polygon:nth-child(2){fill:#1c54d3}.schody .stopien:nth-of-type(4) polygon:nth-child(3){fill:#00297a}
+.schody .stopien:nth-of-type(5) polygon:nth-child(1){fill:#00297a}.schody .stopien:nth-of-type(5) polygon:nth-child(2){fill:#003cab}.schody .stopien:nth-of-type(5) polygon:nth-child(3){fill:#00174d}
+.schody .stopien:nth-of-type(1) text,.schody .stopien:nth-of-type(2) text,.schody .stopien:nth-of-type(3) text{fill:#00174d}
+.schody .stopien:nth-of-type(1) text.czas,.schody .stopien:nth-of-type(2) text.czas,.schody .stopien:nth-of-type(3) text.czas{fill:#00297a}
+.schody .tor{stroke:#745470}
+.schody .grot{stroke:#745470}
+
+/* faktury i dokument */
+.kartka .piecz,.dokument .upo{color:#296b2a;border-color:#296b2a;background:#acf4a2}
+.dok .status{background:#acf4a2;color:#002203}
+.kartka,.dokument{color:#1b1b1f}
+.dok .naglowek small,.dok .strony b,.dok th,.dok .dol-dok,.dokument .naglowek small{color:#45464f}
+.dokument{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 140px rgba(181,196,255,.28),0 60px 80px -40px rgba(0,0,0,.9)}
+
+/* kartony w śliwce */
+.kartony .karton polygon:nth-child(1){fill:#8f6e8b}.kartony .karton polygon:nth-child(2){fill:#745470}.kartony .karton polygon:nth-child(3){fill:#5b3d57}.kartony .karton polygon:nth-child(4){fill:#a58aa1}
+.kartony .karton polygon:nth-child(5){fill:#ffd6f7}.kartony .karton polygon:nth-child(n+6){fill:#2b122a}
+.kartony text{fill:#ffffff}.kartony .zero{fill:#ffb4ab}
+.kartony .regal polygon:nth-child(1){fill:#e9c9e4}.kartony .regal polygon:nth-child(2){fill:#c9a6c3}.kartony .regal polygon:nth-child(3){fill:#b08faa}
+
+/* noc */
+.gory polygon:nth-child(1){fill:#003293}.gory polygon:nth-child(2){fill:#00297a}
+.miasto rect{fill:#000f3b}.miasto .okno{fill:#dbe1ff}
+.ksiezyc{background:#f2f0f4;box-shadow:0 0 60px rgba(242,240,244,.45)}.ksiezyc::after{background:#00174d}
+.lampki b{background:#91d888;box-shadow:0 0 10px #91d888}
+.lampki{color:#c6c6d0}
+
+/* paragon */
+.drukarka{background:linear-gradient(#303034,#1f1f23)}
+.paragon .drobne,.paragon .poz.sz,.paragon .kod+p{color:#45464f}
+.paragon hr{border-top-color:#c6c6d0}
+
+/* sprawdzarka */
+.ziel input{background:#414659;border-color:#8f909a;color:#e4e2e6}
+.ziel input::placeholder{color:#c6c6d0}
+.ziel button{background:#b5c4ff;color:#00297a}
+.raport .b,.spr .b{color:#ba1a1a}.raport .u,.spr .u{color:#825500}.raport .o,.spr .o{color:#296b2a}
+.raport .adres,.spr .gora-p small,.spr .wynik span{color:#45464f}
+.raport .adres i{color:#296b2a}
+.spr .pasek-w i{background:linear-gradient(90deg,#ba1a1a,#825500 50%,#296b2a)}
+
+/* księga */
+.kropy button{background:#767680}.kropy button.tu{background:#fff}
+.ksiega .strzalka{color:#b5c4ff}
+.karta:nth-of-type(1){background:#003cab !important}
+.karta:nth-of-type(2){background:#745470 !important}
+.karta:nth-of-type(3){background:#595e72 !important}
+.karta:nth-of-type(4){background:#e4e2e6 !important;color:#1b1b1f}
+.karta:nth-of-type(4) .duze{color:#1b1b1f}.karta:nth-of-type(4) .opis a{color:#1b1b1f}
+.karta .duze{color:#ffffff}
+.panel .kafel{border-left-color:#91d888}.panel .kafel.uwaga{border-left-color:#ffb94e}
+.panel .kafel i em{background:#296b2a}.panel .kafel.uwaga i em{background:#825500}
+
+/* nagłówek na ciemnych */
+body.ciemna .gora nav a,body.ciemna .gora .znak{color:#fff}

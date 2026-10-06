@@ -1,0 +1,40 @@
+/* Style potrzebne bibliotece RUCH. Kolory zmieniaj do woli — mechanika siedzi
+   w kilku regułach niżej i jest niezależna od wyglądu. */
+
+/* 1. WJAZD */
+[data-ruch="wjazd"].ruch-czeka{opacity:0;transform:translateY(28px);
+  transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+[data-ruch="wjazd"].widac{opacity:1;transform:none}
+
+/* 2. ODSŁONIĘCIE — zdjęcie wyłania się jak zza zasłony */
+[data-ruch="odsloniecie"].ruch-czeka{clip-path:inset(0 0 100% 0);
+  transition:clip-path 1.1s cubic-bezier(.16,1,.3,1)}
+[data-ruch="odsloniecie"].widac{clip-path:inset(0 0 0 0)}
+
+/* 3. SEKCJA PRZYPIĘTA — sekcja jest wysoka, jej ekran stoi w miejscu */
+[data-ruch="przypiete"],[data-ruch="poziomo"]{position:relative}
+[data-ruch="przypiete"] .ruch-ekran,
+[data-ruch="poziomo"] .ruch-ekran{position:sticky;top:0;height:100svh;overflow:hidden}
+
+/* 4. SEKWENCJA OBRAZKÓW */
+[data-ruch="sekwencja"]{position:absolute;inset:0}
+[data-ruch="sekwencja"] canvas{display:block;width:100%;height:100%}
+
+/* 5. PRZEWIJANIE W BOK */
+[data-ruch="poziomo"] .ruch-tor{display:flex;gap:1.5rem;width:max-content}
+
+/* 6. PRZENIKANIE — dzieci leżą jedno na drugim */
+[data-ruch="przenikanie"]{position:relative}
+[data-ruch="przenikanie"] > *{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;opacity:0}
+
+/* 7. PARALLAKS — element potrzebuje zapasu, żeby miał się gdzie ruszać */
+.ruch-kadr{overflow:hidden;position:relative}
+.ruch-kadr [data-ruch="parallaks"]{width:100%;height:126%;position:absolute;
+  top:-13%;left:0;object-fit:cover}
+
+@media (prefers-reduced-motion: reduce){
+  [data-ruch="wjazd"].ruch-czeka,[data-ruch="odsloniecie"].ruch-czeka{
+    opacity:1;transform:none;clip-path:none;transition:none}
+  [data-ruch="parallaks"]{transform:none!important}
+}

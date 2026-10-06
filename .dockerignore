@@ -1,0 +1,21 @@
+# Pliki deweloperskie — nie mogą trafić do publicznego obrazu nginx.
+.git
+.github
+.gitignore
+zrodla
+narzedzia
+deploy
+
+# Dokumentacja repo nie jest częścią strony.
+*.md
+
+# Lokalne artefakty audytowe.
+_audit-*
+*.log
+
+# Pliki środowiskowe / edytorowe.
+.env
+.env.*
+.DS_Store
+.vscode
+.idea

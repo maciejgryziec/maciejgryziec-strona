@@ -1,0 +1,95 @@
+/* Paleta C: „Papier i atrament, dziesięć scen" — ciepły papier, atrament, jeden miedziany akcent; błękit tylko na okładce i w linkach. Nakładka na list.css. */
+:root{--tekst:#1f1b16;--szary:#4e453d;--blekit:#a63b0c;--link:#1d58ab;--kreska:#d1c4b9}
+a:hover{color:#0f3d80}
+body{background:#fff5ed}
+.rozdzial.ciemny .slaby,.ciemny .cena{color:#d1c4b9}
+.rozdzial.ciemny a{color:#c2d5ff}
+.tresc p,.tresc ul,.tresc ol{color:#3a322b}
+
+/* okładka: granat, żółty tylko tutaj i w oknach nocy, miedź jasna na CTA */
+.start{background:#194586}
+.start h1 em{color:#ffd976}
+.start .zacheta,.start .tekst p{color:#eff0fa}
+.start .cta a{border-bottom-color:#ffc8b6}
+.start .cta svg{stroke:#ffc8b6}
+.start .cta span{color:#c2d5ff !important}
+.start .drobne,.start .drobne a{color:#c2d5ff}
+.start .nadtytul{background:rgba(194,213,255,.16)}
+.mosty .pakiet{fill:#ffd976;filter:drop-shadow(0 0 6px #ffd976)}
+.mosty .kafel.glowny{fill:#2f5da8}
+.dymek.zolty{background:#ffd976;color:#1f1b16}.dymek.zolty::after{border-top-color:#ffd976}
+.dymek{color:#1f1b16}
+
+/* sceny: jasne w tonie 92–97, ciemne 10–14 */
+.bialy{background:#fff5ed}
+.jasny{background:#e2ebff}.jasny h2,.jasny h1 strong{color:#003564}.jasny .tekst p{color:#032649}
+.piasek{background:#ffe8c5}.piasek h2,.piasek h1 strong{color:#473100}.piasek .tekst p{color:#342300}
+.szary{background:#f7e5d5}.szary h2{color:#3f3325}
+.czern{background:#1f1b16}.czern .tekst p{color:#f1e6df}
+.noc{background:#1d2432}.noc .tekst p{color:#e6e8f2}
+.ziel{background:#18271f}.ziel .tekst p{color:#e1ebe2}
+.ksiega-tlo{background:#231a16 radial-gradient(60% 50% at 50% 40%,#2e2420,#231a16 70%)}
+.faktura h2{color:#1f1b16}
+.koniec{background:#ffe6db;color:#421a03}.koniec h2{color:#5c2301}.koniec a{color:#a63b0c}
+.stopka{background:#ffe6db;margin-left:0;padding-left:var(--lewy);max-width:none;border-top-color:#e8cdbf;color:#6b4a3a}.stopka a{color:#6b4a3a}
+
+/* schody: kurzowy błękit, od jasnego (dół) do ciemnego (góra), miedziana linia */
+.schody .stopien:nth-of-type(1) polygon:nth-child(1){fill:#dbe6ff}.schody .stopien:nth-of-type(1) polygon:nth-child(2){fill:#eef3ff}.schody .stopien:nth-of-type(1) polygon:nth-child(3){fill:#b9ccf0}
+.schody .stopien:nth-of-type(2) polygon:nth-child(1){fill:#b9ccf0}.schody .stopien:nth-of-type(2) polygon:nth-child(2){fill:#d3e0fa}.schody .stopien:nth-of-type(2) polygon:nth-child(3){fill:#8faad4}
+.schody .stopien:nth-of-type(3) polygon:nth-child(1){fill:#8faad4}.schody .stopien:nth-of-type(3) polygon:nth-child(2){fill:#b0c4e6}.schody .stopien:nth-of-type(3) polygon:nth-child(3){fill:#6a89bd}
+.schody .stopien:nth-of-type(4) polygon:nth-child(1){fill:#4d70a2}.schody .stopien:nth-of-type(4) polygon:nth-child(2){fill:#6a89bd}.schody .stopien:nth-of-type(4) polygon:nth-child(3){fill:#3b608f}
+.schody .stopien:nth-of-type(5) polygon:nth-child(1){fill:#2f5da8}.schody .stopien:nth-of-type(5) polygon:nth-child(2){fill:#4d70a2}.schody .stopien:nth-of-type(5) polygon:nth-child(3){fill:#1e3f7a}
+.schody .stopien:nth-of-type(1) text,.schody .stopien:nth-of-type(2) text,.schody .stopien:nth-of-type(3) text{fill:#032649}
+.schody .stopien:nth-of-type(1) text.czas,.schody .stopien:nth-of-type(2) text.czas,.schody .stopien:nth-of-type(3) text.czas{fill:#3b608f}
+.schody .tor{stroke:#a63b0c}
+.schody .grot{stroke:#a63b0c}
+
+/* faktury i dokument: papier, atrament, zielona pieczęć */
+.kartka,.dokument{background:#fffaf4;color:#1f1b16;border-color:#d1c4b9}
+.kartka .piecz,.dokument .upo{color:#08682a;border-color:#08682a;background:transparent}
+.dok .status{background:#e3f4e4;color:#08682a}
+.dok .naglowek small,.dok .strony b,.dok th,.dok .dol-dok,.dokument .naglowek small{color:#4e453d}
+.dok .naglowek,.dokument .naglowek{border-bottom-color:#1f1b16}
+.dokument{box-shadow:0 0 0 1px rgba(255,255,255,.08),0 0 140px rgba(255,200,182,.22),0 60px 80px -40px rgba(0,0,0,.9)}
+
+/* kartony: zostają kartonowe, podpisy w atramencie */
+.kartony text{fill:#342300}.kartony .zero{fill:#ba1a1a}
+
+/* noc: grafitowy granat, żółte okna, kremowy księżyc */
+.gory polygon:nth-child(1){fill:#2a3550}.gory polygon:nth-child(2){fill:#232c42}
+.miasto rect{fill:#141a28}.miasto .okno{fill:#ffd976}
+.ksiezyc{background:#fff1c9;box-shadow:0 0 60px rgba(255,241,201,.4)}.ksiezyc::after{background:#1d2432}
+.lampki b{background:#96d69a;box-shadow:0 0 10px #96d69a}
+.lampki{color:#d1c4b9}
+
+/* paragon na pergaminie */
+.drukarka{background:linear-gradient(#3a332d,#1f1b16)}
+.paragon{background:#fffaf4}
+.paragon .drobne,.paragon .poz.sz,.paragon .kod+p{color:#4e453d}
+.paragon hr{border-top-color:#d1c4b9}
+
+/* sprawdzarka: butelkowa zieleń, przycisk w jasnej miedzi */
+.ziel .cena{color:#c2d3c9}
+.ziel input{border-color:#6f9e88;color:#e1ebe2}
+.ziel input::placeholder{color:#a9bfb3}
+.ziel button{background:#ffc8b6;color:#5c1a00}
+.raport,.spr{background:#fffaf4}
+.raport .b,.spr .b{color:#ba1a1a}.raport .u,.spr .u{color:#825500}.raport .o,.spr .o{color:#08682a}
+.raport .adres,.spr .gora-p small,.spr .wynik span{color:#4e453d}
+.raport .adres i{color:#08682a}
+.spr .pasek-w i{background:linear-gradient(90deg,#ba1a1a,#825500 50%,#08682a)}
+
+/* księga: karty w tonie 30, wszystkie z białym tekstem */
+.kropy button{background:#80756c}.kropy button.tu{background:#fff}
+.ksiega .strzalka{color:#ffc8b6}
+.karta:nth-of-type(1){background:#404178 !important}
+.karta:nth-of-type(2){background:#703801 !important}
+.karta:nth-of-type(3){background:#005144 !important}
+.karta:nth-of-type(4){background:#763033 !important}
+.karta .opis,.karta .opis b,.karta .opis a{color:#fff}
+.panel .kafel{border-left-color:#96d69a}.panel .kafel.uwaga{border-left-color:#ffb94e}
+.panel .kafel i em{background:#08682a}.panel .kafel.uwaga i em{background:#825500}
+
+/* nagłówek */
+.gora nav{background:rgba(255,245,237,.78)}
+body.ciemna .gora nav{background:rgba(31,27,22,.45)}

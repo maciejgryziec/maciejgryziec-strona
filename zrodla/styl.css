@@ -1,0 +1,428 @@
+:root{
+  --papier:#eff4fa; --pas:#e8eef7; --karta:#ffffff;
+  --ciemny:#0d1826; --ciemny-karta:#152436;
+  --tekst:#0f1620; --slaby:#59636f; --kreska:#dcdfe4;
+  --blekit:#1550d0; --blekit-jasny:#e7eefc; --blekit-ciemny:#0c37a0;
+  --bursztyn:#b8730f;
+  --maszyna:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --cien:0 1px 2px rgba(15,22,32,.05), 0 8px 24px -12px rgba(15,22,32,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-motyw="jasny"]){
+    --papier:#0d1119; --pas:#121a26; --karta:#161f2d;
+    --ciemny:#060a10; --ciemny-karta:#111a26;
+    --tekst:#e9edf2; --slaby:#98a3b0; --kreska:#26303d;
+    --blekit:#5b9bff; --blekit-jasny:#16233a; --blekit-ciemny:#8fbaff;
+    --bursztyn:#e0a24a;
+    --cien:0 1px 2px rgba(0,0,0,.4), 0 10px 30px -14px rgba(0,0,0,.7);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--papier);color:var(--tekst);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.srodek{max-width:64rem;margin:0 auto;padding:0 1.5rem}
+a{color:inherit}
+h1{font-size:clamp(2.3rem,6vw,3.7rem);line-height:1.03;letter-spacing:-.035em;
+   font-weight:800;margin:0 0 1.1rem;text-wrap:balance}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem);line-height:1.1;letter-spacing:-.028em;
+   font-weight:800;margin:0 0 .5rem}
+h3{font-size:1.03rem;line-height:1.35;margin:0 0 .5rem;letter-spacing:-.01em}
+p{margin:0 0 1rem}
+.slaby{color:var(--slaby)}
+.etykieta{font-family:var(--maszyna);font-size:.76rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--blekit);display:flex;align-items:center;gap:.7rem}
+.etykieta::after{content:"";height:1px;width:3rem;background:var(--kreska)}
+
+/* GORA */
+.gora{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--papier) 88%,transparent);
+  backdrop-filter:blur(10px);border-bottom:1px solid var(--kreska)}
+.gora .srodek{display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding-top:.9rem;padding-bottom:.9rem}
+.logo{display:flex;align-items:center;gap:.6rem;font-weight:800;letter-spacing:-.02em;
+  text-decoration:none;font-size:1.02rem}
+.gora nav{display:flex;flex-wrap:wrap;gap:1.5rem;font-size:.93rem}
+.gora nav a{text-decoration:none;color:var(--slaby);position:relative;padding:.2rem 0}
+.gora nav a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--blekit);transition:width .22s ease}
+.gora nav a:hover{color:var(--tekst)}
+.gora nav a:hover::after{width:100%}
+
+/* Na waskim ekranie logo i menu nie mieszcza sie obok siebie — wtedy
+   menu schodzi pod spod zamiast rozpychac naglowek na pol ekranu. */
+@media(max-width:46rem){
+  .gora .srodek{flex-direction:column;align-items:flex-start;
+    gap:.55rem;padding-top:.75rem;padding-bottom:.75rem}
+  .gora nav{width:100%;gap:1.1rem;font-size:.88rem}
+  .logo{font-size:.98rem}
+}
+
+/* PASY */
+section{padding:5rem 0}
+.pas-jasny{background:transparent}
+.pas-ciemny{background:var(--ciemny);color:#e9edf2}
+.pas-ciemny .slaby{color:#93a1b2}
+.pas-ciemny h2{color:#fff}
+
+/* NAGLOWEK */
+.nagl{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+.nagl .wstep p{font-size:1.12rem;color:var(--slaby);max-width:34rem}
+@media(max-width:56rem){.nagl{grid-template-columns:1fr;gap:2.5rem}}
+
+/* PRZYCISK */
+.przycisk{display:inline-flex;align-items:center;gap:.7rem;padding:.95rem 1.6rem;
+  border-radius:9px;background:var(--blekit);color:#fff;text-decoration:none;
+  font-weight:650;font-size:1rem;box-shadow:0 8px 20px -10px var(--blekit);
+  transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
+.przycisk:hover{transform:translateY(-2px);background:var(--blekit-ciemny);
+  box-shadow:0 14px 26px -12px var(--blekit)}
+.przycisk svg{transition:transform .18s ease}
+.przycisk:hover svg{transform:translateX(4px)}
+.przycisk.pusty{background:transparent;color:var(--tekst);
+  border:1px solid var(--kreska);box-shadow:none}
+.przycisk.jasny{background:#fff;color:#0d1826;box-shadow:none}
+
+/* SCHEMAT */
+.schemat{margin-top:2.5rem;background:var(--karta);border:1px solid var(--kreska);
+  border-radius:14px;padding:1.5rem;overflow-x:auto}
+.schemat svg{min-width:56rem;display:block}
+.schemat-podpis{font-family:var(--maszyna);font-size:.78rem;color:var(--slaby);
+  margin:1rem 0 0;text-align:center}
+.przewin{display:none;font-family:var(--maszyna);font-size:.72rem;color:var(--slaby);margin:0 0 .6rem}
+@media(max-width:60rem){.przewin{display:block}}
+
+/* ETAPY */
+.etapy{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));margin-top:2.5rem}
+.etap{background:var(--karta);border:1px solid var(--kreska);border-radius:13px;
+  padding:1.5rem 1.4rem;display:flex;flex-direction:column;position:relative}
+.etap .numer{font-family:var(--maszyna);font-size:1.9rem;font-weight:700;color:var(--blekit);
+  line-height:1;letter-spacing:-.04em;display:block;margin-bottom:.7rem}
+.etap p{font-size:.93rem;color:var(--slaby);margin:0 0 1.2rem}
+.etap .cena{margin-top:auto}
+
+/* PROJEKTY */
+.projekty{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));margin-top:2.5rem}
+.projekt{background:var(--karta);border:1px solid var(--kreska);border-radius:13px;
+  padding:1.5rem 1.4rem;display:flex;flex-direction:column}
+.projekt .rodzaj{font-family:var(--maszyna);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--blekit);margin:0 0 .7rem}
+.projekt p{font-size:.94rem;color:var(--slaby)}
+.projekt .stan{margin-top:auto;padding-top:1rem;font-size:.83rem;color:var(--slaby);
+  border-top:1px dashed var(--kreska)}
+a.projekt{text-decoration:none;color:inherit;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+a.projekt:hover{transform:translateY(-4px);box-shadow:var(--cien);border-color:var(--blekit)}
+a.projekt:hover .stan{color:var(--blekit)}
+.uslugi{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem;padding:0;list-style:none}
+.uslugi li{font-size:.88rem;background:var(--blekit-jasny);color:var(--blekit);
+  border-radius:999px;padding:.45rem .95rem;font-weight:600}
+
+/* KAFELKI */
+.kafelki{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));margin-top:2.5rem}
+.kafelek{background:var(--karta);border:1px solid var(--kreska);border-radius:13px;
+  padding:1.5rem 1.4rem 1.3rem;text-decoration:none;display:flex;flex-direction:column;
+  position:relative;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.kafelek::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;
+  background:var(--blekit);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.kafelek:hover{transform:translateY(-4px);box-shadow:var(--cien);border-color:transparent}
+.kafelek:hover::before{transform:scaleX(1)}
+.kafelek .ikona{width:44px;height:44px;margin-bottom:1rem}
+.kafelek p{font-size:.94rem;color:var(--slaby);margin:0 0 1.2rem}
+.cena{margin-top:auto;font-family:var(--maszyna);font-size:.82rem;font-weight:600;
+  color:var(--blekit);background:var(--blekit-jasny);border-radius:6px;
+  padding:.42rem .7rem;align-self:flex-start;letter-spacing:-.01em}
+
+/* CIEMNY PAS */
+.ciemny-uklad{display:grid;grid-template-columns:1fr 1.1fr;gap:3.5rem;align-items:center}
+@media(max-width:56rem){.ciemny-uklad{grid-template-columns:1fr;gap:2.5rem}}
+.okno{background:var(--ciemny-karta);border:1px solid #24344a;border-radius:12px;
+  overflow:hidden;box-shadow:0 24px 50px -24px rgba(0,0,0,.8)}
+.okno-gora{display:flex;align-items:center;gap:.5rem;padding:.7rem .9rem;
+  border-bottom:1px solid #24344a;font-family:var(--maszyna);font-size:.72rem;color:#7d8b9c}
+.kropka{width:9px;height:9px;border-radius:50%;background:#2c3e56}
+.okno-tresc{padding:1.1rem}
+.wiersz{display:flex;align-items:center;gap:.8rem;padding:.65rem .2rem;
+  border-bottom:1px solid #1d2b3d;font-size:.86rem}
+.wiersz:last-child{border-bottom:0}
+.znacznik{font-family:var(--maszyna);font-size:.68rem;font-weight:700;padding:.15rem .45rem;
+  border-radius:4px;letter-spacing:.06em;white-space:nowrap}
+.znacznik.blad{background:#3a1a1a;color:#ff8b7d}
+.znacznik.uwaga{background:#332714;color:#e0a24a}
+.znacznik.ok{background:#12301f;color:#5fd394}
+.pole{font-family:var(--maszyna);font-size:.85rem;color:#93a1b2;
+  background:#0b131d;border:1px solid #24344a;border-radius:7px;padding:.6rem .8rem;margin-bottom:.9rem}
+input.pole{width:100%;color:#e9edf2;outline:none}
+input.pole:focus{border-color:var(--blekit)}
+input.pole::placeholder{color:#93a1b2}
+button.przycisk{border:0;cursor:pointer;font:inherit;font-weight:650}
+
+/* KROKI */
+.kroki{display:grid;gap:2rem;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));margin-top:2.5rem}
+.krok .numer{font-family:var(--maszyna);font-size:2.6rem;font-weight:700;
+  color:var(--blekit);line-height:1;letter-spacing:-.04em;display:block;margin-bottom:.6rem}
+.krok p{font-size:.95rem;color:var(--slaby);margin:0}
+
+/* STOPKA */
+footer{background:var(--ciemny);color:#93a1b2;padding:3rem 0 2.5rem;font-size:.92rem}
+footer strong{color:#e9edf2}
+footer a{color:#93a1b2}
+.pasek-gorny{height:4px;background:linear-gradient(90deg,var(--blekit),#5b9bff)}
+
+/* RUCH — tresc jest widoczna zawsze. Ukrycie dokłada dopiero skrypt,
+   wiec awaria skryptu nie zostawia klienta z pusta strona. */
+.ruch .wjazd{opacity:0;transform:translateY(18px)}
+.ruch .wjazd.widac{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .wjazd{opacity:1;transform:none}
+}
+@media(max-width:32rem){body{font-size:16px}section{padding:3.5rem 0}}
+
+/* --- PODSTRONY --- */
+.tytul-strony{max-width:44rem;margin-bottom:.5rem}
+.tresc{max-width:44rem}
+.tresc h2{margin-top:3rem}
+.tresc h3{margin-top:2rem;font-size:1.15rem}
+.tresc p{color:var(--slaby)}
+.tresc strong{color:var(--tekst)}
+table{width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:.96rem}
+th,td{text-align:left;padding:.9rem .6rem;border-bottom:1px solid var(--kreska);vertical-align:top}
+th{font-family:var(--maszyna);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;
+   color:var(--slaby);font-weight:700}
+td.kwota{font-family:var(--maszyna);white-space:nowrap;font-weight:600;color:var(--blekit)}
+.przewijane{overflow-x:auto}
+.brak{border:1px dashed var(--bursztyn);border-radius:9px;padding:.9rem 1.1rem;margin:1.5rem 0;
+      font-size:.9rem;color:var(--bursztyn);background:color-mix(in srgb,var(--bursztyn) 8%,transparent)}
+.pudlo{background:var(--karta);border:1px solid var(--kreska);border-radius:13px;
+       padding:1.6rem 1.5rem;margin:2rem 0}
+.pudlo h3{margin-top:0}
+.kotwica{scroll-margin-top:5rem}
+
+/* --- PROSTY FORMULARZ (podstrona sprawdzarki) --- */
+.formularz-prosty{max-width:34rem;margin:2rem 0 3rem}
+.formularz-prosty label{display:block;font-weight:650;margin-bottom:.45rem;font-size:.97rem}
+.formularz-prosty input{width:100%;padding:.85rem .95rem;font:inherit;color:var(--tekst);
+  background:var(--karta);border:1px solid var(--kreska);border-radius:9px;margin-bottom:1.1rem}
+.formularz-prosty input:focus{outline:none;border-color:var(--blekit);
+  box-shadow:0 0 0 3px var(--blekit-jasny)}
+
+/* --- GALERIA REALIZACJI --- */
+.studium{max-width:52rem}
+.studium h2{margin-top:2.5rem}
+.studium p{color:var(--slaby)}
+.studium strong{color:var(--tekst)}
+.metryka{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 2rem;padding:0;list-style:none}
+.metryka li{font-family:var(--maszyna);font-size:.8rem;background:var(--blekit-jasny);
+  color:var(--blekit);border-radius:6px;padding:.4rem .8rem;font-weight:600}
+figure{margin:2rem 0}
+figure img{width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid var(--kreska);box-shadow:var(--cien)}
+figcaption{font-size:.87rem;color:var(--slaby);margin-top:.7rem}
+.przypis{font-size:.82rem;color:var(--slaby);font-style:italic;margin-top:2rem;
+  padding-top:1rem;border-top:1px solid var(--kreska)}
+
+/* ── Przewijana tasma platform ─────────────────── */
+.tasma{max-width:64rem;margin:.5rem auto;padding:1.4rem 0;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}
+.tasma-tor{display:flex;width:max-content;animation:tasma-przesuw 32s linear infinite}
+.tasma-tor > span{display:flex;align-items:center;gap:3.4rem;padding-right:3.4rem}
+.tasma-tor img{width:auto;filter:grayscale(1) opacity(.5)}
+@keyframes tasma-przesuw{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.tasma-tor{animation:none}}
+
+/* ── Pytania i odpowiedzi (podstrony integracji) ─ */
+.pytania{margin-top:1.2rem}
+.pytania details{border:1px solid var(--kreska);border-radius:11px;background:var(--karta);
+  padding:0 1.15rem;margin-bottom:.7rem}
+.pytania summary{cursor:pointer;font-weight:600;padding:.95rem 0 .95rem;list-style:none;
+  position:relative;padding-right:2.2rem}
+.pytania summary::-webkit-details-marker{display:none}
+.pytania summary::after{content:"+";position:absolute;right:.25rem;top:50%;
+  transform:translateY(-50%);color:var(--blekit);font-size:1.3rem;font-weight:600}
+.pytania details[open] summary::after{content:"–"}
+.pytania details > p{padding:0 0 1.05rem;color:var(--slaby)}
+.stopka-linki{margin-top:.6rem}
+.stopka-linki a{color:inherit}
+.pytania summary::marker{content:""}
+
+/* ── Lifting: hero, ruch, wizytowka ────────────── */
+.czolo{position:relative;overflow:hidden;
+  --papier:#0c1726; --tekst:#eef2f7; --slaby:#9aa8b8; --karta:#152436;
+  --kreska:#25324a; --pas:#152436; --blekit:#6aa4ff; --blekit-jasny:#17263e;
+  color:#eef2f7; padding-bottom:4.5rem; border-bottom:1px solid #1d2b40;
+  background:
+    radial-gradient(60rem 34rem at 78% -6rem, rgba(80,140,255,.30), transparent 70%),
+    linear-gradient(180deg,#0a1421 0%, #0c1726 62%, #101d30 100%)}
+.czolo .wstep{padding-top:1.6rem}
+.czolo .przycisk{background:#2f7bff;color:#fff}
+.czolo .przycisk.drugi{background:rgba(255,255,255,.06);color:#eef2f7;border-color:#31405a}
+.czolo .przycisk.drugi:hover{border-color:#6aa4ff;color:#9ec5ff}
+.czolo .schemat{background:#101d30;border-color:#25324a}
+.czolo .schemat-podpis,.czolo .przewin{color:#8fa0b4}
+.czolo .przewin{margin-top:1.6rem}
+.podkreslony{color:var(--blekit)}
+.rzad-przyciskow{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center}
+.przycisk.drugi{background:transparent;color:var(--tekst);
+  border:1.5px solid var(--kreska);box-shadow:none}
+.przycisk.drugi:hover{border-color:var(--blekit);color:var(--blekit)}
+
+.ruch .schemat.rysuj line[marker-end]{stroke-dasharray:1100;stroke-dashoffset:1100;
+  animation:rysowanie .85s ease forwards}
+.ruch .schemat.rysuj > svg > g{opacity:0;animation:pojawienie .5s ease forwards}
+.ruch .schemat.narysowany line[marker-end]{stroke-dasharray:7 8;
+  animation:plyniecie 1.5s linear infinite}
+@keyframes rysowanie{to{stroke-dashoffset:0}}
+@keyframes pojawienie{to{opacity:1}}
+@keyframes plyniecie{to{stroke-dashoffset:-15}}
+.ruch .tetno{animation:tetno 2s ease-out infinite;transform-origin:374px 744px}
+@keyframes tetno{0%{opacity:1}50%{opacity:.35}100%{opacity:1}}
+@media (prefers-reduced-motion: reduce){
+  .schemat line[marker-end]{animation:none}
+  .tetno{animation:none}
+}
+
+.wizytowka{display:flex;gap:2rem;align-items:flex-start;padding:3.4rem 0}
+.wizytowka .awatar{flex:0 0 auto;width:5.4rem;height:5.4rem;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2rem;font-weight:800;color:#fff;
+  background:linear-gradient(135deg,var(--blekit),var(--blekit-ciemny));
+  box-shadow:0 0 0 4px color-mix(in srgb,#fff 14%,transparent)}
+.wizytowka .awatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block}
+.wizytowka a{color:#cfe0ff}
+@media (max-width:40rem){.wizytowka{flex-direction:column;gap:1.2rem}}
+
+/* ── Karty problemow (Co naprawiam) ────────────── */
+.siatka-problemow{display:grid;gap:1.2rem;margin:2.4rem 0 1.2rem;
+  grid-template-columns:repeat(auto-fit,minmax(20rem,1fr))}
+.problem{background:var(--karta);border:1px solid var(--kreska);border-radius:14px;
+  padding:1.7rem 1.6rem 1.5rem;box-shadow:var(--cien);position:relative}
+.problem-ikona{display:inline-flex;align-items:center;justify-content:center;
+  width:2.9rem;height:2.9rem;border-radius:11px;margin-bottom:1rem;
+  background:var(--blekit-jasny);color:var(--blekit)}
+.problem-ikona svg{width:1.5rem;height:1.5rem}
+.problem h2{font-size:1.16rem;line-height:1.28;letter-spacing:-.015em;margin:0 0 .7rem}
+.problem .objaw{color:var(--slaby);font-size:.97rem;margin:0}
+.naprawa{margin-top:1.1rem;padding:.95rem 1.1rem;border-radius:10px;
+  background:var(--pas);border-left:3px solid var(--blekit)}
+.naprawa-etykieta{display:block;font-family:var(--maszyna);font-size:.7rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--blekit);margin-bottom:.35rem}
+.naprawa p{margin:0;font-size:.97rem}
+.problem.szeroki{margin-bottom:1.5rem}
+.problem.szeroki h2{font-size:1.4rem}
+
+/* ── Plywajace karteczki z dowodem dzialania ───── */
+.plansza-mostu{position:relative}
+.dowody{position:absolute;top:2.5rem;left:0;right:0;bottom:3.2rem;
+  pointer-events:none;z-index:3}
+.dowod{position:absolute;display:inline-flex;align-items:center;gap:.55rem;
+  padding:.62rem .85rem;border-radius:11px;font-size:.82rem;white-space:nowrap;
+  background:rgba(14,27,45,.9);border:1px solid #2b3d59;color:#dce6f4;
+  backdrop-filter:blur(8px);box-shadow:0 14px 34px -14px rgba(0,0,0,.85)}
+.dowod em{font-family:var(--maszyna);font-style:normal;font-size:.74rem;color:#8fa3bd}
+.dowod .kropka{width:7px;height:7px;border-radius:50%;flex:0 0 auto}
+.kropka.niebieska{background:#4f9bff;box-shadow:0 0 0 4px rgba(79,155,255,.16)}
+.kropka.zielona{background:#22c07a;box-shadow:0 0 0 4px rgba(34,192,122,.16)}
+.dowod:nth-child(1){top:-1.1rem;right:3rem}
+.dowod:nth-child(2){top:47%;left:-1.6rem}
+.dowod:nth-child(3){bottom:-1.1rem;right:9%}
+.ruch .dowod{opacity:0;transform:translateY(12px)}
+.ruch .dowody.pokaz .dowod{animation:dowod-wjazd .55s ease forwards,
+  dowod-plywa 6s ease-in-out infinite 1.2s}
+.ruch .dowody.pokaz .dowod:nth-child(2){animation-delay:.45s,1.6s}
+.ruch .dowody.pokaz .dowod:nth-child(3){animation-delay:.9s,2s}
+@keyframes dowod-wjazd{to{opacity:1;transform:translateY(0)}}
+@keyframes dowod-plywa{50%{transform:translateY(-7px)}}
+@media(max-width:64rem){.dowody{display:none}}
+@media (prefers-reduced-motion: reduce){.dowod{opacity:1;transform:none;animation:none}}
+
+/* ── DROGA ZAMÓWIENIA: rysuje się przy przewijaniu ──────────────
+   Cała animacja jest sterowana jedną zmienną --postep, którą sekcja
+   dostaje od ruch.js. Nie ma tu ani linijki kodu — tylko CSS. */
+@property --postep{syntax:"<number>";inherits:true;initial-value:0}
+.droga{position:relative;
+  --papier:#0c1726; --tekst:#eef2f7; --slaby:#9aa8b8; --karta:#152436;
+  --kreska:#25324a; --blekit:#6aa4ff;
+  color:#eef2f7;
+  background:
+    radial-gradient(58rem 32rem at 50% 16%,rgba(80,140,255,.26),transparent 70%),
+    linear-gradient(180deg,#0a1421 0%,#0c1726 58%,#0a1421 100%)}
+.droga .ruch-ekran{padding:6.5rem 0 7rem}
+.ruch .droga.wjazd{opacity:0;transform:translateY(24px);
+  transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+.ruch .droga.wjazd.widac{opacity:1;transform:none}
+.droga.widac{animation:droga-plynie 9s cubic-bezier(.45,0,.15,1) 0.5s infinite}
+@keyframes droga-plynie{
+  0%{--postep:0} 6%{--postep:0} 78%{--postep:1} 100%{--postep:1}}
+.droga h2{color:#fff;font-size:clamp(1.6rem,3.5vw,2.8rem);max-width:26ch;line-height:1.1}
+.etykieta-drogi{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:#6aa4ff;margin:0 0 1.1rem}
+
+.tor-drogi{margin:3.4rem 0 2.2rem}
+.szyna{position:relative;height:2px;background:#25324a;border-radius:2px;
+  margin:0 0 0 0}
+.szyna .wypelnienie{position:absolute;top:0;bottom:0;left:0;border-radius:2px;
+  width:calc(var(--postep,0) * 100%);
+  background:linear-gradient(90deg,#3f7fe0,#9cc6ff);
+  box-shadow:0 0 20px rgba(106,164,255,.55)}
+.szyna .paczka{position:absolute;top:50%;left:calc(var(--postep,0) * 100%);
+  width:15px;height:15px;margin:-7.5px 0 0 -7.5px;border-radius:5px;
+  background:#cfe2ff;box-shadow:0 0 26px rgba(180,214,255,.95)}
+
+.przystanki{list-style:none;margin:1.7rem 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+.przystanki li{
+  --widok:clamp(0, calc((var(--postep,0) - var(--start)) * 9), 1);
+  opacity:var(--widok);
+  transform:translateY(calc((1 - var(--widok)) * 14px));
+  padding-right:.6rem}
+.przystanki .nr{display:inline-flex;align-items:center;justify-content:center;
+  width:1.7rem;height:1.7rem;border-radius:50%;margin-bottom:.7rem;
+  background:#17263e;border:1px solid #2e4166;
+  font-size:.78rem;font-weight:700;color:#9cc6ff}
+.przystanki b{display:block;font-size:.98rem;line-height:1.3;color:#eef2f7}
+.przystanki em{display:block;margin-top:.35rem;font-style:normal;
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+  font-size:.72rem;letter-spacing:.06em;color:#7b8ca1}
+.pointa-drogi{color:#9aa8b8;max-width:46ch;margin:2.4rem 0 0}
+.pointa-drogi b{color:#eef2f7}
+
+@media(max-width:52rem){
+  .droga .ruch-ekran{padding:4.5rem 0 5rem}
+  .szyna{display:none}
+  .przystanki{grid-template-columns:1fr;gap:.9rem;margin-top:2rem}
+  .przystanki li{display:flex;align-items:baseline;gap:.8rem}
+  .przystanki .nr{margin-bottom:0;flex:0 0 auto}
+  .pointa-drogi{margin-top:1.8rem}
+}
+
+/* ── TŁA: pasy przestają być płaskim papierem ─────────────────── */
+.pas-jasny{position:relative;
+  background:radial-gradient(52rem 26rem at 14% 0%,rgba(21,80,208,.055),transparent 70%)}
+.pas-ciemny{position:relative;
+  background:
+    radial-gradient(50rem 26rem at 82% 8%,rgba(106,164,255,.16),transparent 70%),
+    var(--ciemny)}
+
+@media (prefers-reduced-motion: reduce){
+  .droga.widac{animation:none}
+  .przystanki li{opacity:1;transform:none}
+  .szyna .wypelnienie{width:100%}
+  .szyna .paczka{display:none}
+  .pakiet{display:none}
+}
+
+/* ── PAKIETY JADĄCE PO MOSTACH W SCHEMACIE ────────────────────── */
+.pakiet{fill:#bcd8ff;opacity:0;
+  filter:drop-shadow(0 0 6px rgba(150,200,255,.95));
+  offset-rotate:0deg;
+  animation-name:pakiet-jedzie;animation-timing-function:cubic-bezier(.5,0,.5,1);
+  animation-iteration-count:infinite}
+@keyframes pakiet-jedzie{
+  0%{offset-distance:0%;opacity:0}
+  12%{opacity:1}
+  82%{opacity:1}
+  100%{offset-distance:100%;opacity:0}}

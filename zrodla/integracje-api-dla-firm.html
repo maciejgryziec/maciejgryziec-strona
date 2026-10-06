@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integracje API dla firm — połącz używane systemy</title>
+<meta name="description" content="Tworzę integracje API między CRM-em, formularzami, kalendarzem, sklepem, magazynem, księgowością i własnymi aplikacjami. Bez przepisywania danych.">
+<link rel="canonical" href="https://maciejgryziec.pl/integracje-api-dla-firm.html">
+</head>
+<body>
+<header></header>
+<section>
+  <div class="srodek">
+    <div class="tytul-strony wjazd">
+      <p class="etykieta">Integracje API</p>
+      <h1>Integracje API: programy w firmie zaczynają wymieniać dane</h1>
+      <p class="slaby" style="font-size:1.1rem">Jeżeli te same informacje wpisujesz do dwóch albo trzech systemów, często nie potrzebujesz nowego programu. Potrzebujesz połączenia między tymi, które już masz.</p>
+    </div>
+    <div class="tresc wjazd">
+      <h2>Co to jest integracja API w praktyce?</h2>
+      <p>API to sposób, w jaki programy mogą przekazywać sobie dane. Dla użytkownika efekt jest prosty: nowy klient z formularza pojawia się w CRM-ie, zaakceptowane zlecenie tworzy dokument, płatność zmienia status, a faktura dostaje dane bez ponownego wpisywania.</p>
+
+      <h2>Co można połączyć?</h2>
+      <ul class="uslugi">
+        <li>formularz internetowy z CRM-em</li>
+        <li>CRM z kalendarzem i systemem zleceń</li>
+        <li>system zleceń z księgowością lub fakturami</li>
+        <li>sklep z magazynem, Allegro i hurtownią</li>
+        <li>własną aplikację z usługą zewnętrzną</li>
+        <li>system raportowy z kilkoma źródłami danych</li>
+      </ul>
+
+      <h2>Co jeśli program nie ma API?</h2>
+      <p>Czasem dostępny jest eksport CSV, XML, plik na serwerze albo webhook. Da się zbudować połączenie także na takich mechanizmach. Jeżeli system jest całkowicie zamknięty, trzeba ocenić, czy integracja jest bezpieczna i opłacalna, zamiast obiecywać „na pewno się da”.</p>
+
+      <h2>Dwukierunkowa synchronizacja czy jeden kierunek?</h2>
+      <p>Najprostsze i najbardziej niezawodne połączenia mają jedno źródło prawdy. Przykład: CRM jest źródłem danych klienta, a program księgowy tylko je odbiera. Dwukierunkowa synchronizacja też jest możliwa, ale wymaga jasnych zasad: co dzieje się, gdy oba systemy zmienią tę samą informację.</p>
+
+      <h2>Co z błędami?</h2>
+      <p>Integracja powinna zapisywać historię, identyfikatory operacji i błędy. Jeżeli faktura nie przejdzie albo zewnętrzne API jest chwilowo niedostępne, użytkownik powinien wiedzieć, co nie zostało wykonane i co można bezpiecznie ponowić.</p>
+
+      <div class="pudlo">
+        <h3>Integracja to nie „skrypt, który czasem działa”</h3>
+        <p>W firmie ważniejsza od samego przesłania danych jest kontrola: logi, walidacja, obsługa duplikatów, powiadomienia i możliwość odtworzenia tego, co wydarzyło się z konkretnym rekordem.</p>
+      </div>
+
+      <h2>Integracje e-commerce</h2>
+      <p>Sklepy internetowe są jednym z obszarów, w których robię to szczególnie często: <a href="https://automatyzacjesklepow.pl/integracja-sklepu-z-ksiegowoscia.html">sklep z księgowością</a>, <a href="https://automatyzacjesklepow.pl/automatyzacja-allegro.html">Allegro</a>, <a href="https://automatyzacjesklepow.pl/integracja-baselinker.html">BaseLinker</a> i <a href="https://automatyzacjesklepow.pl/integracja-sklepu-z-hurtownia.html">hurtownie</a>. Ta sama technika działa jednak w procesach usługowych i B2B.</p>
+
+      <h2>Ile kosztuje integracja?</h2>
+      <p>Najbardziej wpływa na cenę jakość dokumentacji API, liczba operacji, wymagany kierunek synchronizacji i obsługa wyjątków. Punkt startowy znajdziesz w <a href="cennik.html">cenniku</a>.</p>
+
+      <h2>Bezpieczeństwo i dostęp do API</h2>
+      <p>Klucze API i tokeny nie powinny być wpisane w kod strony ani przesyłane między pracownikami. Integracja przechowuje je po stronie serwera, a uprawnienia powinny być ograniczone do operacji, których naprawdę potrzebuje. Jeżeli dostawca obsługuje osobne konto techniczne, warto z niego korzystać.</p>
+
+      <h2>Limity i zmiany po stronie dostawcy</h2>
+      <p>Zewnętrzne API może mieć limity liczby zapytań, okres ważności tokenu albo zmieniać wersję. Dlatego projektuję przepływ tak, żeby duża synchronizacja nie blokowała systemu i żeby awaria jednej usługi nie powodowała utraty danych.</p>
+
+      <h2>Najczęstsze pytania</h2>
+      <h3>Czy potrzebuję dostępu administratora?</h3>
+      <p>Zależy od systemu. Często wystarczy możliwość utworzenia aplikacji API lub tokenu z odpowiednimi uprawnieniami. Najpierw sprawdzam dokumentację, zanim proszę o szeroki dostęp.</p>
+      <h3>Czy integracja może działać w czasie rzeczywistym?</h3>
+      <p>Tak, jeśli system udostępnia webhooki lub odpowiednie API. W innych przypadkach dane mogą być synchronizowane cyklicznie, np. co kilka minut.</p>
+      <h3>Co jeśli API przestanie odpowiadać?</h3>
+      <p>Operacja powinna trafić do kolejki lub zostać oznaczona jako błąd, a nie zniknąć. To jeden z powodów, dla których monitoring jest częścią poważniejszej integracji.</p>
+
+      <p><a class="przycisk" href="mailto:kontakt@automatyzacjesklepow.pl">Napisz, jakie dwa programy chcesz połączyć →</a></p>
+    </div>
+  </div>
+</section>
+<footer></footer>
+</body>
+</html>

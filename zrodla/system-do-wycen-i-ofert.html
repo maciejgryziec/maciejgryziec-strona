@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>System do wycen i ofert — kalkulacja, marża i PDF dla handlowca</title>
+<meta name="description" content="Dedykowany system do wycen i ofert: reguły cenowe, marża, rabaty, wersje oferty, akceptacja, PDF i przekazanie zaakceptowanej wyceny do realizacji.">
+<link rel="canonical" href="https://maciejgryziec.pl/system-do-wycen-i-ofert.html"></head>
+<body><header></header><section><div class="srodek">
+<div class="tytul-strony wjazd"><p class="etykieta">Sprzedaż / ofertowanie</p><h1>System do wycen i ofert — handlowiec liczy raz, firma korzysta z tych samych zasad</h1><p class="slaby" style="font-size:1.1rem">Jeżeli oferta powstaje dziś z Excela, cennika PDF, starej wiadomości i wiedzy jednej osoby, można zamienić ten proces w aplikację, która liczy według ustalonych reguł, pilnuje marży i tworzy gotową ofertę.</p></div>
+<div class="tresc wjazd">
+      <h2>Problem zwykle nie zaczyna się od samego PDF-a</h2>
+      <p>Najwięcej czasu nie zabiera kliknięcie „zapisz jako PDF”. Problem pojawia się wcześniej: handlowiec musi znaleźć właściwy cennik, sprawdzić aktualny koszt, policzyć wariant, uwzględnić rabat, pamiętać o minimalnej marży i upewnić się, że używa najnowszego wzoru oferty.</p>
+      <p>Jeżeli każdy liczy trochę inaczej, po kilku miesiącach firma ma kilka wersji arkusza, kilka sposobów zaokrąglania i trudność z odpowiedzią na proste pytanie: <strong>dlaczego klient dostał właśnie taką cenę?</strong></p>
+
+      <h2>Co robi system do wycen?</h2>
+      <p>System prowadzi handlowca od danych klienta i zakresu zapytania do policzonej oferty. Nie musi zastępować całego CRM-u ani ERP-u. Może być jednym modułem, który przejmuje najbardziej podatny na błędy fragment procesu.</p>
+      <ul>
+        <li>pobiera klienta i podstawowe dane zapytania,</li>
+        <li>wybiera produkty, usługi albo wariant rozwiązania,</li>
+        <li>liczy cenę z aktualnych kosztów i reguł handlowych,</li>
+        <li>kontroluje minimalną marżę albo maksymalny rabat,</li>
+        <li>pozwala przygotować kilka wariantów dla klienta,</li>
+        <li>tworzy ofertę PDF z jednego zatwierdzonego szablonu,</li>
+        <li>zapisuje wersję i status oferty,</li>
+        <li>po akceptacji przekazuje dane dalej do zamówienia, zlecenia albo produkcji.</li>
+      </ul>
+
+      <h2>Reguły cenowe zamiast ukrytych formuł w Excelu</h2>
+      <p>Logika wyceny może być prosta albo rozbudowana: cena bazowa + ilość + opcje, progi ilościowe, koszt materiału, robocizna, transport, narzut, minimalna wartość zamówienia albo różne cenniki dla grup klientów.</p>
+      <p>Najważniejsze jest to, że reguła ma nazwę i jedno miejsce. Jeżeli zmieniasz sposób liczenia transportu albo minimalną marżę, poprawiasz jedną regułę zamiast rozsyłać kolejny plik „cennik_final_v7.xlsx”.</p>
+
+      <h2>Rabat może wymagać akceptacji</h2>
+      <p>Nie każdy rabat musi być blokowany, ale system może rozróżnić zwykłą decyzję handlowca od wyjątku wymagającego zgody. Przykład: do 5% handlowiec decyduje sam, 5–10% wymaga akceptacji kierownika, a oferta poniżej ustalonej marży nie może zostać wysłana bez świadomego zatwierdzenia.</p>
+      <p>W historii zostaje informacja, kto zmienił cenę, kiedy i z jakiego powodu. To znacznie bardziej użyteczne niż zabezpieczona hasłem komórka w arkuszu.</p>
+
+      <h2>Wersje oferty bez nadpisywania historii</h2>
+      <p>Klient często wraca z pytaniem: „a ile będzie bez tej opcji?” albo „proszę policzyć 30 sztuk zamiast 20”. System nie musi nadpisywać poprzedniej wyceny. Może utworzyć wersję 2, zachować wersję 1 i pokazać, co się zmieniło.</p>
+      <p>Dzięki temu po akceptacji wiadomo dokładnie, który wariant stał się zamówieniem. Jest to szczególnie ważne przy produkcji na zamówienie, usługach technicznych i projektach, w których oferta zawiera konfigurację lub specyfikację.</p>
+
+      <h2>Oferta PDF powstaje z danych, które już są w systemie</h2>
+      <p>Nazwa klienta, pozycje, ceny, terminy, warianty i warunki nie muszą być przepisywane do Worda. Dokument powstaje z danych wyceny i właściwego szablonu. Można dodać własną numerację, stopkę, warunki płatności, termin ważności i elementy zależne od rodzaju oferty.</p>
+      <p>Jeżeli firma ma kilka marek albo oddziałów, system może wybrać odpowiedni szablon bez kopiowania całej logiki wyceny.</p>
+
+      <h2>Po akceptacji oferta nie powinna kończyć życia w PDF-ie</h2>
+      <p>Wygrana oferta może stać się początkiem kolejnego etapu. Z tych samych danych można utworzyć zlecenie, zamówienie wewnętrzne, kartę produkcyjną, zadanie dla serwisu albo rekord w systemie księgowym.</p>
+      <p>To jest moment, w którym moduł ofertowania łączy się z <a href="crm-na-zamowienie.html">CRM-em</a>, <a href="system-do-obslugi-zlecen.html">obsługą zleceń</a>, <a href="system-dla-produkcji-na-zamowienie.html">produkcją na zamówienie</a> albo <a href="integracje-api-dla-firm.html">integracją API</a>.</p>
+
+      <h2>Przykładowy pierwszy etap</h2>
+      <div class="pudlo">
+        <h3>Klient → parametry → kalkulacja → oferta PDF</h3>
+        <p>Na start nie trzeba budować całego systemu sprzedaży. Pierwszy moduł może zawierać kartę klienta, kilka parametrów wyceny, ustaloną formułę ceny, kontrolę marży i jeden szablon oferty PDF. Jeżeli taki etap sprawdza się w realnej pracy, dokładamy wersjonowanie, akceptacje, integracje i automatyczne przekazanie do realizacji.</p>
+      </div>
+
+      <h2>Kiedy własny system do ofertowania ma sens?</h2>
+      <p>Najczęściej wtedy, gdy cena zależy od wielu parametrów, firma ma własne reguły handlowe albo oferta jest początkiem dalszego procesu. Jeżeli sprzedajesz kilka standardowych usług z jednego cennika i przygotowujesz parę ofert miesięcznie, gotowy CRM albo prosty szablon może być lepszy i tańszy.</p>
+      <p>Własny moduł ma większą wartość wtedy, gdy kalkulacja zajmuje handlowcom dużo czasu, błędy są kosztowne, marża musi być pilnowana albo zaakceptowana oferta zawiera dane potrzebne później produkcji lub realizacji.</p>
+
+      <h2>Co przygotować do pierwszej rozmowy?</h2>
+      <p>Wystarczy jeden prawdziwy przykład wyceny, aktualny cennik albo arkusz i odpowiedź na trzy pytania: od czego zależy cena, kto może zmienić rabat i co dzieje się po zaakceptowaniu oferty. Dane klientów możesz zanonimizować.</p>
+      <p>Jeżeli chcesz wcześniej policzyć skalę ręcznej pracy, użyj <a href="kalkulator-kosztu-recznej-pracy.html">kalkulatora kosztu powtarzalnej czynności</a>.</p>
+
+      <div class="pytania">
+        <h2>Najczęstsze pytania</h2>
+        <details><summary>Czy system może korzystać z mojego obecnego cennika?</summary><p>Tak. Na pierwszym etapie można odwzorować obecną logikę, ale warto przy okazji nazwać reguły i ustalić jedno źródło prawdy. Nie kopiuję arkusza 1:1, jeżeli zawiera stare wyjątki albo duplikaty.</p></details>
+        <details><summary>Czy handlowiec może sam zmieniać cenę?</summary><p>Może, jeżeli tak ustalimy. System może pilnować minimalnej marży, limitu rabatu albo wymagać akceptacji dopiero po przekroczeniu konkretnego progu.</p></details>
+        <details><summary>Czy da się połączyć wycenę z CRM-em albo ERP-em?</summary><p>Tak, jeżeli używany system ma API albo inny stabilny sposób wymiany danych. Wtedy klient, oferta, status i zaakceptowane pozycje nie muszą być wpisywane drugi raz.</p></details>
+        <details><summary>Czy oferta może mieć kilka wariantów?</summary><p>Tak. W jednej sprawie można przechowywać kilka wariantów albo kolejne wersje tej samej oferty i jednoznacznie wskazać, która została zaakceptowana.</p></details>
+        <details><summary>Ile kosztuje taki system?</summary><p>Najprościej zacząć od jednego modułu zgodnie z <a href="cennik.html">cennikiem aplikacji dla firm</a>. Dokładna cena zależy od liczby reguł wyceny, wariantów, szablonów, akceptacji i integracji z innymi programami.</p></details>
+      </div>
+
+      <p><a class="przycisk" href="opisz-projekt.html?typ=System%20do%20wycen%20i%20ofert&zrodlo=system-wyceny-oferty">Opisz, jak dziś powstaje wycena →</a></p>
+</div></div></section><footer></footer></body></html>

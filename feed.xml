@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+<title>Poradniki — Maciej Gryziec</title>
+<id>https://maciejgryziec.pl/feed.xml</id>
+<link href="https://maciejgryziec.pl/feed.xml" rel="self"/>
+<link href="https://maciejgryziec.pl/poradniki.html"/>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<author><name>Maciej Gryziec</name></author>
+<entry>
+<title>AI w firmie — gdzie sztuczna inteligencja pomaga w automatyzacji</title>
+<id>https://maciejgryziec.pl/ai-w-automatyzacji-firmy.html</id>
+<link href="https://maciejgryziec.pl/ai-w-automatyzacji-firmy.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>AI w automatyzacji firmy: klasyfikacja wiadomości, dokumenty, wyszukiwanie informacji i asystenci wewnętrzni. Gdzie AI ma sens, a gdzie wystarczą zwykłe reguły.</summary>
+</entry>
+<entry>
+<title>Gotowy system czy dedykowane oprogramowanie?</title>
+<id>https://maciejgryziec.pl/gotowy-system-czy-dedykowane-oprogramowanie.html</id>
+<link href="https://maciejgryziec.pl/gotowy-system-czy-dedykowane-oprogramowanie.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>Gotowy CRM lub ERP czy system na zamówienie? Porównanie kosztów, elastyczności i integracji oraz sytuacji, w których własna aplikacja ma sens.</summary>
+</entry>
+<entry>
+<title>Ile kosztuje aplikacja dla firmy? Cena systemu na zamówienie</title>
+<id>https://maciejgryziec.pl/ile-kosztuje-aplikacja-dla-firmy.html</id>
+<link href="https://maciejgryziec.pl/ile-kosztuje-aplikacja-dla-firmy.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>Od czego zależy cena aplikacji dla firmy: procesy, integracje, role, dane i wyjątki. Zobacz, jak etapować projekt i sensownie ustalić budżet.</summary>
+</entry>
+<entry>
+<title>Jak przygotować brief aplikacji lub systemu dla firmy?</title>
+<id>https://maciejgryziec.pl/jak-przygotowac-brief-aplikacji.html</id>
+<link href="https://maciejgryziec.pl/jak-przygotowac-brief-aplikacji.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>Jak opisać pomysł na aplikację, CRM lub system dla firmy bez technicznej specyfikacji. Lista informacji potrzebnych do pierwszej sensownej wyceny.</summary>
+</entry>
+<entry>
+<title>KSeF dla JDG — od kiedy obowiązkowy? Terminy 2026–2027</title>
+<id>https://maciejgryziec.pl/ksef-dla-jdg-terminy.html</id>
+<link href="https://maciejgryziec.pl/ksef-dla-jdg-terminy.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>KSeF dla JDG: terminy 2026–2027, okres przejściowy dla sprzedaży dokumentowanej fakturami do 10 tys. zł brutto miesięcznie i praktyczne przygotowanie.</summary>
+</entry>
+<entry>
+<title>System zamiast Excela — kiedy firma potrzebuje własnej aplikacji?</title>
+<id>https://maciejgryziec.pl/system-zamiast-excela.html</id>
+<link href="https://maciejgryziec.pl/system-zamiast-excela.html"/>
+<published>2026-10-06T00:00:00+02:00</published>
+<updated>2026-10-06T00:00:00+02:00</updated>
+<summary>Excel przestał wystarczać? Zobacz, kiedy warto zastąpić arkusz dedykowanym systemem, co przenieść do aplikacji i jak zrobić to etapami bez zatrzymywania pracy firmy.</summary>
+</entry>
+</feed>

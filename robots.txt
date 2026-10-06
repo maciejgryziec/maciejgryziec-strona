@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /zrodla/
+Disallow: /narzedzia/
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /README.md
+Disallow: /CHECKLIST-PRODUKCJA.md
+Disallow: /deploy/
+Disallow: /DEPLOY-PLAN.md
+Disallow: /RELEASE-SCOPE.md
+
+Sitemap: https://maciejgryziec.pl/sitemap.xml
