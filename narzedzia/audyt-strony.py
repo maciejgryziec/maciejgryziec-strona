@@ -639,7 +639,7 @@ if not nginx_cfg.exists():
 else:
     cfg = nginx_cfg.read_text(encoding="utf-8")
     required_nginx = (
-        'server_name automatyzacjesklepow.pl www.automatyzacjesklepow.pl;',
+        'server_name maciejgryziec.pl www.maciejgryziec.pl;',
         'return 301 https://maciejgryziec.pl$request_uri;',
         'server_tokens off;',
         'absolute_redirect off;',
@@ -655,7 +655,7 @@ else:
         'Referrer-Policy',
         'Permissions-Policy',
         'Content-Security-Policy',
-        "script-src 'self' 'sha256-9h4+QNjOt3CgNFpdn6iqbeII0Hyi4PqjGT1QhTZFYlc=' https://statystyki.automatyzacjesklepow.pl;",
+        "script-src 'self' 'sha256-9h4+QNjOt3CgNFpdn6iqbeII0Hyi4PqjGT1QhTZFYlc=';",
         'location ^~ /zrodla/ { return 404; }',
         'location ^~ /narzedzia/ { return 404; }',
         'location ^~ /deploy/ { return 404; }',
