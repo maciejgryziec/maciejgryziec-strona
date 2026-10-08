@@ -1,5 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="MG">
-<rect width="120" height="120" rx="24" fill="#194586"/>
-<path d="M24 84V36h12l24 30 24-30h12v48H82V57L60 84 38 57v27H24Z" fill="#fff"/>
-<path d="M78 72h18v12H78z" fill="#ffd23f"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Maciej Gryziec"><rect width="512" height="512" rx="104" fill="#194586"/><g transform="translate(48.000000 130.105263) scale(0.273684211) translate(-380 -500)"><g fill="#ffffff"><path d="M788 540 H995 L1395 1349 H1005 L692 716 Z"/><path d="M1248 540 H1455 L1855 1349 H1465 L1152 716 Z"/><ellipse cx="615" cy="1185" rx="209" ry="186" transform="rotate(131.3 615 1185)"/></g></g></svg>

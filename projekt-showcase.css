@@ -392,13 +392,7 @@
   object-position:center!important;
 }
 
-/* Sharpness pass: keep the laptop stylish but stop 3D GPU resampling of screenshots. */
-.projekt-laptop{
-  animation:none!important;
-  transform:rotate(-1deg)!important;
-  translate:none!important;
-  will-change:auto!important;
-}
+/* The project laptop keeps its perspective; screenshot detail is preserved by high-resolution assets. */
 .projekt-laptop .ekran{
   transform:none!important;
   backface-visibility:visible!important;
@@ -439,7 +433,7 @@
   position:relative;inset:auto;transform:none;width:100%;max-width:100%;
   min-width:0;margin:0;pointer-events:auto;
 }
-.hero-realizacje .projekt-laptop {width:100%;margin:0;transform:none!important}
+.hero-realizacje .projekt-laptop {width:100%;margin:0}
 .hero-realizacje .projekt-ekran {box-sizing:border-box;width:100%;aspect-ratio:16/11;min-height:380px}
 .hero-realizacje .hero-project-switcher {width:100%;transform:none!important;grid-template-columns:36px minmax(0,1fr) 36px;gap:6px}
 .hero-projekt-nav .project-name {font-size:12px!important;line-height:1.2!important;font-weight:700!important}
@@ -517,4 +511,50 @@
 @media(max-width:560px) {
  .hero-realizacje .judler-top > div:first-child small,
  .hero-realizacje .judler-metrics {display:none}
+}
+
+/* Approved composition restored: a gently angled laptop, filled display, and a quiet floating motion. */
+.rozdzial.czolo.start > .w {
+  grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+  width:min(1360px,calc(100% - 96px));
+  gap:clamp(36px,4vw,66px);
+}
+.hero-realizacje .projekt-laptop {
+  transform:perspective(1800px) rotateY(-13deg) rotateX(4deg) rotate(-2deg)!important;
+  transform-origin:50% 52%;
+  animation:portfolio-laptop-float 7s ease-in-out infinite!important;
+  will-change:translate;
+}
+@keyframes portfolio-laptop-float {0%,100%{translate:0 0}50%{translate:0 -7px}}
+.hero-realizacje .projekt-laptop:hover,.hero-realizacje .projekt-laptop:focus-within {animation-play-state:paused!important}
+.hero-realizacje .projekt-ekran {aspect-ratio:16/10;min-height:0}
+.hero-realizacje .hero-projekt-bar {height:32px;background:#101928;padding-inline:12px}
+.hero-realizacje .hero-projekt-bar em {font-size:8px!important}
+.hero-realizacje .project-views {inset:32px 0 0}
+.hero-realizacje .project-view-tabs {top:40px!important;left:9px;right:auto;max-width:calc(100% - 18px);padding:3px;gap:3px;border-radius:8px;background:rgba(8,17,31,.88)}
+.hero-realizacje .project-view-tabs button {min-height:28px;font-size:9px!important;padding:6px 9px!important}
+.hero-realizacje .hero-zobacz {bottom:10px;left:10px;min-height:27px;font-size:9px;padding:6px 9px;background:rgba(8,17,31,.88)}
+.hero-realizacje .project-view > picture {display:block;width:100%;height:100%}
+.hero-realizacje .hero-projekt .project-views .project-view img {width:100%!important;height:100%!important;max-height:none!important;object-fit:cover!important;object-position:center top!important;background:transparent!important}
+.hero-realizacje .hero-bacteria .project-view img {object-position:50% 42%!important}
+.hero-realizacje .hero-project-switcher {width:98%;margin:19px auto 0;transform:perspective(1800px) rotateY(-8deg) rotateX(2deg) rotate(-1.5deg)!important}
+.hero-realizacje .judler-views {inset:72px 0 0}
+.hero-realizacje .monitor-views {inset:72px 0 0}
+@media(max-width:980px) {
+ .rozdzial.czolo.start > .w {grid-template-columns:1fr;width:calc(100% - 40px);gap:42px}
+ .hero-realizacje .projekt-laptop {transform:perspective(1800px) rotateY(-7deg) rotateX(2deg) rotate(-1.4deg)!important;width:98%;margin:0 auto}
+ .hero-realizacje .hero-project-switcher {transform:none!important;width:100%}
+}
+@media(max-width:560px) {
+ .hero-realizacje .projekt-ekran {aspect-ratio:16/11;min-height:0}
+ .hero-realizacje .hero-projekt-bar {height:26px;padding-inline:8px;font-size:10px!important}
+ .hero-realizacje .hero-projekt-bar em {font-size:6px!important}
+ .hero-realizacje .project-views {inset:26px 0 0}
+ .hero-realizacje .project-view-tabs {top:31px!important;left:5px;max-width:calc(100% - 10px)}
+ .hero-realizacje .project-view-tabs button {min-height:26px;font-size:8px!important;padding:5px 7px!important}
+ .hero-realizacje .hero-zobacz {font-size:8px;min-height:25px;bottom:6px;left:6px}
+ .hero-realizacje .judler-views,.hero-realizacje .monitor-views {inset:64px 0 0}
+}
+@media(prefers-reduced-motion:reduce) {
+ .hero-realizacje .projekt-laptop {animation:none!important;translate:0 0;will-change:auto}
 }
