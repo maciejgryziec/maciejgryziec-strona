@@ -29,3 +29,6 @@ build/
 .DS_Store
 .cache/
 coverage/
+
+# Local QA evidence
+/.audit*/

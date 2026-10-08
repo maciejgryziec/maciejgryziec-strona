@@ -1457,6 +1457,15 @@ def uzupelnij_wymiary_obrazow(html_text):
         return f'<picture>{source}{caly}</picture>'
     return re.sub(r'<img\b[^>]*\ssrc="zdjecia/([^"]+)"[^>]*>', repl, html_text)
 
+def wersjonuj_portfolio(html_text):
+    for name in ("projekt-showcase.css", "projekt-showcase.js", "realizacje-projekty.css", "realizacje-projekty.js", "znak.svg", "znak-bialy.svg"):
+        asset = os.path.join(REPO, name)
+        with open(asset, "rb") as f:
+            digest = hashlib.sha256(f.read()).hexdigest()[:12]
+        pattern = r'((?:href|src)=")' + re.escape(name) + r'(?:\?[^" ]*)?"'
+        html_text = re.sub(pattern, lambda m: m.group(1) + name + "?v=" + digest + '"', html_text)
+    return html_text
+
 def oznacz_lazy_po_pierwszej_sekcji(html_text):
     """Obrazy po pierwszej sekcji ładuj leniwie; hero pozostaje natychmiastowy."""
     first_end=html_text.find("</section>")
@@ -1777,7 +1786,7 @@ def index():
     with open(src, encoding="utf-8") as f:
         s = f.read()
     s = uzupelnij_wymiary_obrazow(s)
-    s = oznacz_lazy_po_pierwszej_sekcji(s)
+    s = wersjonuj_portfolio(oznacz_lazy_po_pierwszej_sekcji(s))
     s = re.sub(r'href="list\.css\?[^"]*"', f'href="list.css?v={ASSET_VERSION}"', s)
     s = re.sub(r'src="list\.js\?[^"]*"', f'src="list.js?v={ASSET_VERSION}"', s)
     with open(CEL + "/index.html", "w", encoding="utf-8") as f:
@@ -1834,7 +1843,7 @@ def podstrona(plik):
         s = re.sub(r'href="list\.css\?[^"]*"', f'href="list.css?v={ASSET_VERSION}"', s)
         s = re.sub(r'src="list\.js\?[^"]*"', f'src="list.js?v={ASSET_VERSION}"', s)
         s = uzupelnij_wymiary_obrazow(s)
-        s = oznacz_lazy_po_pierwszej_sekcji(s)
+        s = wersjonuj_portfolio(oznacz_lazy_po_pierwszej_sekcji(s))
         open(CEL + "/" + nazwa + ".html", "w", encoding="utf-8").write(s)
         return nazwa
     h = open(plik, encoding="utf-8").read()
@@ -1983,7 +1992,7 @@ for pth in sorted(glob.glob(CEL + "/*.html")):
         continue
     url = "https://maciejgryziec.pl/" if fn == "index.html" else "https://maciejgryziec.pl/" + fn
     pr = priorytet.get(fn, "0.7")
-    zrodlo_daty = os.path.join(ZR, fn)
+    zrodlo_daty = os.path.join(REPO, "zrodla-final", fn) if fn == "realizacje.html" else os.path.join(ZR, fn)
     if not os.path.exists(zrodlo_daty):
         zrodlo_daty = pth
     lastmod = data_pliku(zrodlo_daty)

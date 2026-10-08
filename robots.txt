@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 Disallow: /zrodla/
+Disallow: /zrodla-final/
 Disallow: /narzedzia/
 Disallow: /.git/
 Disallow: /.github/

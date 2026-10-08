@@ -426,3 +426,95 @@
   image-rendering:auto!important;
   backface-visibility:visible!important;
 }
+
+/* Production layout: keep the existing design, but fit both columns in the viewport. */
+.rozdzial.czolo.start > .w {
+  display:grid; grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  gap:clamp(28px,4vw,64px); width:min(1380px,calc(100% - 80px));
+  margin-inline:auto; min-height:100svh; padding:120px 0; align-items:center;
+}
+.rozdzial.czolo.start > .w > .tekst {margin:0;max-width:none;min-width:0;padding:0}
+.rozdzial.czolo.start h1 {font-size:clamp(42px,4.3vw,66px);line-height:1.05}
+.rozdzial.czolo.start > .w > .hero-realizacje {
+  position:relative;inset:auto;transform:none;width:100%;max-width:100%;
+  min-width:0;margin:0;pointer-events:auto;
+}
+.hero-realizacje .projekt-laptop {width:100%;margin:0;transform:none!important}
+.hero-realizacje .projekt-ekran {box-sizing:border-box;width:100%;aspect-ratio:16/11;min-height:380px}
+.hero-realizacje .hero-project-switcher {width:100%;transform:none!important;grid-template-columns:36px minmax(0,1fr) 36px;gap:6px}
+.hero-projekt-nav .project-name {font-size:12px!important;line-height:1.2!important;font-weight:700!important}
+.hero-projekt-nav .project-no {font-size:15px!important}
+.hero-projekt-nav button small {font-size:8px!important;line-height:1.2!important}
+.hero-projekt-nav button {min-width:126px!important;flex-basis:126px!important;height:64px}
+.hero-realizacje .hero-projekt-bar {height:38px;padding:0 12px;gap:8px}
+.hero-projekt-bar em {white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:66%}
+.hero-realizacje .project-view-tabs {top:40px!important;left:8px;right:8px;max-width:none;overflow-x:auto;scrollbar-width:none}
+.hero-realizacje .project-view-tabs button {min-height:36px;flex-shrink:0;white-space:nowrap;font-size:11px!important}
+.hero-realizacje .project-views {inset:88px 0 46px}
+.hero-realizacje .hero-zobacz {left:12px;bottom:8px;font-size:11px;min-height:30px;display:flex;align-items:center}
+.hero-projekt[hidden],.project-view[hidden],.detail-panel[hidden] {display:none!important}
+.hero-projekt:not(.aktywny),.project-view:not(.tu) {visibility:hidden;pointer-events:none}
+.hero-projekt.aktywny,.project-view.tu {visibility:visible}
+.project-view > picture,.ksiega .zdjecie > picture,.program-real-shot > picture {display:block;width:100%;height:100%}
+.hero-realizacje .judler-dashboard {padding-top:0;grid-template-columns:58px minmax(0,1fr)}
+.hero-realizacje .judler-main {min-width:0;padding:10px}
+.hero-realizacje .judler-main-grid {grid-template-columns:minmax(0,1fr);margin-top:6px}
+.hero-realizacje .judler-queue {display:none}
+.hero-realizacje .judler-map {min-height:175px}
+.hero-realizacje .judler-core {width:70px;height:70px;left:42%;top:39%}
+.hero-realizacje .judler-node {width:86px}
+.hero-realizacje .judler-metrics {grid-template-columns:repeat(5,minmax(0,1fr))}
+.hero-realizacje .judler-metrics > span {min-height:38px;padding:6px}
+.hero-realizacje .judler-metrics i {display:none}
+.hero-realizacje .judler-agents,.hero-realizacje .judler-tasks,.hero-realizacje .judler-health {padding:10px 14px}
+.hero-realizacje .judler-agent-grid .agent-tile,.hero-realizacje .judler-health-grid > div {
+  border:1px solid #194576;border-radius:10px;background:#0b2346;padding:12px;position:relative;
+}
+.hero-realizacje .agent-tile b,.hero-realizacje .agent-tile small,.hero-realizacje .agent-tile strong,.hero-realizacje .agent-tile em {display:block}
+.hero-realizacje .price-report,.hero-realizacje .monitor-products,.hero-realizacje .monitor-history {padding:10px 12px}
+.rozdzial.programy-sekcja > .w {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;width:min(1320px,calc(100% - 80px));margin-inline:auto;padding:110px 0}
+.rozdzial.programy-sekcja > .w > .tekst {margin:0;padding:0;max-width:520px;min-width:0}
+.rozdzial.programy-sekcja > .w > .obraz {position:relative;inset:auto;transform:none;width:100%;min-width:0}
+.showcase-note {font-size:13px;line-height:1.6;color:#596678}
+.project-view-tabs button:focus-visible,.hero-projekt-nav button:focus-visible,.hero-project-arrow:focus-visible,.detail-tabs button:focus-visible {outline:3px solid #ffd36a;outline-offset:-3px}
+@media(max-width:980px) {
+ .rozdzial.czolo.start > .w {grid-template-columns:1fr;width:calc(100% - 40px);gap:36px;min-height:auto;padding:100px 0 90px}
+ .rozdzial.czolo.start > .w > .tekst {max-width:680px;width:100%;margin-inline:auto}
+ .rozdzial.czolo.start > .w > .hero-realizacje {max-width:720px;margin-inline:auto}
+ .rozdzial.czolo.start h1 {font-size:clamp(40px,6vw,58px)}
+ .rozdzial.czolo.start .zacheta {font-size:17px;max-width:none}
+ .rozdzial.programy-sekcja > .w {grid-template-columns:1fr;width:calc(100% - 40px);gap:24px;padding:70px 0}
+ .rozdzial.programy-sekcja > .w > .tekst {max-width:none}
+ .rozdzial.programy-sekcja > .w > .obraz {max-width:680px;margin-inline:auto}
+}
+@media(max-width:560px) {
+ .hero-realizacje .projekt-ekran {min-height:340px;aspect-ratio:auto;border-width:6px;border-bottom-width:9px;border-radius:12px 12px 4px 4px}
+ .hero-realizacje .hero-projekt-bar em {max-width:59%;font-size:8px!important}
+ .hero-realizacje .hero-project-switcher {grid-template-columns:32px minmax(0,1fr) 32px}
+ .hero-realizacje .judler-dashboard {grid-template-columns:minmax(0,1fr)}
+ .hero-realizacje .judler-side {display:none}
+ .hero-realizacje .judler-top>div:first-child b {font-size:12px}
+ .hero-realizacje .judler-top>div:first-child small {font-size:6px}
+ .hero-realizacje .judler-map {min-height:133px}
+ .hero-realizacje .judler-map header {padding:6px;font-size:6px}
+ .hero-realizacje .judler-core {width:48px;height:48px;left:42%;top:43%}
+ .hero-realizacje .judler-core b {font-size:8px}
+ .hero-realizacje .judler-core span {font-size:4px}
+ .hero-realizacje .judler-node {width:77px;padding:5px}
+ .hero-realizacje .judler-node i {width:16px;height:16px;margin-right:4px}
+ .hero-realizacje .judler-node b {font-size:5px}
+ .hero-realizacje .judler-node span {font-size:4px}
+ .hero-realizacje .judler-metrics {gap:4px;margin-top:5px}
+ .hero-realizacje .judler-metrics b {font-size:9px}
+ .hero-realizacje .judler-health-grid {grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(prefers-reduced-motion:reduce) {
+ .hero-realizacje * {animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* The mobile figure has its own outer gutter; do not apply the old illustration gutter twice. */
+.rozdzial.czolo.start > .w > .hero-realizacje {padding:0}
+@media(max-width:560px) {
+ .hero-realizacje .judler-top > div:first-child small,
+ .hero-realizacje .judler-metrics {display:none}
+}

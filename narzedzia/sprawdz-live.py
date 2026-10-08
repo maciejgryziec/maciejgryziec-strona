@@ -44,7 +44,7 @@ def check(label, ok, detail):
 status, headers, body = request(APEX + "/")
 check("strona główna", status == 200, f"HTTP {status}")
 text = body.decode("utf-8", "replace")
-check("nowa wersja strony", "Opisz projekt" in text and "Aplikacje," in text and "Przykłady programów" in text, "CTA, hero i realizacje")
+check("nowa wersja strony", all(marker in text for marker in ("Opisz projekt", "hero-realizacje", "Frankie", "Judler", "Bacteria Run", "projekt-showcase.js")), "CTA, hero i realizacje")
 check("brak statycznego trackera Umami", "statystyki.automatyzacjesklepow.pl/script.js" not in text, "tracker ładowany warunkowo z list.js")
 
 # Canonical host.
@@ -70,6 +70,7 @@ for path, label in (
 # Repo/development nie może być publiczne po deployu.
 for path in (
     "/zrodla/index.html",
+    "/zrodla-final/realizacje.html",
     "/narzedzia/buduj-nowa.py",
     "/.github/workflows/site-audit.yml",
     "/README.md",

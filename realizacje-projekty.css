@@ -255,3 +255,10 @@
   filter:none!important;
   image-rendering:auto!important;
 }
+
+/* Keep readable side gutters around the expanded portfolio on every screen. */
+body[data-nav-active="realizacje.html"] #main-content > .tresc {
+  width:min(1160px,calc(100% - 40px));max-width:none;margin-inline:auto;padding:0;
+}
+.detail-tabs {overflow-x:auto}
+.detail-tabs button {flex-shrink:0;white-space:nowrap;min-height:36px}

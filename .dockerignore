@@ -3,6 +3,7 @@
 .github
 .gitignore
 zrodla
+zrodla-final
 narzedzia
 deploy
 
@@ -19,3 +20,7 @@ _audit-*
 .DS_Store
 .vscode
 .idea
+
+# Local browser test artifacts
+.audit*
+.portfolio-qa*

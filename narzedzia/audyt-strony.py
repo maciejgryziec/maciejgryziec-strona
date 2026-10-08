@@ -368,8 +368,8 @@ for pth in pages:
     txt=pth.read_text(encoding="utf-8")
     preloads=re.findall(r'<link[^>]+rel="preload"[^>]+as="image"[^>]*>',txt,re.I)
     if pth.name == "realizacje.html":
-        if len(preloads) != 1 or "photonroof-wymiary-800.webp" not in preloads[0]:
-            err(pth.name,f"oczekiwano jednego preloada LCP PV Roof Configurator, znaleziono {len(preloads)}")
+        if len(preloads) != 1 or "frankie-orders-focus.webp" not in preloads[0]:
+            err(pth.name,f"oczekiwano jednego preloada pierwszej widocznej karty Frankie, znaleziono {len(preloads)}")
     elif preloads:
         err(pth.name,f"niepotrzebny preload obrazu ({len(preloads)})")
 
@@ -605,7 +605,7 @@ else:
         for line in dockerignore.read_text(encoding="utf-8").splitlines()
         if line.strip() and not line.lstrip().startswith("#")
     }
-    for required in (".git", ".github", "zrodla", "narzedzia", "deploy"):
+    for required in (".git", ".github", "zrodla", "zrodla-final", "narzedzia", "deploy"):
         if required not in docker_rules:
             err(".dockerignore", f"brak ochrony: {required}")
 
