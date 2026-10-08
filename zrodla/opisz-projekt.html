@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Opisz projekt — aplikacja, automatyzacja lub integracja dla firmy</title><meta name="description" content="Opisz proces, który chcesz uprościć. Kilka informacji o firmie, narzędziach i problemie wystarczy, żeby ustalić sensowny pierwszy zakres aplikacji lub automatyzacji.">
+<title>Opisz projekt aplikacji lub automatyzacji dla firmy</title><meta name="description" content="Opisz proces, który chcesz uprościć. Kilka informacji o firmie, narzędziach i problemie wystarczy, żeby ustalić wstępny zakres aplikacji lub automatyzacji.">
 <link rel="canonical" href="https://maciejgryziec.pl/opisz-projekt.html"></head>
 <body><header></header><section><div class="srodek">
-<div class="tytul-strony wjazd"><p class="etykieta">Kontakt / brief</p><h1>Opisz projekt albo proces, który chcesz uprościć</h1><p class="slaby" style="font-size:1.1rem">Wystarczy kilka konkretów. Formularz pomoże je ułożyć w brief — bez technicznego języka i bez pisania specyfikacji od zera.</p></div>
+<div class="tytul-strony wjazd"><p class="etykieta">Kontakt / brief</p><h1>Opisz projekt albo proces, który chcesz uprościć</h1><p class="slaby" style="font-size:1.1rem">Opisz potrzebne narzędzie lub sposób pracy, który chcesz usprawnić. Formularz pomoże zebrać informacje do pierwszej rozmowy. Nie potrzebujesz specyfikacji technicznej.</p></div>
 <div class="tresc wjazd">
       <h2>Nie potrzebujesz gotowej specyfikacji</h2>
-      <p>Najlepszy pierwszy opis projektu nie zaczyna się od technologii. Napisz, jak dziś wygląda praca, gdzie pojawia się ręczne przepisywanie albo chaos i co powinno być prostsze po wdrożeniu.</p>
+      <p>Napisz, kto wykonuje zadanie, z jakich programów korzysta i co sprawia największy problem. Dodaj, jak powinno to wyglądać po wdrożeniu.</p>
       <div class="kontakt-skroty" aria-label="Alternatywne formy kontaktu">
-        <a data-umami-event="klik-telefon-brief" href="tel:+48570427127"><strong>Wolę zadzwonić</strong><span>570 427 127</span></a>
-        <a data-umami-event="klik-mail-brief" href="mailto:kontakt@automatyzacjesklepow.pl"><strong>Wolę napisać ręcznie</strong><span>kontakt@automatyzacjesklepow.pl</span></a>
+        <a data-umami-event="klik-telefon-brief" href="tel:+48570427127"><strong>Zadzwoń</strong><span>570 427 127</span></a>
+        <a data-umami-event="klik-mail-brief" href="mailto:kontakt@automatyzacjesklepow.pl"><strong>Napisz e-mail</strong><span>kontakt@automatyzacjesklepow.pl</span></a>
       </div>
 
       <noscript>
@@ -38,7 +38,7 @@
             <option>System rezerwacji</option>
             <option>Automatyzacja dokumentów</option>
             <option>Automatyzacja z AI</option>
-            <option>Nie wiem jeszcze — chcę opisać problem</option>
+            <option>Nie wiem jeszcze, chcę opisać problem</option>
           </select>
         </label>
 
@@ -57,12 +57,12 @@
         <div class="brief-grid">
           <label><span>Ile osób korzystałoby z rozwiązania?</span>
             <select name="uzytkownicy">
-              <option>1–3 osoby</option><option>4–10 osób</option><option>11–30 osób</option><option>31+ osób</option><option>Nie wiem / także klienci</option>
+              <option>1-3 osoby</option><option>4-10 osób</option><option>11-30 osób</option><option>31+ osób</option><option>Nie wiem / także klienci</option>
             </select>
           </label>
           <label><span>Orientacyjny budżet <small>(opcjonalnie)</small></span>
             <select name="budzet">
-              <option value="">Jeszcze nie wiem</option><option>do 5 000 zł</option><option>5 000–10 000 zł</option><option>10 000–25 000 zł</option><option>25 000–50 000 zł</option><option>50 000 zł+</option>
+              <option value="">Jeszcze nie wiem</option><option>do 5 000 zł</option><option>5 000-10 000 zł</option><option>10 000-25 000 zł</option><option>25 000-50 000 zł</option><option>50 000 zł+</option>
             </select>
           </label>
         </div>
@@ -77,13 +77,13 @@
           <button class="przycisk drugorzedny" type="button" id="pobierz-brief" data-umami-event="brief-pobierz">Pobierz .txt</button>
           <button class="brief-clear" type="button" id="wyczysc-brief">Wyczyść</button>
         </div>
-        <p class="brief-info" id="brief-info" role="status" aria-live="polite">Formularz nie wysyła danych na serwer. Szkic jest zapisywany tylko w pamięci tej karty przeglądarki, żeby nie zniknął po przypadkowym odświeżeniu. Po kliknięciu przygotuje wiadomość do <strong>kontakt@automatyzacjesklepow.pl</strong>; możesz też skopiować albo pobrać brief.</p>
+        <p class="brief-info" id="brief-info" role="status" aria-live="polite">Formularz zapisuje szkic tylko w bieżącej karcie przeglądarki. Przycisk przygotowuje wiadomość do <a href="mailto:kontakt@automatyzacjesklepow.pl">kontakt@automatyzacjesklepow.pl</a> w Twoim programie pocztowym. Samodzielnie decydujesz o wysłaniu. Możesz też skopiować opis lub pobrać plik tekstowy.</p>
         <textarea class="brief-fallback" id="brief-fallback" rows="12" readonly hidden aria-label="Gotowy brief do ręcznego skopiowania"></textarea>
       </form>
 
       <div class="pudlo">
         <h3>Co warto dołączyć do wiadomości?</h3>
-        <p>Screen obecnego arkusza lub programu, przykładową ofertę, formularz, dokument PDF albo prosty szkic procesu. Dane klientów możesz zamazać. Nie potrzebuję dokumentacji technicznej.</p>
+        <p>Możesz dołączyć zrzut obecnego programu, arkusz, wzór oferty lub prosty szkic procesu. Usuń z materiałów dane klientów i inne informacje, które nie są potrzebne do rozmowy.</p>
         <p><strong>Nie wysyłaj w pierwszej wiadomości haseł, kluczy API, tokenów dostępowych ani danych osobowych, które nie są potrzebne do opisania procesu.</strong> Dostępy techniczne ustala się dopiero wtedy, gdy są rzeczywiście potrzebne do konkretnego etapu.</p>
       </div>
 
@@ -92,7 +92,7 @@
         <li>czytam opis i sprawdzam, czy problem wygląda na integrację, automatyzację czy własny moduł,</li>
         <li>jeżeli trzeba, doprecyzowujemy kilka elementów procesu,</li>
         <li>ustalamy pierwszy mały zakres z konkretnym wynikiem,</li>
-        <li>dopiero potem wyceniamy dalszą rozbudowę.</li>
+        <li>przed rozpoczęciem płatnej pracy akceptujesz zakres, cenę i termin.</li>
       </ol>
 
       <h2>Wolisz najpierw poczytać?</h2>

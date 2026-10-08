@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Realizacje aplikacji i systemów dla firm — Maciej Gryziec</title>
+<title>Realizacje aplikacji i systemów dla firm. Maciej Gryziec</title>
 <meta name="description" content="Realizacje aplikacji i systemów dla firm: konfigurator 3D PV Roof Configurator, panel wypożyczalni, narzędzie do audytu e-commerce i monitoring integracji.">
 <link rel="canonical" href="https://maciejgryziec.pl/realizacje.html">
 <link rel="stylesheet" href="styl.css?w=3">
@@ -63,7 +63,7 @@
     <div class="projekty">
       <div class="projekt wjazd">
         <p class="rodzaj">Projekt na zamówienie</p>
-        <h2>PV Roof Configurator — konfigurator dachówek fotowoltaicznych</h2>
+        <h2>RoofPVCalculator: konfigurator pokrycia dachu PV</h2>
         <p>Konfigurator dla marki <strong>PV Roof Configurator</strong>, należącej do <strong>anonymized B2B client</strong> —
            producenta szkła i dachówek fotowoltaicznych.</p>
         <p>Klient sam projektuje dach, a system liczy powierzchnię, moc i liczbę dachówek.</p>
@@ -105,9 +105,9 @@
 
     <div class="studium wjazd" id="photonroof" style="margin-top:4rem">
       <p class="etykieta">Studium przypadku</p>
-      <h2>PV Roof Configurator — konfigurator dachówek fotowoltaicznych</h2>
+      <h2>RoofPVCalculator: konfigurator pokrycia dachu PV</h2>
       <ul class="metryka">
-        <li>Klient: anonymized B2B client</li>
+        <li>Projekt dla klienta B2B; dane zanonimizowane</li>
         <li>Marka: PV Roof Configurator</li>
         <li>Rola: autor</li>
         <li>Aplikacja internetowa</li>
@@ -122,42 +122,28 @@
       <p>Dachówka fotowoltaiczna to produkt, którego nie da się wycenić z cennika.
          Cena zależy od kształtu dachu, kąta nachylenia, stron świata, zacienienia
          i tego, ile dachówek faktycznie wyprodukuje prąd, a ile jest tylko pokryciem.</p>
-      <p>Każde zapytanie oznaczało więc telefon do handlowca, ręczne liczenie w arkuszu
-         i odpowiedź po kilku dniach. Klient, który chciał tylko wiedzieć „ile to mniej więcej
-         kosztuje”, musiał czekać — a część nie czekała.</p>
+      <p>Przygotowanie wyceny wymaga zebrania wymiarów, wyboru materiału i obliczeń. Konfigurator pozwala klientowi przygotować te informacje przed rozmową z handlowcem.</p>
 
       <h3>Jak to rozwiązałem</h3>
-      <p>Przeniosłem całe liczenie do przeglądarki i dałem je klientowi do ręki.
-         Aplikacja pozwala zaprojektować dach na trzy sposoby, a potem sama wylicza geometrię,
-         moc i zapotrzebowanie na materiał.</p>
+      <p>Aplikacja wykonuje obliczenia w przeglądarce. Użytkownik może pracować w kreatorze 3D lub skorzystać z mapy. Rozpoznawanie rzutu jest na pokazanym ekranie oznaczone jako funkcja planowana.</p>
 
       <figure>
         <img src="zdjecia/photonroof-tryby.png" alt="Ekran startowy konfiguratora PV Roof Configurator z wyborem trybu pracy">
-        <figcaption>Trzy drogi do tego samego wyniku: wskazanie budynku na mapie satelitarnej,
-          zbudowanie dachu od zera w kreatorze 3D albo wgranie rzutu dachu do rozpoznania.</figcaption>
+        <figcaption>Ekran wyboru trybu: mapa satelitarna i kreator 3D. Rozpoznawanie rzutu jest na tym widoku oznaczone jako planowana funkcja.</figcaption>
       </figure>
 
-      <h3>Mapa satelitarna — dla tych, którzy nie chcą nic wypełniać</h3>
-      <p>Klient obrysowuje swój dach na zdjęciu satelitarnym. System sam wylicza powierzchnię,
-         nachylenie połaci, ekspozycję względem słońca i moc możliwej instalacji —
-         korzystając z wysokościowego modelu dachu.</p>
+      <h3>Wskazanie dachu na mapie</h3>
+      <p>Tryb mapy służy do wskazania lokalizacji i obrysu dachu. Możliwość analizy zależy od dostępnych danych budynku. Gdy ich brakuje, użytkownik może wprowadzić parametry w kreatorze 3D.</p>
 
       <figure>
         <img src="zdjecia/photonroof-mapa.jpg" alt="Tryb mapy satelitarnej: obrysowany dach budynku, wyliczona powierzchnia, moc instalacji i liczba dachówek">
-        <figcaption>Klient wpisuje adres, obrysowuje swój dach na zdjęciu satelitarnym i wybiera kolor dachówki.
-          Wynik pojawia się od razu: 186,40 m² dachu, 12,30 kWp mocy oraz rozpiska dachówek —
-          561 z modułem PV i 86 krawędziowych. Cała wycena bez jednego pola do wypełnienia.</figcaption>
+        <figcaption>Widok mapy z obrysem i przykładowym podsumowaniem konfiguracji. Wartości służą prezentacji interfejsu; nie są oceną konkretnego budynku.</figcaption>
       </figure>
 
-      <h3>Kreator 3D — najmocniejsza część</h3>
-      <p>Klient wybiera typ dachu — dwuspadowy, kopertowy, namiotowy, jednospadowy, naczółkowy
-         albo półszczytowy — podaje wymiary budynku, kąt nachylenia i orientację względem stron świata.
-         Model przebudowuje się na żywo, a na dachu od razu widać ułożone dachówki w wybranym kolorze.</p>
-      <p>Do tego dochodzą elementy, które w prawdziwym dachu psują każde wyliczenie:
-         okna dachowe, kominy i dodatkowe skrzydła budynku. Suwak pory dnia pokazuje, jak w ciągu doby
-         przesuwa się cień — bo to on decyduje, które połacie mają sens.</p>
-      <p>Model nanosi też wymiary i kąty, tak jak na rysunku technicznym, więc dekarz dostaje
-         coś, co da się zabrać na budowę.</p>
+      <h3>Projektowanie dachu w kreatorze 3D</h3>
+      <p>Użytkownik wybiera typ dachu, np. dwuspadowy, kopertowy lub jednospadowy, a następnie podaje wymiary, nachylenie i orientację. Model aktualizuje geometrię oraz układ pokrycia po zmianie parametrów.</p>
+      <p>W modelu można uwzględnić okna dachowe, kominy i dodatkowe części budynku. Suwak pory dnia pomaga obejrzeć zmianę cienia na wizualizacji.</p>
+      <p>Wymiary i kąty są widoczne bezpośrednio na modelu. Ułatwia to sprawdzenie konfiguracji i rozmowę o parametrach; widok nie zastępuje projektu wykonawczego.</p>
 
       <figure>
         <img src="zdjecia/photonroof-kreator3d.jpg" alt="Kreator 3D: model domu z dachem dwuspadowym, oknem dachowym i naniesionymi wymiarami">
@@ -172,20 +158,15 @@
       </figure>
 
       <h3>Wynik, który da się zanieść do handlowca</h3>
-      <p>Aplikacja nie kończy się na ładnym obrazku. Dla każdej połaci osobno liczy powierzchnię,
-         kąt, kierunek świata, moc w kilowatach, procent pokrycia i liczbę dachówek —
-         z rozbiciem na aktywne, pasywne i docinki. Całość da się pobrać jako gotową ofertę PDF
-         albo zapisać projekt i wrócić do niego później.</p>
+      <p>Podsumowanie zbiera parametry połaci, powierzchnię, szacowaną moc i ilość pokrycia. Projekt można zapisać i wykorzystać przy przygotowaniu oferty. Zakres wyniku zależy od wybranego trybu oraz dostępnych danych.</p>
 
       <figure>
         <img src="zdjecia/photonroof-wymiary.jpg" alt="Kreator 3D: dach z wykuszem, naniesione wymiary połaci i podsumowanie mocy instalacji">
-        <figcaption>Dach z wykuszem, każdy odcinek opisany wymiarem prosto na modelu — okap, skos, kalenica, ściana.
-          Obok wynik na bieżąco: 123,5 m² powierzchni dachu, z tego 54,6 m² pracujące na prąd, razem 2,78 kWp.</figcaption>
+        <figcaption>Model dachu z wykuszem, opisanymi wymiarami i panelem podsumowania. Wartości na ekranie służą prezentacji konfiguratora.</figcaption>
       </figure>
 
       <h3>Co się zmieniło</h3>
-      <p>Wycena, która zajmowała kilka dni, powstaje w kilka minut i robi ją sam zainteresowany.
-         Handlowiec przestaje liczyć, a zaczyna rozmawiać z kimś, kto już wie, czego chce.</p>
+      <p>Klient może samodzielnie przygotować wariant dachu, a handlowiec otrzymuje parametry do weryfikacji i dalszej wyceny. Konfiguracja porządkuje informacje potrzebne do dalszej wyceny.</p>
       <div class="case-next"><strong>Masz podobny proces?</strong><p>Jeżeli handlowiec za każdym razem zbiera te same parametry i ręcznie liczy wynik, zobacz <a href="kalkulator-konfigurator-dla-klientow.html">kalkulatory i konfiguratory dla klientów</a> albo <a href="opisz-projekt.html?typ=Kalkulator%20lub%20konfigurator%20dla%20klientów">opisz swoją logikę wyceny</a>.</p></div>
 
       <p class="przypis">Nazwa, logotyp i zrzuty ekranu wykorzystane za zgodą właściciela.
@@ -208,33 +189,26 @@
       </div>
 
       <h3>Po co powstał</h3>
-      <p>Gotowe programy do wypożyczalni zakładają, że każda firma pracuje tak samo —
-         a potem właściciel i tak prowadzi połowę rzeczy w zeszycie, bo „w programie się nie da”.
-         Ten panel zbudowałem jako przykład drogi odwrotnej: system uszyty pod jedną branżę,
-         w którym na pierwszym ekranie jest dokładnie to, od czego zaczyna się dzień w wypożyczalni.</p>
+      <p>To projekt pokazowy panelu dla wypożyczalni samochodów. Łączy zadania na dany dzień, dostępność floty, najmy i dokumenty. Pokazuje, jak można dopasować widoki do obowiązków osoby obsługującej wypożyczalnię.</p>
 
       <figure>
         <img src="zdjecia/wypozyczalnia-pulpit.png" alt="Pulpit panelu wypożyczalni: lista zadań na dziś, przychód miesiąca i stan floty">
         <figcaption>Pulpit: zwroty i wydania na dziś, przychód miesiąca, stan floty.</figcaption>
       </figure>
 
-      <h3>Kalendarz, który widzi kolizje</h3>
-      <p>Serce systemu to kalendarz obłożenia: każdy wiersz to auto, każdy pasek to najem albo
-         rezerwacja. System sam pilnuje, żeby nie dało się wynająć tego samego auta dwa razy
-         w te same dni — i żeby auto z wygasłym OC nie wyjechało z placu.</p>
+      <h3>Kalendarz i kontrola dostępności</h3>
+      <p>W kalendarzu każdy wiersz odpowiada jednemu autu, a paski przedstawiają najmy i rezerwacje. Reguły dostępności uwzględniają nakładające się terminy oraz blokady związane z serwisem i OC.</p>
 
       <figure>
         <img src="zdjecia/wypozyczalnia-kalendarz.png" alt="Kalendarz obłożenia: paski najmów i rezerwacji na osi miesiąca, osobny wiersz dla każdego auta">
       </figure>
 
-      <h3>Flota i papiery w jednym miejscu</h3>
-      <p>Każde auto ma swoją kartę: zdjęcie, stawkę, przebieg, terminy OC i przeglądu oraz
-         pełną historię najmów. Faktury wystawiają się same na podstawie najmów, więc kwoty
-         zawsze zgadzają się z kalendarzem — a te po terminie od razu widać na czerwono.</p>
+      <h3>Dane floty i dokumenty</h3>
+      <p>Karta auta zawiera zdjęcie, stawkę, przebieg, terminy OC i przeglądu oraz historię najmu. Dane rozliczeniowe są powiązane ze zleceniem, a lista faktur pokazuje terminy płatności i statusy.</p>
 
       <figure>
         <img src="zdjecia/wypozyczalnia-flota.png" alt="Karty aut we flocie ze zdjęciami, stawkami i plakietkami statusów">
-        <figcaption>Flota — statusy, stawki i terminy przeglądów na jednej karcie.</figcaption>
+        <figcaption>Karty floty ze statusami, stawkami i terminami przeglądów.</figcaption>
       </figure>
 
       <figure>
@@ -243,16 +217,11 @@
       </figure>
 
       <h3>Co z tego wynika dla Ciebie</h3>
-      <p>To nie jest program na sprzedaż z półki — to pokaz tego, jak wygląda system
-         zbudowany pod konkretny sposób pracy. Prowadzisz wypożyczalnię, serwis, produkcję
-         na zamówienie albo cokolwiek, czego nie ogarnia żaden gotowy program?
-         Taki panel mogę zbudować pod Twoją firmę — wycena po rozmowie, pozycja
-         „System na zamówienie” w <a href="cennik.html">cenniku</a>. Jeśli interesuje Cię dokładnie ten typ rozwiązania, zobacz też <a href="program-dla-wypozyczalni.html">program dla wypożyczalni</a>.</p>
+      <p>Panel jest przykładem wykonania, nie gotowym produktem w abonamencie. Podobny system mogę dopasować do Twojej floty, zasad rezerwacji i dokumentów. Zobacz <a href="program-dla-wypozyczalni.html">opis programu dla wypożyczalni</a> oraz <a href="cennik.html">zasady wyceny</a>.</p>
 
       <div class="case-next"><strong>Prowadzisz wypożyczalnię albo pracujesz na rezerwowanych zasobach?</strong><p>Zobacz <a href="program-dla-wypozyczalni.html">program dla wypożyczalni</a> i <a href="system-rezerwacji-dla-firm.html">dedykowany system rezerwacji</a> albo <a href="opisz-projekt.html">opisz swój obecny kalendarz i zasoby</a>.</p></div>
 
-      <p class="przypis">Projekt pokazowy. Wszystkie dane na zrzutach — nazwiska, telefony,
-         numery rejestracyjne i kwoty — są wymyślone.</p>
+      <p class="przypis">Projekt pokazowy. Nazwiska, dane kontaktowe, numery rejestracyjne i kwoty na zrzutach są demonstracyjne.</p>
     </div>
   </div>
 </section>

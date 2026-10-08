@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Integracje API dla firm — połącz używane systemy</title>
+<title>Integracje API między programami używanymi w firmie</title>
 <meta name="description" content="Tworzę integracje API między CRM-em, formularzami, kalendarzem, sklepem, magazynem, księgowością i własnymi aplikacjami. Bez przepisywania danych.">
 <link rel="canonical" href="https://maciejgryziec.pl/integracje-api-dla-firm.html">
 </head>
@@ -34,13 +34,13 @@
       <p>Czasem dostępny jest eksport CSV, XML, plik na serwerze albo webhook. Da się zbudować połączenie także na takich mechanizmach. Jeżeli system jest całkowicie zamknięty, trzeba ocenić, czy integracja jest bezpieczna i opłacalna, zamiast obiecywać „na pewno się da”.</p>
 
       <h2>Dwukierunkowa synchronizacja czy jeden kierunek?</h2>
-      <p>Najprostsze i najbardziej niezawodne połączenia mają jedno źródło prawdy. Przykład: CRM jest źródłem danych klienta, a program księgowy tylko je odbiera. Dwukierunkowa synchronizacja też jest możliwa, ale wymaga jasnych zasad: co dzieje się, gdy oba systemy zmienią tę samą informację.</p>
+      <p>Dla każdego rodzaju danych warto wskazać system nadrzędny. Przykładowo CRM przechowuje dane klienta, a księgowość je pobiera. Przy synchronizacji dwukierunkowej ustalamy także, która zmiana ma pierwszeństwo i jak rozstrzygać konflikty.</p>
 
       <h2>Co z błędami?</h2>
       <p>Integracja powinna zapisywać historię, identyfikatory operacji i błędy. Jeżeli faktura nie przejdzie albo zewnętrzne API jest chwilowo niedostępne, użytkownik powinien wiedzieć, co nie zostało wykonane i co można bezpiecznie ponowić.</p>
 
       <div class="pudlo">
-        <h3>Integracja to nie „skrypt, który czasem działa”</h3>
+        <h3>Kontrola poprawności integracji</h3>
         <p>W firmie ważniejsza od samego przesłania danych jest kontrola: logi, walidacja, obsługa duplikatów, powiadomienia i możliwość odtworzenia tego, co wydarzyło się z konkretnym rekordem.</p>
       </div>
 
@@ -54,7 +54,7 @@
       <p>Klucze API i tokeny nie powinny być wpisane w kod strony ani przesyłane między pracownikami. Integracja przechowuje je po stronie serwera, a uprawnienia powinny być ograniczone do operacji, których naprawdę potrzebuje. Jeżeli dostawca obsługuje osobne konto techniczne, warto z niego korzystać.</p>
 
       <h2>Limity i zmiany po stronie dostawcy</h2>
-      <p>Zewnętrzne API może mieć limity liczby zapytań, okres ważności tokenu albo zmieniać wersję. Dlatego projektuję przepływ tak, żeby duża synchronizacja nie blokowała systemu i żeby awaria jednej usługi nie powodowała utraty danych.</p>
+      <p>Projekt uwzględnia limity zapytań, wygasanie dostępu i zmiany wersji API. Operacje mogą trafiać do kolejki, a nieudane przesłania są zapisywane do sprawdzenia lub bezpiecznego ponowienia.</p>
 
       <h2>Najczęstsze pytania</h2>
       <h3>Czy potrzebuję dostępu administratora?</h3>

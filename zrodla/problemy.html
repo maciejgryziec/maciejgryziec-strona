@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Automatyzacja firmy — problemy, które warto zamienić w system</title>
-<meta name="description" content="Excel, ręczne przepisywanie danych, chaos w zleceniach, wyceny, raporty i niespójne systemy — problemy w firmie, które można rozwiązać aplikacją lub automatyzacją.">
+<title>Problemy w firmie, które można rozwiązać automatyzacją</title>
+<meta name="description" content="Przykłady zastosowań automatyzacji: przepisywanie danych, obsługa zleceń, wyceny, dokumenty i raporty. Sprawdź, kiedy wystarczy integracja, a kiedy warto zbudować aplikację.">
 <link rel="canonical" href="https://maciejgryziec.pl/problemy.html">
 <link rel="stylesheet" href="styl.css?w=3">
 <link rel="icon" type="image/svg+xml" href="ikona.svg">
@@ -85,7 +85,7 @@
       </article>
 
       <article class="problem kotwica wjazd" id="dokumenty">
-        <h2>Oferta, umowa albo protokół powstają przez kopiuj–wklej</h2>
+        <h2>Dane do ofert, umów i protokołów są kopiowane ręcznie</h2>
         <p class="objaw">Dane klienta i zlecenia są już w systemie albo arkuszu, ale ktoś ponownie przepisuje je do Worda, poprawia numer, zapisuje PDF i wysyła mail.</p>
         <div class="naprawa"><span class="naprawa-etykieta">Co robię</span><p>Dokument powstaje automatycznie z danych sprawy, z właściwą numeracją, sekcjami i załącznikami. Zobacz <a href="automatyzacja-dokumentow-w-firmie.html">automatyzację dokumentów</a>.</p></div>
       </article>
@@ -96,10 +96,10 @@
                stroke-linecap="round" stroke-linejoin="round"><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16l-2.5-1.6L13 21l-2.5-1.6L8 21l-2-1.6z"/><path d="M10 8h4M10 12h4"/></svg>
         </span>
         <h2>Automatyczne faktury do zamówień ze sklepu i z Allegro</h2>
-        <p class="objaw">Zamówienia przychodzą do sklepu i na Allegro, a faktury wystawiasz ręcznie w osobnym programie. Przy trzydziestu zamówieniach dziennie to godzina pracy i kilka pomyłek w miesiącu.</p>
+        <p class="objaw">Zamówienia trafiają do sklepu i na Allegro, a dane do faktur są wpisywane ponownie w osobnym programie. Przy większej liczbie transakcji zwiększa to nakład pracy i ryzyko pomyłek.</p>
         <div class="naprawa">
           <span class="naprawa-etykieta">Co robię</span>
-          <p>Zamówienia wpadają do programu do faktur same, z poprawnymi stawkami podatku, danymi klienta i numerem zamówienia. Ty sprawdzasz, zamiast przepisywać. A jeśli Twoje faktury mają trafiać do KSeF, ten sam most załatwia i to.</p>
+          <p>Integracja przekazuje pozycje, dane klienta i numer zamówienia do programu fakturującego. Ustalone reguły kontrolują kompletność danych. Wysyłkę do KSeF konfiguruję w uzgodnieniu z księgowością.</p>
         </div>
       </article>
       <article class="problem kotwica wjazd" id="stany">
@@ -108,10 +108,10 @@
                stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4M3 16l9 4 9-4"/></svg>
         </span>
         <h2>Synchronizacja stanów magazynowych między sklepem a Allegro</h2>
-        <p class="objaw">Sprzedajesz ten sam towar w dwóch miejscach. Połączenie gubi się po aktualizacji wtyczki albo cichym zerwaniu — ostatnia sztuka schodzi na Allegro, a w sklepie dalej widnieje jako dostępna. Klient płaci za coś, czego nie ma.</p>
+        <p class="objaw">Przy sprzedaży w kilku kanałach stan magazynowy może aktualizować się z opóźnieniem. Wtedy produkt sprzedany na Allegro nadal wygląda na dostępny w sklepie. Trzeba ustalić wspólne źródło stanu i sposób obsługi rezerwacji.</p>
         <div class="naprawa">
           <span class="naprawa-etykieta">Co robię</span>
-          <p>Jeden stan magazynowy, z którego korzystają wszystkie kanały sprzedaży. Coś schodzi w jednym miejscu — chwilę później wiedzą o tym pozostałe.</p>
+          <p>Łączę kanały z uzgodnionym źródłem stanów magazynowych. Integracja przekazuje zmiany, a monitoring sygnalizuje przerwy lub błędy synchronizacji.</p>
         </div>
       </article>
       <article class="problem kotwica wjazd" id="ciche-awarie">
@@ -120,10 +120,10 @@
                stroke-linecap="round" stroke-linejoin="round"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
         </span>
         <h2>Ciche awarie integracji</h2>
-        <p class="objaw">Najgorsze awarie to te, które nie robią hałasu. Token wygasa w czwartek, zamówienia przestają schodzić, a Ty dowiadujesz się w poniedziałek — od klienta, który pyta o paczkę.</p>
+        <p class="objaw">Wygaśnięcie tokenu lub błąd zewnętrznego API może zatrzymać synchronizację bez widocznego komunikatu dla pracowników. Dlatego warto monitorować, kiedy wykonano ostatnią poprawną operację.</p>
         <div class="naprawa">
           <span class="naprawa-etykieta">Co robię</span>
-          <p>Codziennie sprawdzam, czy każde połączenie żyje. Jeżeli monitoring wykryje problem, dostajesz alert zamiast dowiadywać się o awarii od klienta lub księgowości.</p>
+          <p>Ustawiam regularne sprawdzanie integracji i powiadomienia po wykryciu problemu. Dzięki temu zespół wie, które operacje wymagają sprawdzenia.</p>
         </div>
       </article>
       <article class="problem kotwica wjazd" id="raporty">
@@ -144,7 +144,7 @@
                stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8M8 11h2M12 11h2M16 11h.01M8 15h2M12 15h2M16 15h.01"/></svg>
         </span>
         <h2>Wyceny i oferty robione ręcznie</h2>
-        <p class="objaw">Klient czeka dwa dni na liczbę, którą program policzyłby w sekundę. Część klientów nie doczeka i kupi gdzie indziej.</p>
+        <p class="objaw">Przygotowanie oferty wymaga sprawdzenia cenników, powtórzenia obliczeń i zebrania danych od klienta. Kalkulator może wykonać powtarzalną część tej pracy według ustalonych reguł.</p>
         <div class="naprawa">
           <span class="naprawa-etykieta">Co robię</span>
           <p>Jeżeli wycenę przygotowuje handlowiec, buduję <a href="system-do-wycen-i-ofert.html">system do wycen i ofert</a>, który liczy według ustalonych reguł, pilnuje marży i tworzy właściwy PDF. Jeżeli część parametrów może podać sam klient przed rozmową, sprawdzi się <a href="kalkulator-konfigurator-dla-klientow.html">kalkulator lub konfigurator online</a>.</p>
@@ -156,7 +156,7 @@
                stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
         </span>
         <h2>GPSR i Omnibus</h2>
-        <p class="objaw">Od grudnia 2024 przy każdym produkcie muszą być dane producenta: nazwa, adres i kontakt. Przy każdej obniżce — najniższa cena z ostatnich 30 dni. Jedno i drugie widać z zewnątrz, także dla kogoś, kto szuka powodu do skargi.</p>
+        <p class="objaw">Oferty internetowe mogą wymagać informacji o producencie, bezpieczeństwie produktu i cenie odniesienia przy obniżce. Zakres obowiązków zależy od produktu i sytuacji sprzedażowej. Automatyczne sprawdzenie wskazuje braki do oceny, ale nie zastępuje analizy prawnej. Źródła: <a href="https://uokik.gov.pl/bezpieczenstwo-produktow-pytania-i-odpowiedzi">wyjaśnienia UOKiK o GPSR</a> oraz <a href="https://konsument.gov.pl/archiwum/komunikat-uokik-co-sie-zmieni-od-1-stycznia/">informacje o obniżkach cen</a>.</p>
         <div class="naprawa">
           <span class="naprawa-etykieta">Co robię</span>
           <p>Sprawdzam, których produktów to dotyczy, i pokazuję listę do poprawienia. Jeśli danych jest dużo, uzupełniam je hurtem.</p>

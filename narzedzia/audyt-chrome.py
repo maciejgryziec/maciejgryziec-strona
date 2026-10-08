@@ -341,7 +341,7 @@ with server() as base:
     nojs_cases = [
         ("opisz-projekt.html", "#brief-form", "Interaktywny brief działa lokalnie"),
         ("kalkulator-kosztu-recznej-pracy.html", ".roi-calc", "Kalkulator wymaga JavaScriptu"),
-        ("cennik.html", ".kwalifikator", "Szybki kwalifikator wymaga JavaScriptu"),
+        ("cennik.html", ".kwalifikator", "Narzędzie do wyboru zakresu wymaga JavaScriptu"),
         ("poradniki.html", ".poradniki-filter", "Gotowy system czy dedykowane oprogramowanie?"),
     ]
     for page, selector, text in nojs_cases:

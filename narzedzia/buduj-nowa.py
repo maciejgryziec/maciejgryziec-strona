@@ -802,17 +802,17 @@ JS = r"""
   document.querySelectorAll("[data-kwalifikator]").forEach(function(box){
     var problem=box.querySelector("[name=problem]"),stan=box.querySelector("[name=stan]"),wynik=box.querySelector("[data-wynik]");
     var map={
-      excel:["Pierwszy moduł aplikacji","od 2 900 zł","Zacząłbym od jednego procesu i wspólnej bazy zamiast przenoszenia całego Excela 1:1.","System zamiast Excela"],
-      przepisywanie:["Integracja systemów","od 2 900 zł","Najpierw sprawdziłbym API obu programów i ustalił jedno źródło prawdy dla danych.","Integracja kilku programów / API"],
-      sprzedaz:["Pierwszy moduł CRM","od 2 900 zł","Warto zacząć od klientów, szans i jednego realnego etapu sprzedaży.","CRM lub obsługa sprzedaży"],
-      wyceny:["Pierwszy moduł wycen i ofert","od 2 900 zł","Zacząłbym od jednego sposobu kalkulacji, kontroli marży i jednego szablonu oferty PDF.","System do wycen i ofert"],
+      excel:["Pierwszy moduł aplikacji","od 2 900 zł","Proponuję zacząć od jednego zadania i wspólnej bazy, np. listy aktywnych zleceń ze statusami.","System zamiast Excela"],
+      przepisywanie:["Integracja systemów","od 2 900 zł","Sprawdzę możliwości połączenia obu programów i ustalimy, który z nich przechowuje dane nadrzędne.","Integracja kilku programów / API"],
+      sprzedaz:["Pierwszy moduł CRM","od 2 900 zł","Pierwsza wersja może obejmować klientów, zapytania i wybrany etap sprzedaży.","CRM lub obsługa sprzedaży"],
+      wyceny:["Pierwszy moduł wycen i ofert","od 2 900 zł","Na początek ustalimy jeden sposób kalkulacji, zasady marży i szablon oferty PDF.","System do wycen i ofert"],
       zlecenia:["Pierwszy moduł obsługi zleceń","od 2 900 zł","Lista spraw, karta zlecenia i statusy zwykle wystarczą na pierwszy etap.","System do obsługi zleceń"],
       rezerwacje:["Pierwszy moduł rezerwacji","od 2 900 zł","Najpierw trzeba opisać zasoby i reguły, które decydują o dostępności.","System rezerwacji"],
-      dokumenty:["Automatyzacja dokumentu","od 2 900 zł","Najlepszym wejściem jest jeden prawdziwy wzór dokumentu i źródło jego danych.","Automatyzacja dokumentów"],
+      dokumenty:["Automatyzacja dokumentu","od 2 900 zł","Przygotuj wzór dokumentu i przykład danych, z których ma powstawać. Usuń informacje klientów.","Automatyzacja dokumentów"],
       klient:["Panel klienta / B2B","od 2 900 zł","Najpierw wybieramy jedną informację lub czynność, którą klient ma obsłużyć sam.","Panel klienta B2B"],
-      ai:["Wstępny plan + punktowe AI","0 zł na start","Najpierw oddzieliłbym zwykłe reguły od kroku, który naprawdę wymaga interpretacji.","Automatyzacja z AI"]
+      ai:["Wstępny plan zastosowania AI","0 zł na start","Ustalimy, które czynności wymagają interpretacji tekstu lub dokumentów, a które można opisać regułami.","Automatyzacja z AI"]
     };
-    function render(track){var m=map[problem.value];if(!m){wynik.hidden=true;return;}if(track)siteTrack("kwalifikator-wynik",{problem:problem.value,stan:stan.value});var dopisek=stan.value==="niejasny"?" Przy niejasnym procesie zacząłbym od bezpłatnego wstępnego planu.":"";var href="opisz-projekt.html?typ="+encodeURIComponent(m[3])+"&zrodlo=kwalifikator";wynik.innerHTML='<h3>'+m[0]+'</h3><p><strong>Punkt startowy: '+m[1]+'</strong></p><p>'+m[2]+dopisek+'</p><p class="slaby">To nie jest automatyczna wycena całego projektu — wynik wskazuje najbardziej prawdopodobny pierwszy etap na podstawie obecnego cennika.</p><a class="przycisk" data-umami-event="kwalifikator-opisz-projekt" href="'+href+'">Opisz ten projekt →</a>';wynik.hidden=false;}
+    function render(track){var m=map[problem.value];if(!m){wynik.hidden=true;return;}if(track)siteTrack("kwalifikator-wynik",{problem:problem.value,stan:stan.value});var dopisek=stan.value==="niejasny"?" Jeśli sposób pracy wymaga doprecyzowania, zaczniemy od bezpłatnego wstępnego planu.":"";var href="opisz-projekt.html?typ="+encodeURIComponent(m[3])+"&zrodlo=kwalifikator";wynik.innerHTML='<h3>'+m[0]+'</h3><p><strong>Cena pierwszego etapu: '+m[1]+'</strong></p><p>'+m[2]+dopisek+'</p><p class="slaby">To propozycja pierwszego etapu na podstawie cennika, nie wycena całego projektu. Zakres i cenę potwierdzamy po rozmowie.</p><a class="przycisk" data-umami-event="kwalifikator-opisz-projekt" href="'+href+'">Opisz ten projekt</a>';wynik.hidden=false;}
     problem.addEventListener("change",function(){render(true)});stan.addEventListener("change",function(){render(true)});render(false);
   });
 
@@ -961,7 +961,7 @@ JS = r"""
       fallback.hidden=false;
       fallback.focus();
       fallback.select();
-      info.textContent="Przeglądarka nie pozwoliła skopiować automatycznie. Gotowy brief jest zaznaczony poniżej — skopiuj go ręcznie i wyślij na kontakt@automatyzacjesklepow.pl.";
+      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@automatyzacjesklepow.pl.";
     }
 
     function brief(){
@@ -973,18 +973,18 @@ JS = r"""
       return [
         "Dzień dobry","","chcę porozmawiać o projekcie dla firmy.","",
         "Imię i nazwisko: "+value(fd,"imie"),
-        "Firma: "+(value(fd,"firma")||"—"),
+        "Firma: "+(value(fd,"firma")||"nie podano"),
         "E-mail: "+value(fd,"email"),
-        "Telefon: "+(value(fd,"telefon")||"—"),
+        "Telefon: "+(value(fd,"telefon")||"nie podano"),
         "Typ projektu: "+value(fd,"typ"),"",
-        "JAK WYGLĄDA TO DZISIAJ","----------------------",value(fd,"dzis"),"",
-        "NAJWIĘKSZY PROBLEM","-----------------",value(fd,"problem"),"",
-        "Obecne narzędzia: "+(value(fd,"narzedzia")||"—"),
+        "Obecny sposób pracy:",value(fd,"dzis"),"",
+        "Największy problem:",value(fd,"problem"),"",
+        "Obecne narzędzia: "+(value(fd,"narzedzia")||"nie podano"),
         "Liczba użytkowników: "+value(fd,"uzytkownicy"),
-        "Orientacyjny budżet: "+(value(fd,"budzet")||"—"),"",
-        "EFEKT PIERWSZEGO ETAPU","----------------------",value(fd,"efekt")||"—","",
+        "Orientacyjny budżet: "+(value(fd,"budzet")||"nie podano"),"",
+        "Oczekiwany efekt pierwszego etapu:",value(fd,"efekt")||"nie podano","",
         "Strona, z której trafiłem do formularza: "+ref,
-        "Źródło / kampania: "+(source||"—")
+        "Źródło / kampania: "+(source||"nie podano")
       ].join("\n");
     }
 
@@ -992,18 +992,18 @@ JS = r"""
       e.preventDefault();
       if(!form.reportValidity())return;
       var fd=new FormData(form);
-      var subject="Zapytanie o projekt — "+(fd.get("typ")||"aplikacja dla firmy");
+      var subject="Zapytanie o projekt: "+(fd.get("typ")||"aplikacja dla firmy");
       var message=brief();
       var copied=false;
       try{await navigator.clipboard.writeText(message);copied=true;}catch(err){}
       var mailBody=message;
       if(message.length>3500&&copied){
-        mailBody="Dzień dobry,\n\nprzygotowałem pełny brief projektu w formularzu na stronie. Został skopiowany do schowka — wkleję go poniżej tej wiadomości.\n\nPozdrawiam";
-        info.textContent="Pełny brief został skopiowany. Po otwarciu wiadomości wklej go pod przygotowanym tekstem.";
+        mailBody="Dzień dobry,\n\nprzygotowałem opis projektu w formularzu na stronie. Wklejam go poniżej.\n\nPozdrawiam";
+        info.textContent="Opis projektu został skopiowany. Po otwarciu wiadomości wklej go pod przygotowanym tekstem.";
       }else if(message.length>3500&&!copied){
         showFallback(message);return;
       }else{
-        info.textContent=copied?"Brief został też skopiowany do schowka jako kopia zapasowa.":"Otwieram program pocztowy z przygotowanym briefem.";
+        info.textContent=copied?"Treść została również skopiowana do schowka.":"Otwieram program pocztowy z przygotowaną wiadomością.";
       }
       siteTrack("brief-mailto-ready",{typ:value(fd,"typ")});
       location.href="mailto:kontakt@automatyzacjesklepow.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
@@ -1015,7 +1015,7 @@ JS = r"""
       try{
         await navigator.clipboard.writeText(message);
         fallback.hidden=true;
-        info.textContent="Brief skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
+        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
       }catch(e){showFallback(message);}
     });
 
@@ -1030,15 +1030,15 @@ JS = r"""
       a.click();
       a.remove();
       setTimeout(function(){URL.revokeObjectURL(url);},1000);
-      info.textContent="Brief zapisany jako plik TXT.";
+      info.textContent="Opis zapisany w pliku TXT.";
     });
 
     if(clear)clear.addEventListener("click",function(){
-      if(!confirm("Wyczyścić cały szkic briefu zapisany w tej karcie?"))return;
+      if(!confirm("Usunąć szkic zapisany w tej karcie?"))return;
       form.reset();
       fallback.hidden=true;
       sessionStorage.removeItem("briefDraft");
-      info.textContent="Szkic wyczyszczony. Formularz nadal niczego nie wysyła na serwer.";
+      info.textContent="Szkic został usunięty. Możesz przygotować nowy opis.";
       form.querySelector("[name=imie]").focus();
     });
   })();
@@ -1200,7 +1200,7 @@ def noc():
       f'<svg class="miasto" viewBox="0 0 1440 420" preserveAspectRatio="none" aria-hidden="true"><g data-s style="--s:10px">{r}{okna}</g><rect x="0" y="418" width="1440" height="2" fill="#081538"/></svg>')
 
 def droga():
-    kroki = [(90,430,"01","Wstępny plan","problem → pierwszy krok","0 zł · 1–2 dni",".05"),
+    kroki = [(90,430,"01","Wstępny plan","problem → pierwszy krok","0 zł · 1-2 dni",".05"),
              (300,330,"02","Pierwszy moduł","działający etap aplikacji","od 2 900 zł",".25"),
              (510,230,"03","System na zamówienie","kolejne moduły i integracje","wycena etapami",".45"),
              (700,120,"04","Opieka miesięczna","monitoring i rozwój","od 349 zł / mies.",".65")]
@@ -1225,7 +1225,7 @@ def paragon():
         else: w += f'<div class="poz"><b>{a}</b><span>{b}</span></div>'
     return ('<div class="kasa"><div class="drukarka"><i></i></div><div class="paragon"><div class="wys">'
       '<div class="naglowek">AUTOMATYZACJE DLA FIRM</div><div class="drobne">Maciej Gryziec · aplikacje i systemy na zamówienie</div><div class="drobne">' + "zakres i cena ustalone przed startem" + '</div><hr>'
-      + w + '<hr><div class="razem"><span>RAZEM</span><span>tyle, ile ustalimy</span></div><div class="poz sz"><span>cena uzgodnionego zakresu jest stała</span></div><div class="poz sz"><span>nowy zakres = osobny etap</span></div><hr>'
+      + w + '<hr><div class="razem"><span>RAZEM</span><span>zgodnie z zaakceptowaną wyceną</span></div><div class="poz sz"><span>cena uzgodnionego zakresu jest stała</span></div><div class="poz sz"><span>Dodatkowy zakres wyceniam osobno.</span></div><hr>'
       '<div class="drobne">Płatna praca zaczyna się po akceptacji zakresu.</div><div class="kod"></div><p>5 902 2026 0907 4</p></div></div></div>')
 
 def ksiega():
@@ -1234,16 +1234,16 @@ def ksiega():
     mosty = [("Formularz → CRM","nowa sprawa · 12:04",False,[6,7,5,8,7,9,8]),("Kalendarz → realizacja","termin · 12:04",False,[8,8,7,9,8,8,9]),("wFirma → KSeF","UPO · 12:04",False,[5,6,6,7,8,8,9]),("CRM → faktury","dokument · 12:04",True,[7,7,3,2,4,6,7]),("Faktury → KSeF","UPO · 12:04",False,[9,8,9,9,8,9,9]),("CRM → klient","e-mail · 12:04",False,[8,9,8,8,9,9,8])]
     kaf = ''.join(f'<div class="kafel{" uwaga" if u else ""}"><b>{n}</b><span>{o}</span><i>' + ''.join(f'<em style="height:{h*10}%"></em>' for h in sl) + '</i></div>' for n,o,u,sl in mosty)
     panel = f'<div class="panel"><div class="gora-p">Strażnik połączeń <small>wtorek 8.09 · sprawdzono 06:00</small></div><div class="kafle">{kaf}</div><div class="dol"><div><b>12</b>mostów</div><div><b>1</b>ostrzeżenie</div><div><b>0</b>awarii</div><div><b>14 dni</b>od ostatniej naprawy</div></div></div>'
-    karty = [("#5b6cff","Konfigurator","PV Roof Configurator",'<img src="zdjecia/photonroof-wymiary.jpg" alt="" fetchpriority="high" decoding="async">',"Konfigurator dachówek fotowoltaicznych","Klient sam rysuje dach, a wycena liczy się od razu w przeglądarce. <span>Wcześniej: telefon do handlowca i kilka dni czekania.</span>","realizacje.html#photonroof"),
+    karty = [("#5b6cff","Konfigurator","PV Roof Configurator",'<img src="zdjecia/photonroof-wymiary.jpg" alt="" fetchpriority="high" decoding="async">',"Konfigurator dachówek fotowoltaicznych","Klient podaje parametry dachu i otrzymuje podsumowanie w przeglądarce. <span>Dane z konfiguracji można przekazać do dalszej wyceny.</span>","realizacje.html#photonroof"),
              ("#e6982f","Panel firmy","<span style=\"font-size:.72em\">Wypożyczalnia</span>",'<img data-carousel-src="zdjecia/wypozyczalnia-flota-800.webp?v=20261006b" data-carousel-srcset="zdjecia/wypozyczalnia-flota-800.webp?v=20261006b 800w, zdjecia/wypozyczalnia-flota.webp?v=20261006b 1440w" data-carousel-sizes="(max-width: 820px) calc(100vw - 44px), 720px" alt="" width="1440" height="900" fetchpriority="low" decoding="async">',"Panel wypożyczalni samochodowej","Flota, najmy, faktury i kalendarz, który sam wykrywa podwójną rezerwację. <span>Przykład systemu szytego pod jedną branżę.</span>","realizacje.html#wypozyczalnia"),
              ("#2f9e88","Narzędzie","Sprawdzarka",spr,"Sprawdzarka sklepu","Wpisujesz adres, dostajesz listę tego, co widać z zewnątrz: GPSR, Omnibus, EAN, mapa strony. <span>Bezpłatnie, działa dziś.</span>","https://automatyzacjesklepow.pl/sprawdzarka.html"),
-             ("#c8473f","Abonament","Strażnik",panel,"Strażnik połączeń","Codziennie sprawdza, czy formularze, CRM, kalendarz, dokumenty i integracje nadal wymieniają dane. <span>Problem wychodzi w monitoringu, nie dopiero przy kliencie.</span>","cennik.html#straznik")]
+             ("#c8473f","Abonament","Strażnik",panel,"Strażnik połączeń","Codziennie sprawdza, czy formularze, CRM, kalendarz, dokumenty i integracje nadal wymieniają dane. <span>Powiadomienia pomagają szybciej zauważyć przerwę w wymianie danych.</span>","cennik.html#straznik")]
     k = ''
     for i,(kol,nad,duze,obr,tyt,op,link) in enumerate(karty):
         zd = f'<div class="zdjecie">{obr}</div>' if i < 2 else (f'<div class="zdjecie panelowe jasne">{obr}</div>' if i == 2 else f'<div class="zdjecie panelowe">{obr}</div>')
         k += f'<article class="karta{" aktywna" if i==0 else (" pod-spodem" if i==1 else "")}" style="background:{kol}"><div class="duze"><small>{nad}</small>{duze}</div>{zd}<div class="opis"><b>{tyt}</b>{op}<br><a href="{link}" aria-label="Zobacz więcej: {html.escape(tyt)}">Zobacz więcej</a></div></article>'
     strz = lambda kl, d: f'<button class="strzalka {kl}" type="button" aria-label="{ "Poprzednia" if kl=="lewa" else "Następna"} karta"><svg viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="{d}"/></svg></button>'
-    return ('<div class="ksiega" role="region" tabindex="0" aria-label="Realizacje — użyj strzałek w lewo i w prawo" aria-roledescription="karuzela"><div class="karty">' + k + '</div>' + strz("lewa","M60 22 C40 10 24 12 6 22 M16 12 L6 22 L16 32") + strz("prawa","M4 22 C24 10 40 12 58 22 M48 12 L58 22 L48 32") + '<div class="kropy">' + ''.join(f'<button type="button" class="{"tu" if i==0 else ""}" aria-label="Karta {i+1}"></button>' for i in range(4)) + '</div></div>')
+    return ('<div class="ksiega" role="region" tabindex="0" aria-label="Realizacje. Użyj strzałek w lewo i w prawo." aria-roledescription="karuzela"><div class="karty">' + k + '</div>' + strz("lewa","M60 22 C40 10 24 12 6 22 M16 12 L6 22 L16 32") + strz("prawa","M4 22 C24 10 40 12 58 22 M48 12 L58 22 L48 32") + '<div class="kropy">' + ''.join(f'<button type="button" class="{"tu" if i==0 else ""}" aria-label="Karta {i+1}"></button>' for i in range(4)) + '</div></div>')
 
 def ekrany():
     return '<div class="ekrany"><div class="ekran a"><img src="zdjecia/photonroof-kreator3d.jpg" alt="" fetchpriority="high" decoding="async"></div><div class="ekran b" aria-hidden="true"><span class="screen-bg"></span></div></div>'
@@ -1277,8 +1277,8 @@ USLUGI = {
 POWIAZANE = {
   "dedykowane-oprogramowanie-dla-firm": [
     ("Jak pracuję", "jak-pracuje.html", "Zobacz, jak dzielę projekt na małe, działające etapy."),
-    ("Ile kosztuje aplikacja?", "ile-kosztuje-aplikacja-dla-firmy.html", "Co tworzy budżet i od czego sensownie zacząć."),
-    ("Opisz projekt", "opisz-projekt.html", "Ułóż proces w krótki brief bez technicznej specyfikacji."),
+    ("Ile kosztuje aplikacja?", "ile-kosztuje-aplikacja-dla-firmy.html", "Sprawdź, co wpływa na cenę i zakres projektu."),
+    ("Opisz projekt", "opisz-projekt.html", "Opisz obecną pracę i oczekiwany efekt."),
   ],
   "crm-na-zamowienie": [
     ("System do wycen i ofert", "system-do-wycen-i-ofert.html", "Kalkulacja, marża, rabaty i PDF jako kolejny krok procesu sprzedaży."),
@@ -1313,7 +1313,7 @@ POWIAZANE = {
   "panel-klienta-b2b": [
     ("Integracje API", "integracje-api-dla-firm.html", "Panel powinien korzystać z tych samych danych co firma."),
     ("Automatyzacja dokumentów", "automatyzacja-dokumentow-w-firmie.html", "Dokumenty klienta generowane z procesu."),
-    ("Opisz obsługę klienta", "opisz-projekt.html?typ=Panel%20klienta%20B2B", "Wskaż pytania, które dziś obsługa odpowiada ręcznie."),
+    ("Opisz obsługę klienta", "opisz-projekt.html?typ=Panel%20klienta%20B2B", "Wskaż pytania, na które pracownicy odpowiadają najczęściej."),
   ],
   "system-rezerwacji-dla-firm": [
     ("Program dla wypożyczalni", "program-dla-wypozyczalni.html", "Rezerwacja zasobu w praktycznym przykładzie."),
@@ -1331,7 +1331,7 @@ POWIAZANE = {
     ("Podeślij wzór dokumentu", "opisz-projekt.html?typ=Automatyzacja%20dokumentów", "Zacznij od dokumentu, który dziś powstaje ręcznie."),
   ],
   "ai-w-automatyzacji-firmy": [
-    ("Automatyzacja procesów", "automatyzacja-procesow-w-firmie.html", "Najpierw uporządkuj przepływ, potem dodaj AI tam, gdzie trzeba."),
+    ("Automatyzacja procesów", "automatyzacja-procesow-w-firmie.html", "Sprawdź, które powtarzalne zadania można zautomatyzować."),
     ("Integracje API", "integracje-api-dla-firm.html", "AI jako jeden krok większego systemu."),
     ("Opisz zadanie dla AI", "opisz-projekt.html?typ=Automatyzacja%20z%20AI", "Pokaż, co dziś wymaga czytania lub interpretacji."),
   ],
@@ -1363,7 +1363,7 @@ POWIAZANE = {
   "ile-kosztuje-aplikacja-dla-firmy": [
     ("Cennik", "cennik.html", "Zobacz jawne ceny pierwszych etapów."),
     ("Jak pracuję", "jak-pracuje.html", "Dlaczego projekt dzielę na działające moduły."),
-    ("Opisz projekt", "opisz-projekt.html", "Daj kontekst potrzebny do sensownej pierwszej wyceny."),
+    ("Opisz projekt", "opisz-projekt.html", "Podaj informacje potrzebne do wstępnej wyceny."),
   ],
   "gotowy-system-czy-dedykowane-oprogramowanie": [
     ("System zamiast Excela", "system-zamiast-excela.html", "Przykład sytuacji, w której własne narzędzie może mieć sens."),
@@ -1388,7 +1388,7 @@ def blok_powiazanych(nazwa):
             sep = "&" if "?" in href else "?"
             href = f"{href}{sep}zrodlo={nazwa}-powiazane"
         karty.append(f'<a class="powiazane-karta" href="{href}"{event}><strong>{tyt}</strong><span>{opis}</span><i aria-hidden="true">→</i></a>')
-    return '<aside class="powiazane" aria-labelledby="powiazane-title"><p class="etykieta">Co dalej?</p><h2 id="powiazane-title">Następny sensowny krok</h2><div class="powiazane-grid">'+''.join(karty)+'</div></aside>'
+    return '<aside class="powiazane" aria-labelledby="powiazane-title"><p class="etykieta">Co dalej?</p><h2 id="powiazane-title">Przydatne informacje</h2><div class="powiazane-grid">'+''.join(karty)+'</div></aside>'
 
 def blok_autora(nazwa):
     if nazwa not in ARTYKULY:
@@ -1529,7 +1529,7 @@ def rodzic_dla(nazwa):
     return None
 
 OG_MEDIA = {
-  "realizacje": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg?v=20261006b", 1600, 833, "Kreator 3D PV Roof Configurator — przykład aplikacji webowej"),
+  "realizacje": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg?v=20261006b", 1600, 833, "Kreator 3D dachu w aplikacji RoofPVCalculator"),
   "kalkulator-konfigurator-dla-klientow": ("https://maciejgryziec.pl/zdjecia/photonroof-kreator3d.jpg?v=20261006b", 1600, 833, "Kreator 3D i kalkulator PV Roof Configurator"),
   "program-dla-wypozyczalni": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png?v=20261006b", 1440, 740, "Kalendarz obłożenia w panelu wypożyczalni"),
   "system-rezerwacji-dla-firm": ("https://maciejgryziec.pl/zdjecia/wypozyczalnia-kalendarz.png?v=20261006b", 1440, 740, "Przykład kalendarza rezerwacji zasobów"),
@@ -1568,7 +1568,7 @@ def glowa(tytul, opis, kanon, nazwa=None):
                    'imagesrcset="zdjecia/photonroof-wymiary-800.webp?v=20261006b 800w, zdjecia/photonroof-wymiary.webp?v=20261006b 1600w" '
                    'imagesizes="(max-width: 820px) calc(100vw - 44px), 720px" '
                    'type="image/webp" fetchpriority="high">')
-    og_image, og_w, og_h, og_alt = OG_MEDIA.get(nazwa, ("https://maciejgryziec.pl/og-image.png", 1200, 630, "Aplikacje, które pracują tak jak firma — Maciej Gryziec"))
+    og_image, og_w, og_h, og_alt = OG_MEDIA.get(nazwa, ("https://maciejgryziec.pl/og-image.png", 1200, 630, "Maciej Gryziec: aplikacje i automatyzacje dla firm"))
     og_mime = "image/png" if og_image.lower().endswith(".png") else "image/jpeg"
     page_type = "ContactPage" if nazwa == "opisz-projekt" else ("CollectionPage" if nazwa in ("poradniki","realizacje") else "WebPage")
     graph = [{
@@ -1698,7 +1698,7 @@ def glowa(tytul, opis, kanon, nazwa=None):
 <meta name="twitter:image" content="{og_image}">
 <meta name="twitter:image:alt" content="{og_alt}">
 <link rel="canonical" href="{kanon}">
-<link rel="alternate" type="application/atom+xml" title="Poradniki — Maciej Gryziec" href="feed.xml">{PRELOAD}
+<link rel="alternate" type="application/atom+xml" title="Poradniki Macieja Gryźca" href="feed.xml">{PRELOAD}
 <link rel="stylesheet" href="list.css?v={ASSET_VERSION}">{PAL}
 <link rel="icon" type="image/svg+xml" href="ikona.svg?v=8ef07109ecdc" sizes="any">
 <link rel="icon" href="favicon.ico?v=8ef07109ecdc" sizes="16x16 32x32 48x48 96x96">
@@ -1712,7 +1712,7 @@ def glowa(tytul, opis, kanon, nazwa=None):
 <body{nav_attr}>
 <a class="skip-link" href="#main-content">Przejdź do treści</a>
 <header class="gora"><div class="w">
-  <a class="znak" href="/" aria-label="Maciej Gryziec — aplikacje i automatyzacje dla firm"><img class="c" src="znak.svg" alt=""><img class="b" src="znak-bialy.svg" alt=""><span>Maciej Gryziec</span></a>
+  <a class="znak" href="/" aria-label="Maciej Gryziec: aplikacje i automatyzacje dla firm"><img class="c" src="znak.svg" alt=""><img class="b" src="znak-bialy.svg" alt=""><span>Maciej Gryziec</span></a>
   <div class="mobile-actions"><a class="mobile-cta" data-umami-event="klik-opisz-projekt-mobile" href="{mobile_href}">Opisz projekt</a><button class="menu-toggle" type="button" aria-label="Otwórz menu" aria-controls="nav-main" aria-expanded="false"><i></i></button></div>
   <nav id="nav-main" aria-label="Główna nawigacja">{nav_html}</nav>
 </div></header>
@@ -1777,10 +1777,10 @@ def rozdzial(klasa, tekst, obraz, extra="", ciemny=False):
     return f'<section class="rozdzial {klasa}{c}"{d}{extra}><div class="w"><div class="tekst wjazd">{tekst}</div><div class="obraz">{obraz}</div></div></section>\n'
 
 KONIEC = """<section class="rozdzial koniec KONIEC_KLASA" KONIEC_ATR><div class="w"><div class="tekst wjazd">
-  <h2>Masz proces, który dziś działa Excelem, mailem albo ręcznie?</h2>
-  <p><a data-umami-event="klik-opisz-projekt" href="opisz-projekt.html">Opisz, jak dziś wygląda ta praca</a> — formularz pomoże ułożyć kilka najważniejszych informacji o procesie, narzędziach i problemie. Na tej podstawie łatwiej ustalić, czy lepsza będzie automatyzacja, integracja czy własna aplikacja.</p>
-  <p><a href="realizacje.html">Zobacz realizacje</a>, jeśli chcesz najpierw zobaczyć konkretne systemy i aplikacje. <a href="poradniki.html">Przejrzyj poradniki</a>, jeśli chcesz porównać rozwiązania. <a href="https://automatyzacjesklepow.pl/">Prowadzisz sklep internetowy?</a> Zobacz osobny serwis poświęcony automatyzacjom e-commerce.</p>
-  <p><a data-umami-event="klik-telefon" href="tel:+48570427127">Zadzwoń: 570 427 127</a>, jeśli wolisz rozmawiać. Nie ma handlowca, odbieram ja.</p>
+  <h2>Co chcesz usprawnić w swojej firmie?</h2>
+  <p><a data-umami-event="klik-opisz-projekt" href="opisz-projekt.html">Opisz, jak dziś wygląda ta praca</a>. Podaj używane programy, opisz problem i oczekiwany efekt. Na tej podstawie zaproponuję rozwiązanie.</p>
+  <p><a href="realizacje.html">Zobacz realizacje</a> i sprawdź przykłady aplikacji. <a href="poradniki.html">Przejrzyj poradniki</a>, aby porównać rozwiązania. <a href="https://automatyzacjesklepow.pl/">Prowadzisz sklep internetowy?</a> Zobacz osobny serwis poświęcony automatyzacjom e-commerce.</p>
+  <p><a data-umami-event="klik-telefon" href="tel:+48570427127">Zadzwoń: 570 427 127</a>, jeśli wolisz rozmawiać. Rozmawiasz bezpośrednio ze mną.</p>
 </div></div></section>
 """
 
@@ -2030,7 +2030,7 @@ for nazwa in sorted(ARTYKULY):
     })
 feed_updated=max((a["modified"] for a in artykuly_feed),default=date.today().isoformat())
 feed=['<?xml version="1.0" encoding="UTF-8"?>','<feed xmlns="http://www.w3.org/2005/Atom">',
-      '<title>Poradniki — Maciej Gryziec</title>',
+      '<title>Poradniki Macieja Gryźca</title>',
       '<id>https://maciejgryziec.pl/feed.xml</id>',
       '<link href="https://maciejgryziec.pl/feed.xml" rel="self"/>',
       '<link href="https://maciejgryziec.pl/poradniki.html"/>',

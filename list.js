@@ -158,17 +158,17 @@
   document.querySelectorAll("[data-kwalifikator]").forEach(function(box){
     var problem=box.querySelector("[name=problem]"),stan=box.querySelector("[name=stan]"),wynik=box.querySelector("[data-wynik]");
     var map={
-      excel:["Pierwszy moduł aplikacji","od 2 900 zł","Zacząłbym od jednego procesu i wspólnej bazy zamiast przenoszenia całego Excela 1:1.","System zamiast Excela"],
-      przepisywanie:["Integracja systemów","od 2 900 zł","Najpierw sprawdziłbym API obu programów i ustalił jedno źródło prawdy dla danych.","Integracja kilku programów / API"],
-      sprzedaz:["Pierwszy moduł CRM","od 2 900 zł","Warto zacząć od klientów, szans i jednego realnego etapu sprzedaży.","CRM lub obsługa sprzedaży"],
-      wyceny:["Pierwszy moduł wycen i ofert","od 2 900 zł","Zacząłbym od jednego sposobu kalkulacji, kontroli marży i jednego szablonu oferty PDF.","System do wycen i ofert"],
+      excel:["Pierwszy moduł aplikacji","od 2 900 zł","Proponuję zacząć od jednego zadania i wspólnej bazy, np. listy aktywnych zleceń ze statusami.","System zamiast Excela"],
+      przepisywanie:["Integracja systemów","od 2 900 zł","Sprawdzę możliwości połączenia obu programów i ustalimy, który z nich przechowuje dane nadrzędne.","Integracja kilku programów / API"],
+      sprzedaz:["Pierwszy moduł CRM","od 2 900 zł","Pierwsza wersja może obejmować klientów, zapytania i wybrany etap sprzedaży.","CRM lub obsługa sprzedaży"],
+      wyceny:["Pierwszy moduł wycen i ofert","od 2 900 zł","Na początek ustalimy jeden sposób kalkulacji, zasady marży i szablon oferty PDF.","System do wycen i ofert"],
       zlecenia:["Pierwszy moduł obsługi zleceń","od 2 900 zł","Lista spraw, karta zlecenia i statusy zwykle wystarczą na pierwszy etap.","System do obsługi zleceń"],
       rezerwacje:["Pierwszy moduł rezerwacji","od 2 900 zł","Najpierw trzeba opisać zasoby i reguły, które decydują o dostępności.","System rezerwacji"],
-      dokumenty:["Automatyzacja dokumentu","od 2 900 zł","Najlepszym wejściem jest jeden prawdziwy wzór dokumentu i źródło jego danych.","Automatyzacja dokumentów"],
+      dokumenty:["Automatyzacja dokumentu","od 2 900 zł","Przygotuj wzór dokumentu i przykład danych, z których ma powstawać. Usuń informacje klientów.","Automatyzacja dokumentów"],
       klient:["Panel klienta / B2B","od 2 900 zł","Najpierw wybieramy jedną informację lub czynność, którą klient ma obsłużyć sam.","Panel klienta B2B"],
-      ai:["Wstępny plan + punktowe AI","0 zł na start","Najpierw oddzieliłbym zwykłe reguły od kroku, który naprawdę wymaga interpretacji.","Automatyzacja z AI"]
+      ai:["Wstępny plan zastosowania AI","0 zł na start","Ustalimy, które czynności wymagają interpretacji tekstu lub dokumentów, a które można opisać regułami.","Automatyzacja z AI"]
     };
-    function render(track){var m=map[problem.value];if(!m){wynik.hidden=true;return;}if(track)siteTrack("kwalifikator-wynik",{problem:problem.value,stan:stan.value});var dopisek=stan.value==="niejasny"?" Przy niejasnym procesie zacząłbym od bezpłatnego wstępnego planu.":"";var href="opisz-projekt.html?typ="+encodeURIComponent(m[3])+"&zrodlo=kwalifikator";wynik.innerHTML='<h3>'+m[0]+'</h3><p><strong>Punkt startowy: '+m[1]+'</strong></p><p>'+m[2]+dopisek+'</p><p class="slaby">To nie jest automatyczna wycena całego projektu — wynik wskazuje najbardziej prawdopodobny pierwszy etap na podstawie obecnego cennika.</p><a class="przycisk" data-umami-event="kwalifikator-opisz-projekt" href="'+href+'">Opisz ten projekt →</a>';wynik.hidden=false;}
+    function render(track){var m=map[problem.value];if(!m){wynik.hidden=true;return;}if(track)siteTrack("kwalifikator-wynik",{problem:problem.value,stan:stan.value});var dopisek=stan.value==="niejasny"?" Jeśli sposób pracy wymaga doprecyzowania, zaczniemy od bezpłatnego wstępnego planu.":"";var href="opisz-projekt.html?typ="+encodeURIComponent(m[3])+"&zrodlo=kwalifikator";wynik.innerHTML='<h3>'+m[0]+'</h3><p><strong>Cena pierwszego etapu: '+m[1]+'</strong></p><p>'+m[2]+dopisek+'</p><p class="slaby">To propozycja pierwszego etapu na podstawie cennika, nie wycena całego projektu. Zakres i cenę potwierdzamy po rozmowie.</p><a class="przycisk" data-umami-event="kwalifikator-opisz-projekt" href="'+href+'">Opisz ten projekt</a>';wynik.hidden=false;}
     problem.addEventListener("change",function(){render(true)});stan.addEventListener("change",function(){render(true)});render(false);
   });
 
@@ -317,7 +317,7 @@
       fallback.hidden=false;
       fallback.focus();
       fallback.select();
-      info.textContent="Przeglądarka nie pozwoliła skopiować automatycznie. Gotowy brief jest zaznaczony poniżej — skopiuj go ręcznie i wyślij na kontakt@automatyzacjesklepow.pl.";
+      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@automatyzacjesklepow.pl.";
     }
 
     function brief(){
@@ -329,18 +329,18 @@
       return [
         "Dzień dobry","","chcę porozmawiać o projekcie dla firmy.","",
         "Imię i nazwisko: "+value(fd,"imie"),
-        "Firma: "+(value(fd,"firma")||"—"),
+        "Firma: "+(value(fd,"firma")||"nie podano"),
         "E-mail: "+value(fd,"email"),
-        "Telefon: "+(value(fd,"telefon")||"—"),
+        "Telefon: "+(value(fd,"telefon")||"nie podano"),
         "Typ projektu: "+value(fd,"typ"),"",
-        "JAK WYGLĄDA TO DZISIAJ","----------------------",value(fd,"dzis"),"",
-        "NAJWIĘKSZY PROBLEM","-----------------",value(fd,"problem"),"",
-        "Obecne narzędzia: "+(value(fd,"narzedzia")||"—"),
+        "Obecny sposób pracy:",value(fd,"dzis"),"",
+        "Największy problem:",value(fd,"problem"),"",
+        "Obecne narzędzia: "+(value(fd,"narzedzia")||"nie podano"),
         "Liczba użytkowników: "+value(fd,"uzytkownicy"),
-        "Orientacyjny budżet: "+(value(fd,"budzet")||"—"),"",
-        "EFEKT PIERWSZEGO ETAPU","----------------------",value(fd,"efekt")||"—","",
+        "Orientacyjny budżet: "+(value(fd,"budzet")||"nie podano"),"",
+        "Oczekiwany efekt pierwszego etapu:",value(fd,"efekt")||"nie podano","",
         "Strona, z której trafiłem do formularza: "+ref,
-        "Źródło / kampania: "+(source||"—")
+        "Źródło / kampania: "+(source||"nie podano")
       ].join("\n");
     }
 
@@ -348,18 +348,18 @@
       e.preventDefault();
       if(!form.reportValidity())return;
       var fd=new FormData(form);
-      var subject="Zapytanie o projekt — "+(fd.get("typ")||"aplikacja dla firmy");
+      var subject="Zapytanie o projekt: "+(fd.get("typ")||"aplikacja dla firmy");
       var message=brief();
       var copied=false;
       try{await navigator.clipboard.writeText(message);copied=true;}catch(err){}
       var mailBody=message;
       if(message.length>3500&&copied){
-        mailBody="Dzień dobry,\n\nprzygotowałem pełny brief projektu w formularzu na stronie. Został skopiowany do schowka — wkleję go poniżej tej wiadomości.\n\nPozdrawiam";
-        info.textContent="Pełny brief został skopiowany. Po otwarciu wiadomości wklej go pod przygotowanym tekstem.";
+        mailBody="Dzień dobry,\n\nprzygotowałem opis projektu w formularzu na stronie. Wklejam go poniżej.\n\nPozdrawiam";
+        info.textContent="Opis projektu został skopiowany. Po otwarciu wiadomości wklej go pod przygotowanym tekstem.";
       }else if(message.length>3500&&!copied){
         showFallback(message);return;
       }else{
-        info.textContent=copied?"Brief został też skopiowany do schowka jako kopia zapasowa.":"Otwieram program pocztowy z przygotowanym briefem.";
+        info.textContent=copied?"Treść została również skopiowana do schowka.":"Otwieram program pocztowy z przygotowaną wiadomością.";
       }
       siteTrack("brief-mailto-ready",{typ:value(fd,"typ")});
       location.href="mailto:kontakt@automatyzacjesklepow.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
@@ -371,7 +371,7 @@
       try{
         await navigator.clipboard.writeText(message);
         fallback.hidden=true;
-        info.textContent="Brief skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
+        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
       }catch(e){showFallback(message);}
     });
 
@@ -386,15 +386,15 @@
       a.click();
       a.remove();
       setTimeout(function(){URL.revokeObjectURL(url);},1000);
-      info.textContent="Brief zapisany jako plik TXT.";
+      info.textContent="Opis zapisany w pliku TXT.";
     });
 
     if(clear)clear.addEventListener("click",function(){
-      if(!confirm("Wyczyścić cały szkic briefu zapisany w tej karcie?"))return;
+      if(!confirm("Usunąć szkic zapisany w tej karcie?"))return;
       form.reset();
       fallback.hidden=true;
       sessionStorage.removeItem("briefDraft");
-      info.textContent="Szkic wyczyszczony. Formularz nadal niczego nie wysyła na serwer.";
+      info.textContent="Szkic został usunięty. Możesz przygotować nowy opis.";
       form.querySelector("[name=imie]").focus();
     });
   })();

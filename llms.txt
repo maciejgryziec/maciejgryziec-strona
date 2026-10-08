@@ -1,4 +1,4 @@
-# Maciej Gryziec — aplikacje webowe, systemy i automatyzacje
+# Maciej Gryziec: aplikacje webowe, systemy i automatyzacje
 
 > Dedykowane aplikacje webowe, systemy do obsługi zleceń, CRM-y, integracje API, automatyzacje procesów i narzędzia dla e-commerce.
 
@@ -32,6 +32,7 @@
 - [Wypożyczalnia](https://maciejgryziec.pl/program-dla-wypozyczalni.html)
 
 ## E-commerce
+Specjalistyczna oferta integracji dla sklepów: https://automatyzacjesklepow.pl/
 
 ## Kontakt
 E-mail: kontakt@automatyzacjesklepow.pl
