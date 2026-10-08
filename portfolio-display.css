@@ -1,0 +1,84 @@
+/* Real application rectangles. The only illustrated interface is the explicitly labelled Judler concept. */
+.ksiega.screen-carousel{width:min(1120px,calc(100vw - 96px))}
+.ksiega.screen-carousel .karty{aspect-ratio:16/9.2;min-height:570px}
+.ksiega.screen-carousel .karta{
+  display:grid;grid-template-columns:minmax(0,.65fr) minmax(0,1.35fr);
+  grid-template-rows:auto minmax(0,1fr);gap:24px 32px;padding:36px 40px;
+}
+.ksiega.screen-carousel .karta .duze{
+  position:static;inset:auto;grid-column:1/-1;grid-row:1;min-width:0;
+  font-size:clamp(40px,4.4vw,68px);line-height:1.03;letter-spacing:-.045em;
+  overflow-wrap:normal;word-break:normal;
+}
+.ksiega.screen-carousel .karta .duze small{font-size:clamp(15px,1.6vw,22px);line-height:1.3;margin-bottom:10px;letter-spacing:0}
+.ksiega.screen-carousel .karta .opis{
+  position:static;inset:auto;grid-column:1;grid-row:2;align-self:end;
+  width:auto;max-width:none;min-width:0;margin:0;padding:0;font-size:15px;line-height:1.6;
+}
+.ksiega.screen-carousel .karta .opis b{display:block;font-size:17px;line-height:1.35;margin-bottom:10px}
+.ksiega.screen-carousel .karta .opis a{display:inline-block;margin-top:10px;text-underline-offset:4px}
+.ksiega.screen-carousel .karta .zdjecie{
+  position:relative;inset:auto;grid-column:2;grid-row:2;align-self:center;
+  width:100%!important;height:auto;aspect-ratio:16/10!important;min-width:0;
+  margin:0;padding:0!important;border:0;border-radius:10px;overflow:hidden;
+  transform:none!important;background:#081324!important;
+  box-shadow:0 24px 48px -18px rgba(0,0,0,.48);
+}
+.ksiega.screen-carousel .karta .zdjecie>picture,
+.ksiega.screen-carousel .karta .zdjecie img{
+  display:block!important;width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;
+  object-fit:cover!important;object-position:center center!important;transform:none!important;
+  border:0!important;filter:none;
+}
+.ksiega.screen-carousel .karta .terminal-card-mini{padding:24px!important;font-size:12px}
+.ksiega.screen-carousel .terminal-card-mini .mini-term-head{font-size:14px}
+.ksiega.screen-carousel .terminal-card-mini p{font-size:12px;padding:12px 0}
+
+/* Flat, rectified approved Judler artwork, without the generated laptop/keyboard. */
+.judler-art{position:relative;display:block;width:100%;height:100%;overflow:hidden;background:#041226}
+.judler-art>img{position:relative;display:block;width:100%;height:100%;object-fit:cover;object-position:center center;max-width:none}
+.hero-realizacje .hero-projekt.hero-judler .project-views .project-view .judler-art>img,
+.ksiega.screen-carousel .karta .judler-art>img,
+.judler-approved-detail .judler-art>img{object-fit:cover!important;object-position:center center!important;width:100%!important;height:100%!important;max-height:none!important;max-width:none!important}
+.hero-realizacje .judler-approved-views{inset:32px 0 0}
+.hero-realizacje .judler-screen-panel{padding:0;background:#041226}
+.judler-signals{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;overflow:hidden}
+.judler-signals .judler-signal{
+  fill:none;stroke:#c2f1ff;stroke-width:2.4;stroke-linecap:round;
+  stroke-dasharray:2 98;stroke-dashoffset:0;opacity:0;
+  filter:drop-shadow(0 0 3px #37aaff);
+  animation:judler-data-flow 5.2s linear infinite;animation-play-state:paused;
+}
+.judler-signals .judler-signal:nth-child(2){animation-delay:-1.8s;animation-duration:4.8s}
+.judler-signals .judler-signal:nth-child(3){animation-delay:-3.4s;animation-duration:5.8s}
+.judler-signals .judler-signal:nth-child(4){animation-delay:-.9s;animation-duration:5.5s}
+.judler-signals .judler-signal:nth-child(5){animation-delay:-2.7s;animation-duration:4.9s}
+.judler-signals .judler-signal:nth-child(6){animation-delay:-4.1s;animation-duration:6.1s}
+.judler-signals .judler-aura{
+  fill:none;stroke:#5dc7ff;stroke-width:1.1;opacity:0;
+  animation:judler-core-breathe 4s ease-in-out infinite;animation-play-state:paused;
+}
+.judler-motion.is-animating .judler-signal{opacity:.9;animation-play-state:running}
+.judler-motion.is-animating .judler-aura{animation-play-state:running}
+@keyframes judler-data-flow{to{stroke-dashoffset:-100}}
+@keyframes judler-core-breathe{0%,100%{opacity:.08}50%{opacity:.45}}
+.judler-approved-detail .detail-panels{position:relative;min-height:0!important;aspect-ratio:16/10;background:#041226}
+.judler-approved-detail .detail-panel{position:absolute;inset:0;min-height:0!important;height:100%;margin:0;padding:0!important}
+.judler-approved-detail .detail-panel:not(.tu){display:none!important}
+.judler-approved-detail .detail-panel.tu{display:block!important}
+@media(max-width:800px){
+ .ksiega.screen-carousel{width:calc(100vw - 40px)}
+ .ksiega.screen-carousel .karty{aspect-ratio:auto;height:clamp(540px,calc(340px + 54vw),735px);min-height:0}
+ .ksiega.screen-carousel .karta{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;gap:18px;padding:24px}
+ .ksiega.screen-carousel .karta .duze{grid-column:1;grid-row:1;font-size:clamp(30px,7vw,52px)}
+ .ksiega.screen-carousel .karta .duze small{font-size:15px;margin-bottom:8px}
+ .ksiega.screen-carousel .karta .zdjecie{grid-column:1;grid-row:2;width:100%!important;aspect-ratio:16/10!important;align-self:center}
+ .ksiega.screen-carousel .karta .opis{grid-column:1;grid-row:3;font-size:14px;line-height:1.55}
+ .ksiega.screen-carousel .karta .opis b{font-size:16px;margin-bottom:5px}
+ .ksiega.screen-carousel .terminal-card-mini p{font-size:10px;padding:7px 0}
+}
+@media(max-width:560px){.hero-realizacje .judler-approved-views{inset:26px 0 0}}
+@media(prefers-reduced-motion:reduce){
+ .judler-motion .judler-signals .judler-signal,.judler-motion .judler-signals .judler-aura{animation:none!important;opacity:0!important}
+}

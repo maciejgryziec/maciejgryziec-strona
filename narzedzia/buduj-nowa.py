@@ -1458,7 +1458,7 @@ def uzupelnij_wymiary_obrazow(html_text):
     return re.sub(r'<img\b[^>]*\ssrc="zdjecia/([^"]+)"[^>]*>', repl, html_text)
 
 def wersjonuj_portfolio(html_text):
-    for name in ("projekt-showcase.css", "projekt-showcase.js", "realizacje-projekty.css", "realizacje-projekty.js", "znak.svg", "znak-bialy.svg"):
+    for name in ("portfolio-display.css", "judler-motion.js", "projekt-showcase.css", "projekt-showcase.js", "realizacje-projekty.css", "realizacje-projekty.js", "znak.svg", "znak-bialy.svg"):
         asset = os.path.join(REPO, name)
         with open(asset, "rb") as f:
             digest = hashlib.sha256(f.read()).hexdigest()[:12]
