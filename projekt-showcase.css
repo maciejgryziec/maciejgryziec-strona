@@ -343,20 +343,15 @@
 .ksiega .frankie-card-shot{aspect-ratio:1080/708!important}
 .ksiega .bacteria-card-shot{aspect-ratio:1600/760!important;width:60%!important}
 
-/* Replace the generic lower visualization with a stack of real project screens */
-.program-real-stack{position:relative;width:95%;height:520px;margin:0 auto;perspective:1400px}
-.program-real-shot{position:absolute;margin:0;border-radius:14px;overflow:hidden;background:#11151d;border:1px solid rgba(24,47,89,.18);box-shadow:0 30px 65px -25px rgba(29,42,67,.30)}
-.program-real-shot img{display:block;width:100%;height:100%;object-fit:contain;background:#11151d}
+/* Real interfaces in proportional, edge-to-edge overlapping frames. */
+.program-real-stack{position:relative;width:95%;height:auto;aspect-ratio:6/5;margin:0 auto;perspective:1400px}
+.program-real-shot{position:absolute;margin:0;padding:0;aspect-ratio:16/10;border-radius:14px;overflow:hidden;background:#081324;border:0;box-shadow:0 30px 65px -25px rgba(29,42,67,.30)}
+.program-real-shot>picture,.program-real-shot>img{position:absolute;inset:0;display:block;width:100%;height:100%;margin:0;padding:0}
+.program-real-shot img{display:block;width:100%;height:100%;margin:0;padding:0;object-fit:cover;object-position:center;background:transparent}
 .program-real-shot small{position:absolute;left:11px;top:10px;z-index:2;background:rgba(10,17,31,.82);color:#fff;border:1px solid rgba(255,255,255,.12);border-radius:7px;padding:5px 8px;font:700 8px/1 var(--sans);backdrop-filter:blur(8px)}
-.program-real-shot.one{width:77%;height:330px;right:0;top:15px;transform:rotate(5deg)}
-.program-real-shot.two{width:72%;height:320px;left:0;top:105px;transform:rotate(-5deg)}
-.program-real-shot.three{width:78%;height:340px;right:4%;top:165px;transform:rotate(2deg);z-index:3}
-@media(max-width:820px){
- .program-real-stack{height:390px}
- .program-real-shot.one{height:240px}
- .program-real-shot.two{height:235px;top:75px}
- .program-real-shot.three{height:250px;top:120px}
-}
+.program-real-shot.one{width:77%;height:auto;right:0;top:3%;transform:rotate(5deg)}
+.program-real-shot.two{width:72%;height:auto;left:0;top:13%;transform:rotate(-5deg)}
+.program-real-shot.three{width:78%;height:auto;right:4%;top:46%;transform:rotate(2deg);z-index:3}
 
 /* Exact user-supplied Bacteria Run screenshots: preserve native 600:252 ratio everywhere. */
 .hero-bacteria .project-views{

@@ -82,3 +82,20 @@
 @media(prefers-reduced-motion:reduce){
  .judler-motion .judler-signals .judler-signal,.judler-motion .judler-signals .judler-aura{animation:none!important;opacity:0!important}
 }
+
+/* Screenshot galleries follow the image dimensions, with zero artificial gutters. */
+.detail-showcase.frankie-detail .detail-panels,
+.detail-showcase.bacteria-detail .detail-panels{min-height:0!important;height:auto!important;background:transparent!important}
+.detail-showcase.frankie-detail .screenshot-panel,
+.detail-showcase.bacteria-detail .screenshot-panel{min-height:0!important;height:auto!important;max-height:none!important;width:100%!important;margin:0!important;padding:0!important;overflow:hidden;background:transparent!important}
+.detail-showcase.frankie-detail .screenshot-panel:not(.tu),
+.detail-showcase.bacteria-detail .screenshot-panel:not(.tu){display:none!important}
+.detail-showcase.frankie-detail .screenshot-panel.tu,
+.detail-showcase.bacteria-detail .screenshot-panel.tu{display:block!important}
+.detail-showcase.frankie-detail .screenshot-panel>picture,
+.detail-showcase.bacteria-detail .screenshot-panel>picture{position:relative!important;display:block!important;width:100%!important;height:auto!important;max-width:none!important;margin:0!important;padding:0!important;line-height:0}
+.detail-showcase.frankie-detail .screenshot-panel img,
+.detail-showcase.bacteria-detail .screenshot-panel img{display:block!important;width:100%!important;height:auto!important;max-width:none!important;max-height:none!important;margin:0!important;padding:0!important;border:0!important;object-fit:cover!important;object-position:center!important;background:transparent!important}
+
+/* The later case studies share the same symmetric gutter as the first ones. */
+body[data-nav-active="realizacje.html"] #main-content>.studium{width:min(1160px,calc(100% - 40px));max-width:none;margin-inline:auto}
