@@ -1402,27 +1402,48 @@ WYMIARY_ZDJEC = {
     "wypozyczalnia-flota.png": (1440, 900),
     "wypozyczalnia-kalendarz.png": (1440, 740),
     "wypozyczalnia-pulpit.png": (1440, 900),
+    "frankie-orders-focus.webp": (1080, 708),
+    "frankie-products-focus.webp": (1080, 706),
+    "frankie-analytics-focus.webp": (1080, 707),
+    "judler-dashboard.webp": (691, 482),
+    "monitoring-dashboard.webp": (691, 482),
+    "sleeper-garage-screen.png": (1600, 900),
+    "sleeper-garage-screen.webp": (1600, 900),
+    "bacteria-hd-menu.webp": (2048, 853),
+    "bacteria-hd-gameplay.webp": (2047, 859),
+    "bacteria-hd-bacteria.webp": (2048, 860),
+    "bacteria-hd-vehicles.webp": (2048, 861),
+    "bacteria-hd-clothes.webp": (2047, 856),
+    "bacteria-hd-hats.webp": (2048, 859),
 }
+
+# Pełne WebP istniejących JPG/PNG mają te same wymiary co źródła.
+for _name, _dims in list(WYMIARY_ZDJEC.items()):
+    _stem, _ext = os.path.splitext(_name)
+    _webp = _stem + ".webp"
+    if os.path.exists(os.path.join(REPO, "zdjecia", _webp)):
+        WYMIARY_ZDJEC.setdefault(_webp, _dims)
 
 def uzupelnij_wymiary_obrazow(html_text):
     def repl(m):
         caly=m.group(0)
         plik=m.group(1)
-        if plik not in WYMIARY_ZDJEC:
+        plik_czysty=plik.split("?",1)[0].split("#",1)[0]
+        if plik_czysty not in WYMIARY_ZDJEC:
             return caly
         if not re.search(r'\bwidth=', caly):
-            w,h=WYMIARY_ZDJEC[plik]
+            w,h=WYMIARY_ZDJEC[plik_czysty]
             caly=caly[:-1] + f' width="{w}" height="{h}">'
         if 'data-webp=' in caly:
             return caly
-        webp=os.path.splitext(plik)[0] + ".webp"
+        webp=os.path.splitext(plik_czysty)[0] + ".webp"
         webp_path=os.path.join(REPO, "zdjecia", webp)
         if not os.path.exists(webp_path):
             return caly
-        w,_=WYMIARY_ZDJEC[plik]
-        case_asset = plik.startswith("photonroof-") or plik.startswith("wypozyczalnia-")
+        w,_=WYMIARY_ZDJEC[plik_czysty]
+        case_asset = plik_czysty.startswith("photonroof-") or plik_czysty.startswith("wypozyczalnia-")
         suffix = f"?v={CASE_IMAGE_VERSION}" if case_asset else ""
-        webp_800=os.path.splitext(plik)[0] + "-800.webp"
+        webp_800=os.path.splitext(plik_czysty)[0] + "-800.webp"
         webp_800_path=os.path.join(REPO, "zdjecia", webp_800)
         if os.path.exists(webp_800_path):
             srcset=f'zdjecia/{webp_800}{suffix} 800w, zdjecia/{webp}{suffix} {w}w'
@@ -1430,11 +1451,30 @@ def uzupelnij_wymiary_obrazow(html_text):
             source=f'<source srcset="{srcset}" sizes="{sizes}" type="image/webp">'
         else:
             source=f'<source srcset="zdjecia/{webp}{suffix}" type="image/webp">'
-        if suffix:
+        if suffix and "?" not in plik:
             caly=caly.replace(f'src="zdjecia/{plik}"', f'src="zdjecia/{plik}{suffix}"', 1)
         caly=caly[:-1] + ' data-webp="1">'
         return f'<picture>{source}{caly}</picture>'
-    return re.sub(r'<img\b[^>]*src="zdjecia/([^"]+)"[^>]*>', repl, html_text)
+    return re.sub(r'<img\b[^>]*\ssrc="zdjecia/([^"]+)"[^>]*>', repl, html_text)
+
+def oznacz_lazy_po_pierwszej_sekcji(html_text):
+    """Obrazy po pierwszej sekcji ładuj leniwie; hero pozostaje natychmiastowy."""
+    first_end=html_text.find("</section>")
+    if first_end < 0:
+        return html_text
+    head=html_text[:first_end+10]
+    tail=html_text[first_end+10:]
+    def repl(m):
+        tag=m.group(0)
+        if 'src="zdjecia/' not in tag:
+            return tag
+        if not re.search(r'\bloading=', tag, re.I):
+            tag=tag[:-1] + ' loading="lazy">'
+        if not re.search(r'\bdecoding=', tag, re.I):
+            tag=tag[:-1] + ' decoding="async">'
+        tag=re.sub(r'\s+fetchpriority="high"', '', tag, flags=re.I)
+        return tag
+    return head + re.sub(r'<img\b[^>]*>', repl, tail, flags=re.I)
 
 def slug_kotwicy(tekst):
     tekst=html.unescape(re.sub(r"<[^>]+>","",tekst))
@@ -1737,6 +1777,7 @@ def index():
     with open(src, encoding="utf-8") as f:
         s = f.read()
     s = uzupelnij_wymiary_obrazow(s)
+    s = oznacz_lazy_po_pierwszej_sekcji(s)
     s = re.sub(r'href="list\.css\?[^"]*"', f'href="list.css?v={ASSET_VERSION}"', s)
     s = re.sub(r'src="list\.js\?[^"]*"', f'src="list.js?v={ASSET_VERSION}"', s)
     with open(CEL + "/index.html", "w", encoding="utf-8") as f:
@@ -1785,6 +1826,17 @@ KSIEGA_NA_PODSTRONIE = {"realizacje"}
 
 def podstrona(plik):
     nazwa = os.path.basename(plik)[:-5]
+    # Realizacje mają własny, rozbudowany układ portfolio. Trzymamy gotowy dokument
+    # jako źródło strony, żeby build nie rozbijał interaktywnych showcase'ów.
+    override = os.path.join(REPO, "zrodla-final", nazwa + ".html")
+    if nazwa == "realizacje" and os.path.exists(override):
+        s = open(override, encoding="utf-8").read()
+        s = re.sub(r'href="list\.css\?[^"]*"', f'href="list.css?v={ASSET_VERSION}"', s)
+        s = re.sub(r'src="list\.js\?[^"]*"', f'src="list.js?v={ASSET_VERSION}"', s)
+        s = uzupelnij_wymiary_obrazow(s)
+        s = oznacz_lazy_po_pierwszej_sekcji(s)
+        open(CEL + "/" + nazwa + ".html", "w", encoding="utf-8").write(s)
+        return nazwa
     h = open(plik, encoding="utf-8").read()
     tytul = re.search(r"<title>(.*?)</title>", h, re.S).group(1).strip()
     opis = re.search(r'name="description" content="([^"]*)"', h).group(1)

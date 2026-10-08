@@ -8,7 +8,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parent.parent
-DOMAIN_SUFFIX = "automatyzacjesklepow.pl"
+INTERNAL_DOMAINS = ("automatyzacjesklepow.pl", "maciejgryziec.pl")
 
 class Redirect(HTTPRedirectHandler):
     pass
@@ -20,7 +20,7 @@ for path in sorted(ROOT.glob("*.html")):
     src = path.read_text(encoding="utf-8")
     for url in re.findall(r'(?:href|src)="(https://[^"]+)"', src):
         host = urlsplit(url).netloc.lower()
-        if host.endswith(DOMAIN_SUFFIX):
+        if any(host == domain or host.endswith("." + domain) for domain in INTERNAL_DOMAINS):
             continue
         urls.add(url)
 

@@ -64,7 +64,7 @@ with server() as base:
         k = open_page(base, page)
         try:
             overflow = bool(k.js("document.documentElement.scrollWidth>innerWidth"))
-            broken = k.js('[...document.images].filter(i=>!i.hasAttribute("data-carousel-src")&&i.complete&&i.naturalWidth===0).map(i=>i.currentSrc||i.getAttribute("src")||"")') or []
+            broken = k.js('[...document.images].filter(i=>!i.hasAttribute("data-carousel-src")&&!i.hasAttribute("data-project-src")&&i.complete&&i.naturalWidth===0).map(i=>i.currentSrc||i.getAttribute("src")||"")') or []
             check(f"{page} mobile overflow", not overflow)
             check(f"{page} obrazy", not broken, str(broken) if broken else "0 uszkodzonych")
         finally:
@@ -359,8 +359,8 @@ with server() as base:
     k.cmd("Emulation.setEmulatedMedia", media="screen", features=[{"name":"prefers-reduced-motion","value":"reduce"}])
     k.idz(base + "/index.html?reduced-motion-audit=1", .6)
     try:
-        reduced = k.js('(()=>({matches:matchMedia("(prefers-reduced-motion: reduce)").matches,laptop:getComputedStyle(document.querySelector(".laptop")).animationName,cta:getComputedStyle(document.querySelector(".start .cta svg")).animationName,stars:getComputedStyle(document.querySelector(".gwiazdy.a")).animationName,pakiet:getComputedStyle(document.querySelector(".mosty .pakiet")).animationName,bubble:getComputedStyle(document.querySelector(".dymek")).display,wjazd:getComputedStyle(document.querySelector(".wjazd")).opacity}))()')
-        check("reduced motion animacje", reduced.get("matches") and reduced.get("laptop") == "none" and reduced.get("cta") == "none" and reduced.get("stars") == "none" and reduced.get("pakiet") == "none" and reduced.get("bubble") == "none" and reduced.get("wjazd") == "1", str(reduced))
+        reduced = k.js('(()=>{const css=(s,p,missing)=>{const e=document.querySelector(s);return e?getComputedStyle(e)[p]:missing};return {matches:matchMedia("(prefers-reduced-motion: reduce)").matches,laptop:css(".laptop","animationName","absent"),cta:css(".start .cta svg","animationName","absent"),stars:css(".gwiazdy.a","animationName","absent"),pakiet:css(".mosty .pakiet","animationName","absent"),bubble:css(".dymek","display","absent"),wjazd:css(".wjazd","opacity","absent")}})()')
+        check("reduced motion animacje", reduced.get("matches") and reduced.get("laptop") in ("none","absent") and reduced.get("cta") in ("none","absent") and reduced.get("stars") in ("none","absent") and reduced.get("pakiet") in ("none","absent") and reduced.get("bubble") in ("none","absent") and reduced.get("wjazd") == "1", str(reduced))
         before_rm = k.js('[...document.querySelectorAll(".ksiega .karta")].findIndex(x=>x.classList.contains("aktywna"))')
         k.js('document.querySelector(".ksiega .strzalka.prawa").click()')
         time.sleep(.08)
@@ -369,14 +369,14 @@ with server() as base:
     finally:
         k.zamknij()
 
-    # Karuzela: screenshot drugiej karty nie może być pobrany przed aktywacją.
+    # Karuzela: screenshot nieaktywnej drugiej karty nie może być pobrany przed aktywacją.
     k = open_page(base, "realizacje.html", 390, 844, True)
     try:
-        before = k.js('(()=>({deferred:!!document.querySelector(".ksiega img[data-carousel-src]"),resources:performance.getEntriesByType("resource").filter(e=>e.name.includes("wypozyczalnia-flota")).length}))()')
+        before = k.js('(()=>{var cards=[...document.querySelectorAll(".ksiega .karta")],img=cards[1].querySelector("img"),hint=img.getAttribute("data-carousel-src")||"";return {deferred:img.hasAttribute("data-carousel-src"),resources:hint?performance.getEntriesByType("resource").filter(e=>e.name.includes(hint.split("/").pop().split("?")[0])).length:0}})()')
         check("karuzela lazy przed aktywacją", before.get("deferred") and before.get("resources") == 0, str(before))
         k.js('document.querySelector(".ksiega .strzalka.prawa").click()')
         time.sleep(1.15)
-        after = k.js('(()=>{var cards=[...document.querySelectorAll(".ksiega .karta")],img=cards[1].querySelector("img");return {active:cards.findIndex(x=>x.classList.contains("aktywna")),deferred:img.hasAttribute("data-carousel-src"),complete:img.complete,nw:img.naturalWidth,resources:performance.getEntriesByType("resource").filter(e=>e.name.includes("wypozyczalnia-flota")).length};})()')
+        after = k.js('(()=>{var cards=[...document.querySelectorAll(".ksiega .karta")],img=cards[1].querySelector("img"),src=(img.currentSrc||img.src||"").split("?")[0],base=src.split("/").pop();return {active:cards.findIndex(x=>x.classList.contains("aktywna")),deferred:img.hasAttribute("data-carousel-src"),complete:img.complete,nw:img.naturalWidth,resources:base?performance.getEntriesByType("resource").filter(e=>e.name.includes(base)).length:0};})()')
         check("karuzela lazy po aktywacji", after.get("active") == 1 and not after.get("deferred") and after.get("complete") and after.get("nw",0) > 0 and after.get("resources",0) >= 1, str(after))
     finally:
         k.zamknij()

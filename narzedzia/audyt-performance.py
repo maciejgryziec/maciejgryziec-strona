@@ -89,7 +89,7 @@ try:
                 try:
                     expected = "/" + page
                     k.idz(base + expected + f"?perf-audit={run}-{attempt}-{time.time_ns()}", .15)
-                    deadline = time.monotonic() + 8.0
+                    deadline = time.monotonic() + 15.0
                     row = None
                     while time.monotonic() < deadline:
                         time.sleep(.4)

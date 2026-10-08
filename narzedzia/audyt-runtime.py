@@ -55,7 +55,7 @@ with server() as base:
             browser.idz(f"{base}/{page}?runtime-audit=1", .25)
             result = browser.js("""(()=>({
               errors: window.__runtimeErrors || [],
-              broken: [...document.images].filter(i=>!i.hasAttribute("data-carousel-src")&&i.complete&&i.naturalWidth===0).map(i=>i.currentSrc||i.getAttribute("src")||""),
+              broken: [...document.images].filter(i=>!i.hasAttribute("data-carousel-src")&&!i.hasAttribute("data-project-src")&&i.complete&&i.naturalWidth===0).map(i=>i.currentSrc||i.getAttribute("src")||""),
               overflow: document.documentElement.scrollWidth > innerWidth
             }))()""")
             ax = browser.cmd("Accessibility.getFullAXTree").get("nodes", [])

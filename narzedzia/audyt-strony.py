@@ -762,15 +762,14 @@ for pth in pages:
 for pth in pages:
     txt=pth.read_text(encoding="utf-8")
     for rel in re.findall(r'data-carousel-src="([^"]+)"',txt,re.I):
-        local_rel=rel.split("?",1)[0]
-        local=ROOT / local_rel
+        local=ROOT / urlsplit(rel).path
         if not local.exists():
             err(pth.name,f"data-carousel-src nie istnieje: {rel}")
     for srcset in re.findall(r'data-carousel-srcset="([^"]+)"',txt,re.I):
         for candidate in srcset.split(','):
             rel=candidate.strip().split()[0] if candidate.strip() else ""
-            local_rel=rel.split("?",1)[0]
-            if rel and not (ROOT / local_rel).exists():
+            local=ROOT / urlsplit(rel).path if rel else None
+            if rel and not local.exists():
                 err(pth.name,f"data-carousel-srcset nie istnieje: {rel}")
 
 # Screeny dowodowe w realizacjach muszą mieć opisowy alt.
