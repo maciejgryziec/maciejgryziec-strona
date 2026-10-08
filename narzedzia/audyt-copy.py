@@ -85,7 +85,7 @@ def strings(value):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--live', action='store_true')
-    ap.add_argument('--contact', default='kontakt@automatyzacjesklepow.pl', help='Verified active contact mailbox. Change only after mail tests pass.')
+    ap.add_argument('--contact', default='kontakt@maciejgryziec.pl', help='Verified active contact mailbox. Change only after mail tests pass.')
     args = ap.parse_args()
     files = sorted(ROOT.glob('*.html'))
     failures = []

@@ -317,7 +317,7 @@
       fallback.hidden=false;
       fallback.focus();
       fallback.select();
-      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@automatyzacjesklepow.pl.";
+      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@maciejgryziec.pl.";
     }
 
     function brief(){
@@ -362,7 +362,7 @@
         info.textContent=copied?"Treść została również skopiowana do schowka.":"Otwieram program pocztowy z przygotowaną wiadomością.";
       }
       siteTrack("brief-mailto-ready",{typ:value(fd,"typ")});
-      location.href="mailto:kontakt@automatyzacjesklepow.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
+      location.href="mailto:kontakt@maciejgryziec.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
     });
 
     if(copy)copy.addEventListener("click",async function(){
@@ -371,7 +371,7 @@
       try{
         await navigator.clipboard.writeText(message);
         fallback.hidden=true;
-        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
+        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@maciejgryziec.pl.";
       }catch(e){showFallback(message);}
     });
 

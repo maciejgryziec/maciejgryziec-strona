@@ -961,7 +961,7 @@ JS = r"""
       fallback.hidden=false;
       fallback.focus();
       fallback.select();
-      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@automatyzacjesklepow.pl.";
+      info.textContent="Nie udało się skopiować tekstu automatycznie. Skopiuj zaznaczony opis poniżej i wyślij go na kontakt@maciejgryziec.pl.";
     }
 
     function brief(){
@@ -1006,7 +1006,7 @@ JS = r"""
         info.textContent=copied?"Treść została również skopiowana do schowka.":"Otwieram program pocztowy z przygotowaną wiadomością.";
       }
       siteTrack("brief-mailto-ready",{typ:value(fd,"typ")});
-      location.href="mailto:kontakt@automatyzacjesklepow.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
+      location.href="mailto:kontakt@maciejgryziec.pl?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(mailBody);
     });
 
     if(copy)copy.addEventListener("click",async function(){
@@ -1015,7 +1015,7 @@ JS = r"""
       try{
         await navigator.clipboard.writeText(message);
         fallback.hidden=true;
-        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@automatyzacjesklepow.pl.";
+        info.textContent="Opis skopiowany. Wklej go do wiadomości na kontakt@maciejgryziec.pl.";
       }catch(e){showFallback(message);}
     });
 
@@ -1599,7 +1599,7 @@ def glowa(tytul, opis, kanon, nazwa=None):
         graph.append({
             "@type":"Person","@id":"https://maciejgryziec.pl/o-mnie.html#person",
             "name":"Maciej Gryziec","url":"https://maciejgryziec.pl/o-mnie.html",
-            "email":"kontakt@automatyzacjesklepow.pl","telephone":"+48570427127"
+            "email":"kontakt@maciejgryziec.pl","telephone":"+48570427127"
         })
         graph.append({
             "@type":"ProfilePage","@id":kanon+"#profile","url":kanon,"name":tytul,
@@ -1724,7 +1724,7 @@ STOPKA = f"""
       <strong>Maciej Gryziec</strong>
       <p>Aplikacje, systemy i automatyzacje dla firm. Pracuję zdalnie z firmami w całej Polsce.</p>
       <p><a class="stopka-cta" data-umami-event="klik-opisz-projekt" href="opisz-projekt.html">Opisz projekt →</a></p>
-      <p><a data-umami-event="klik-mail" href="mailto:kontakt@automatyzacjesklepow.pl">kontakt@automatyzacjesklepow.pl</a><br><a data-umami-event="klik-telefon" href="tel:+48570427127">570 427 127</a></p>
+      <p><a data-umami-event="klik-mail" href="mailto:kontakt@maciejgryziec.pl">kontakt@maciejgryziec.pl</a><br><a data-umami-event="klik-telefon" href="tel:+48570427127">570 427 127</a></p>
     </div>
     <div>
       <strong>Rozwiązania</strong>
@@ -1904,7 +1904,7 @@ def podstrona(plik):
         s += f'<section id="tresc" class="rozdzial czolo pod ksiega-tlo ciemny" data-ciemna><div class="w"><div class="tekst wjazd">{tekst}</div>{obraz()}</div></section>\n'
     else:
         s += rozdzial(kl, tekst, obraz(), extra=' id="tresc"', ciemny=ciemny)
-    body = re.sub(r'(<a class="przycisk"[^>]*?)href="mailto:kontakt@automatyzacjesklepow\.pl"', r'\1href="opisz-projekt.html"', body)
+    body = re.sub(r'(<a class="przycisk"[^>]*?)href="mailto:kontakt@maciejgryziec\.pl"', r'\1href="opisz-projekt.html"', body)
     body = body.replace('data-umami-event="klik-mail" href="opisz-projekt.html"', 'data-umami-event="klik-opisz-projekt" href="opisz-projekt.html"')
     if nazwa not in ("opisz-projekt", "404", "50x"):
         body = body.replace('href="opisz-projekt.html"', f'href="opisz-projekt.html?zrodlo={nazwa}"')
