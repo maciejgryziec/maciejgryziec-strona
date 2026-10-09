@@ -10,6 +10,7 @@ import json
 import re
 import sys
 import urllib.request
+import urllib.error
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / '.audit-copy'
@@ -85,22 +86,41 @@ def strings(value):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--live', action='store_true')
-    ap.add_argument('--contact', default='kontakt@maciejgryziec.pl', help='Verified active contact mailbox. Change only after mail tests pass.')
+    ap.add_argument('--contact', default='kontakt@maciejgryziec.pl', help='Published contact address. This audit does not test mailbox delivery.')
     args = ap.parse_args()
     files = sorted(ROOT.glob('*.html'))
     failures = []
     results = []
 
     def read(name):
-        if not args.live:
-            return (ROOT / name).read_text()
-        req = urllib.request.Request('https://maciejgryziec.pl/' + name, headers={'User-Agent': 'Portfolio-copy-audit/1.0', 'Cache-Control': 'no-cache'})
-        with urllib.request.urlopen(req, timeout=20) as response:
-            return response.read().decode('utf-8')
+        # Error documents are internal nginx routes. Validate the real custom 404,
+        # but never provoke a production server failure just to render 50x.html.
+        if not args.live or name == '50x.html':
+            return (ROOT / name).read_text(), 'local-template', None
+        request_path = '__content_audit_missing_page__' if name == '404.html' else name
+        expected = 404 if name == '404.html' else 200
+        req = urllib.request.Request(
+            'https://maciejgryziec.pl/' + request_path,
+            headers={'User-Agent': 'Portfolio-copy-audit/1.1', 'Cache-Control': 'no-cache'},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=20) as response:
+                status, payload = response.status, response.read()
+        except urllib.error.HTTPError as exc:
+            if exc.code != expected:
+                raise
+            status, payload = exc.code, exc.read()
+        if status != expected:
+            raise ValueError(f'{request_path}: expected HTTP {expected}, got {status}')
+        return payload.decode('utf-8'), 'live-http', status
 
     def check_page(path):
         name = path.name
-        raw = read(name)
+        try:
+            raw, scope, status = read(name)
+        except (OSError, ValueError) as exc:
+            return {'page': name, 'ok': False, 'scope': 'live-http' if args.live else 'local-template',
+                    'reasons': [{'read_error': str(exc)}]}
         p = CopyParser()
         p.feed(raw)
         chunks = p.text + p.attributes
@@ -127,14 +147,14 @@ def main():
             reasons.append({'contact': wrong, 'links': len(p.contact)})
         if re.search(r'</(?:a|b|strong|em)>\s+[.,;:]', raw):
             reasons.append('Whitespace before punctuation following an inline element')
-        return {'page': name, 'ok': not reasons, 'reasons': reasons, 'mailto_links': len(p.contact), 'words': len(plain.split())}
+        return {'page': name, 'ok': not reasons, 'scope': scope, 'http_status': status, 'reasons': reasons, 'mailto_links': len(p.contact), 'words': len(plain.split())}
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         for result in pool.map(check_page, files):
             results.append(result)
             if not result['ok']:
                 failures.append(result)
-    js = read('list.js')
+    js, _, _ = read('list.js')
     # Review double-quoted and single-quoted UI literals; comments are not marketing copy.
     literals = re.findall(r'''(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')''', js)
     remaining = [x[:180] for x in literals if BAD_PUNCTUATION.search(x)]
@@ -145,11 +165,16 @@ def main():
     summary = {
         'mode': 'live' if args.live else 'local', 'pages': len(files),
         'results': results, 'failures': failures,
-        'verified_contact': args.contact, 'qualitative_review': 'performed separately; this audit checks regressions only',
+        'published_contact': args.contact, 'mail_delivery_tested': False,
+        'live_documents': sum(x.get('scope') == 'live-http' for x in results),
+        'local_only_documents': [x['page'] for x in results if x.get('scope') == 'local-template'],
+        'qualitative_review': 'performed separately; this audit checks regressions only',
     }
     OUT.mkdir(exist_ok=True)
     (OUT / ('live.json' if args.live else 'local.json')).write_text(json.dumps(summary, ensure_ascii=False, indent=2))
     print('COPY AUDIT:', len(files), 'pages;', len(failures), 'failures')
+    if args.live:
+        print('Live HTTP documents:', summary['live_documents'], '; local-only error template:', ', '.join(summary['local_only_documents']))
     for failure in failures:
         print(json.dumps(failure, ensure_ascii=False))
     return 1 if failures else 0
