@@ -34,7 +34,7 @@ for name, limit in LIMITS.items():
 for path in sorted((ROOT / "zdjecia").rglob("*.webp")):
     size = path.stat().st_size
     limit = MOBILE_WEBP_LIMIT if path.stem.endswith("-800") else FULL_WEBP_LIMIT
-    if path.parent.name == "ostre-20261009":
+    if path.parent.name in {"ostre-20261009", "pelne-20261009"}:
         # Lossless UI exports and photo variants from native screenshots, loaded responsively.
         width = int(path.stem.rsplit("-", 1)[1])
         limit = 180_000 if width <= 800 else 500_000 if width <= 1600 else 1_000_000

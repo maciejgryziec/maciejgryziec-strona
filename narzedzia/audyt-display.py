@@ -62,13 +62,13 @@ try:
                       const title=card.querySelector('.duze').getBoundingClientRect(), desc=card.querySelector('.opis').getBoundingClientRect();
                       const intersects=(a,b)=>Math.min(a.right,b.right)-Math.max(a.left,b.left)>2&&Math.min(a.bottom,b.bottom)-Math.max(a.top,b.top)>2;
                       return {title:card.querySelector('.duze').innerText,frame:f.toJSON(),card:c.toJSON(),heading:title.toJSON(),description:desc.toJSON(),overlap:intersects(f,title)||intersects(f,desc),textFits:title.bottom<=c.bottom+1&&desc.bottom<=c.bottom+1&&title.left>=c.left-1&&desc.right<=c.right+1,overflow:document.documentElement.scrollWidth>innerWidth+1,
-                        images:Array.from(frame.querySelectorAll('img')).map(im=>({src:im.currentSrc,loaded:im.complete&&im.naturalWidth>0,width:im.offsetWidth,height:im.offsetHeight,nw:im.naturalWidth,nh:im.naturalHeight,fit:getComputedStyle(im).objectFit})),errors:window.__displayErrors};
+                        images:Array.from(frame.querySelectorAll('img')).map(im=>({media:im.dataset.media,src:im.currentSrc,loaded:im.complete&&im.naturalWidth>0,width:im.offsetWidth,height:im.offsetHeight,nw:Number(im.getAttribute('width')),nh:Number(im.getAttribute('height')),fit:getComputedStyle(im).objectFit})),errors:window.__displayErrors};
                     })()""")
                     check(f'{width}/{page}/card{i}: layout', info and not info['overflow'] and not info['overlap'] and info['textFits'], info)
                     if info and info['images']:
-                        full = all(im['loaded'] and im['fit'] == 'cover' and abs(im['nw']/im['nh'] - im['width']/max(1,im['height'])) < .02 for im in info['images'])
+                        full = all(im['loaded'] and im['fit'] in ('cover', 'contain') and abs(im['height'] - im['width'] * im['nh']/im['nw']) <= 1.5 for im in info['images'])
                         check(f'{width}/{page}/card{i}: filled native-ratio image', full, info['images'])
-                        check(f'{width}/{page}/card{i}: no nested mockup', all('interface-v2' in im['src'] or 'report-v2' in im['src'] or 'judler-orchestration-v2' in im['src'] for im in info['images']), info['images'])
+                        check(f'{width}/{page}/card{i}: no nested mockup', all(im.get('media') in {'frankie-orders','roofpv-3d','rental-flota','judler-orchestration-v2','card-monitor-report-v2','bacteria-hd-gameplay'} for im in info['images']), info['images'])
                     check(f'{width}/{page}/card{i}: runtime', info and not info['errors'], info['errors'] if info else None)
                     if (width in (1440, 390)) and page == 'index.html' and i in (0, 1, 3, 4, 6):
                         k.zrzut(str(OUT/f'{width}-card-{i}.jpg'), 91)
@@ -82,7 +82,12 @@ try:
             if width in (1440, 390):
                 k.zrzut(str(OUT/f'{width}-judler.jpg'), 94)
             k.cmd('Emulation.setEmulatedMedia', features=[{'name': 'prefers-reduced-motion', 'value': 'no-preference'}])
-            time.sleep(.25)
+            # Wait for the media-query and intersection observers to apply the new state.
+            deadline = time.monotonic() + 2
+            while time.monotonic() < deadline:
+                if k.js("document.querySelector('.hero-judler .judler-motion').classList.contains('is-animating')"):
+                    break
+                time.sleep(.08)
             active = k.js("(()=>{const a=document.querySelector('.hero-judler .judler-motion'),p=a.querySelector('.judler-signal');return {on:a.classList.contains('is-animating'),state:getComputedStyle(p).animationPlayState,offset:getComputedStyle(p).strokeDashoffset}})()")
             time.sleep(.3)
             later = k.js("getComputedStyle(document.querySelector('.hero-judler .judler-signal')).strokeDashoffset")

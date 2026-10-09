@@ -99,3 +99,32 @@
 
 /* The later case studies share the same symmetric gutter as the first ones. */
 body[data-nav-active="realizacje.html"] #main-content>.studium{width:min(1160px,calc(100% - 40px));max-width:none;margin-inline:auto}
+
+/* Complete program windows. Each frame has the source image's own proportions.
+   Matching dimensions avoid both letterboxing and clipped sidebars. */
+.ksiega.screen-carousel .karta .zdjecie[data-full-screen]{
+  aspect-ratio:var(--screen-ratio)!important;height:auto!important;
+  width:100%!important;background:transparent!important;align-self:center;
+}
+.ksiega.screen-carousel .karta .zdjecie[data-full-screen]>picture,
+.ksiega.screen-carousel .karta .zdjecie[data-full-screen] .judler-art{
+  display:block!important;position:absolute!important;inset:0;width:100%!important;height:100%!important;
+}
+.ksiega.screen-carousel .karta .zdjecie[data-full-screen] img{
+  object-fit:contain!important;object-position:center!important;
+}
+
+/* Extra-wide application windows get the whole card width for legible sidebars. */
+@media(min-width:801px){
+ .ksiega.screen-carousel .karty{min-height:clamp(600px,47.3vw,680px)}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]){
+  grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;
+  padding:24px 40px;gap:12px;
+ }
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .duze{font-size:50px;grid-column:1;grid-row:1}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .duze small{font-size:17px;margin-bottom:6px}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .zdjecie{grid-column:1;grid-row:2}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .opis{grid-column:1;grid-row:3;align-self:start;font-size:14px;line-height:1.45}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .opis b{display:inline;font-size:15px;margin-right:10px}
+ .ksiega.screen-carousel .karta:has([data-full-screen="frankie-orders"],[data-full-screen="roofpv-3d"],[data-full-screen="bacteria-hd-gameplay"]) .opis a{margin-top:5px}
+}

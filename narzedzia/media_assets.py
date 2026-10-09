@@ -18,7 +18,7 @@ ALIASES = dict(MANIFEST['aliases'])
 for _key, _entry in ASSETS.items():
     for _variant in _entry['variants']:
         ALIASES[_variant['path']] = _key
-BRAND = ('znak.svg', 'znak-bialy.svg', 'logo.svg', 'ikona.svg', 'favicon.ico',
+BRAND = ('brief-send.js', 'brief-send.css', 'znak.svg', 'znak-bialy.svg', 'logo.svg', 'ikona.svg', 'favicon.ico',
          'favicon.png', 'favicon-192.png', 'favicon-512.png', 'ikona-16.png',
          'ikona-32.png', 'ikona-48.png', 'ikona-96.png', 'ikona-180.png',
          'ikona-192.png', 'ikona-512.png', 'site.webmanifest')
@@ -94,7 +94,10 @@ def _sizes(node, entry):
     if 'program-real-shot' in classes:
         return _scaled_sizes(cover_scale, 82, 30, 620)
     if 'karta' in classes:
-        return _scaled_sizes(cover_scale, 100, 50, 600, 760)
+        # Wide full-screen cards span the row; other frames retain the side-by-side layout.
+        if ratio > 2.2:
+            return '(max-width: 800px) calc(100vw - 88px), (max-width: 1216px) calc(100vw - 176px), 1040px'
+        return '(max-width: 800px) calc(100vw - 88px), 720px'
     if 'ekrany' in classes:
         return _scaled_sizes(cover_scale, 60, 0, 650, 820)
     if 'detail-panel' in classes:
@@ -120,7 +123,27 @@ def responsive_screens(text):
         key = ALIASES.get(local_path(attrs[field]))
         if key is None:
             continue
+        classes = {c for a in node['ancestors'] for c in (a['attrs'].get('class') or '').split()}
+        # Use complete, reviewed source screenshots rather than old 16:10 crops.
+        full = {'card-frankie': 'frankie-orders', 'card-roofpv': 'roofpv-3d',
+                'card-rental': 'rental-flota', 'card-bacteria': 'bacteria-hd-gameplay'}
+        if 'karta' in classes:
+            key = full.get(key, key)
         entry = ASSETS[key]
+        if 'karta' in classes:
+            frame = next((a for a in reversed(node['ancestors']) if 'zdjecie' in (a['attrs'].get('class') or '').split()), None)
+            if frame:
+                opening_end = text.find('>', frame['start']) + 1
+                opening = text[frame['start']:opening_end]
+                opening = re.sub(r'\sdata-full-screen="[^"]*"', '', opening)
+                style_match = re.search(r'\sstyle="([^"]*)"', opening)
+                style = style_match.group(1) if style_match else ''
+                style = re.sub(r'--screen-ratio\s*:[^;]*;?', '', style).strip('; ')
+                style += (';' if style else '') + '--screen-ratio:%s/%s' % (entry['width'], entry['height'])
+                if style_match:
+                    opening = opening[:style_match.start()] + opening[style_match.end():]
+                opening = opening[:-1] + ' data-full-screen="' + key + '" style="' + style + '">'
+                edits.append((frame['start'], opening_end, opening))
         sizes = _sizes(node, entry)
         variants = entry['variants']
         srcset = ', '.join(v['path'] + ' ' + str(v['width']) + 'w' for v in variants)
@@ -158,6 +181,9 @@ def responsive_screens(text):
         first = next((i for i in p.images if ALIASES.get(local_path(i['attrs'].get('src', '')))), None)
         if first:
             key = ALIASES[local_path(first['attrs']['src'])]
+        if first and any('karta' in (a['attrs'].get('class') or '').split() for a in first['ancestors']):
+            key = {'card-frankie': 'frankie-orders', 'card-roofpv': 'roofpv-3d',
+                   'card-rental': 'rental-flota', 'card-bacteria': 'bacteria-hd-gameplay'}.get(key, key)
         entry = ASSETS[key]
         sizes = _sizes(first, entry) if first else '100vw'
         variants = entry['variants']

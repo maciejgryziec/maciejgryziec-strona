@@ -368,7 +368,7 @@ for pth in pages:
     txt=pth.read_text(encoding="utf-8")
     preloads=re.findall(r'<link(?=[^>]*\brel="preload")(?=[^>]*\bas="image")[^>]*>',txt,re.I)
     if pth.name == "realizacje.html":
-        first_card = re.search(r'<img(?=[^>]*data-media="card-frankie")[^>]*>', txt)
+        first_card = re.search(r'<img(?=[^>]*data-media="frankie-orders")[^>]*>', txt)
         card_src = re.search(r'\ssrc="([^"]+)"', first_card.group(0)) if first_card else None
         preload_href = re.search(r'\shref="([^"]+)"', preloads[0]) if len(preloads) == 1 else None
         if not card_src or not preload_href or card_src.group(1) != preload_href.group(1):

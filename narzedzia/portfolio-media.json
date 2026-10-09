@@ -678,15 +678,50 @@
       ]
     },
     "bacteria-hd-gameplay": {
-      "width": 2047,
-      "height": 859,
+      "width": 3238,
+      "height": 1357,
       "variants": [
         {
-          "path": "zdjecia/bacteria-hd-gameplay.webp",
-          "width": 2047,
-          "height": 859,
-          "bytes": 192970,
-          "encoding": "existing-approved"
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-480.webp",
+          "width": 480,
+          "height": 201,
+          "bytes": 27854,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-800.webp",
+          "width": 800,
+          "height": 335,
+          "bytes": 63922,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-1200.webp",
+          "width": 1200,
+          "height": 503,
+          "bytes": 118858,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-1600.webp",
+          "width": 1600,
+          "height": 671,
+          "bytes": 176802,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-2400.webp",
+          "width": 2400,
+          "height": 1006,
+          "bytes": 291280,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/pelne-20261009/bacteria-game-demo-3238.webp",
+          "width": 3238,
+          "height": 1357,
+          "bytes": 414100,
+          "encoding": "quality-96"
         }
       ]
     },

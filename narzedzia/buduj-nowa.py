@@ -1942,6 +1942,9 @@ for _page in ["index.html"] + [_name + ".html" for _name in zrobione]:
     _path = os.path.join(CEL, _page)
     with open(_path, encoding="utf-8") as _f:
         _html = _f.read()
+    if _page == "opisz-projekt.html":
+        _html = _html.replace("</head>", '<link rel="stylesheet" href="brief-send.css">\n</head>')
+        _html = _html.replace("</body>", '<script src="brief-send.js" defer></script>\n</body>')
     with open(_path, "w", encoding="utf-8") as _f:
         _f.write(finalize_assets(_html))
 SITEMAP_IMAGES = {
