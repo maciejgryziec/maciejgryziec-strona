@@ -43,6 +43,7 @@ try:
         k.ws.settimeout(25)
         try:
             k.rozmiar(width, height, 1, width < 500)
+            k.cmd('Page.bringToFront')  # This is the isolated headless browser, not the user's Chrome.
             k.cmd('Page.addScriptToEvaluateOnNewDocument', source="window.__displayErrors=[];window.addEventListener('error',e=>window.__displayErrors.push(e.message));try{localStorage.setItem('umami.disabled','1')}catch(e){}")
             k.cmd('Emulation.setEmulatedMedia', features=[{'name': 'prefers-reduced-motion', 'value': 'reduce'}])
             for page in ['index.html', 'realizacje.html']:
@@ -89,8 +90,14 @@ try:
                     break
                 time.sleep(.08)
             active = k.js("(()=>{const a=document.querySelector('.hero-judler .judler-motion'),p=a.querySelector('.judler-signal');return {on:a.classList.contains('is-animating'),state:getComputedStyle(p).animationPlayState,offset:getComputedStyle(p).strokeDashoffset}})()")
-            time.sleep(.3)
-            later = k.js("getComputedStyle(document.querySelector('.hero-judler .judler-signal')).strokeDashoffset")
+            later = active['offset'] if active else None
+            # Animation frames may be throttled briefly after screenshots or a media-query change.
+            deadline = time.monotonic() + 2.5
+            while time.monotonic() < deadline:
+                time.sleep(.08)
+                later = k.js("getComputedStyle(document.querySelector('.hero-judler .judler-signal')).strokeDashoffset")
+                if active and later != active['offset']:
+                    break
             check(f'{width}: connection animation advances', active and active['on'] and active['state']=='running' and active['offset']!=later, {'first':active,'later':later})
             k.js("document.querySelector('.hero-judler .project-view-tabs button[data-view=\"agents\"]').click()")
             time.sleep(.1)
