@@ -366,10 +366,13 @@ for pth in pages:
 # LCP preload jest celowy tylko na realizacjach; nie preloadujemy nieaktywnych kart.
 for pth in pages:
     txt=pth.read_text(encoding="utf-8")
-    preloads=re.findall(r'<link[^>]+rel="preload"[^>]+as="image"[^>]*>',txt,re.I)
+    preloads=re.findall(r'<link(?=[^>]*\brel="preload")(?=[^>]*\bas="image")[^>]*>',txt,re.I)
     if pth.name == "realizacje.html":
-        if len(preloads) != 1 or "frankie-orders-focus.webp" not in preloads[0]:
-            err(pth.name,f"oczekiwano jednego preloada pierwszej widocznej karty Frankie, znaleziono {len(preloads)}")
+        first_card = re.search(r'<img(?=[^>]*data-media="card-frankie")[^>]*>', txt)
+        card_src = re.search(r'\ssrc="([^"]+)"', first_card.group(0)) if first_card else None
+        preload_href = re.search(r'\shref="([^"]+)"', preloads[0]) if len(preloads) == 1 else None
+        if not card_src or not preload_href or card_src.group(1) != preload_href.group(1):
+            err(pth.name,f"preload musi odpowiadać pierwszej widocznej karcie Frankie, znaleziono {len(preloads)}")
     elif preloads:
         err(pth.name,f"niepotrzebny preload obrazu ({len(preloads)})")
 
@@ -719,7 +722,7 @@ try:
         if not manifest.get(field):
             err("site.webmanifest", f"brak pola {field}")
     for icon in manifest.get("icons", []):
-        icon_path = ROOT / icon["src"].lstrip("/")
+        icon_path = ROOT / urlsplit(icon["src"]).path.lstrip("/")
         if not icon_path.exists():
             err("site.webmanifest", f"brak ikony {icon_path.name}")
 except Exception as exc:

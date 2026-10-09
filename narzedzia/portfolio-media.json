@@ -1,0 +1,874 @@
+{
+  "version": 1,
+  "assets": {
+    "roofpv-tryby": {
+      "width": 2311,
+      "height": 1080,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-tryby-480.webp",
+          "width": 480,
+          "height": 224,
+          "bytes": 7084,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-tryby-800.webp",
+          "width": 800,
+          "height": 374,
+          "bytes": 14568,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-tryby-1200.webp",
+          "width": 1200,
+          "height": 561,
+          "bytes": 26236,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-tryby-1600.webp",
+          "width": 1600,
+          "height": 748,
+          "bytes": 43118,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-tryby-2311.webp",
+          "width": 2311,
+          "height": 1080,
+          "bytes": 30186,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "roofpv-3d": {
+      "width": 3438,
+      "height": 1348,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-480.webp",
+          "width": 480,
+          "height": 188,
+          "bytes": 66634,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-800.webp",
+          "width": 800,
+          "height": 314,
+          "bytes": 48850,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-1200.webp",
+          "width": 1200,
+          "height": 471,
+          "bytes": 387148,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-1600.webp",
+          "width": 1600,
+          "height": 627,
+          "bytes": 179308,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-2400.webp",
+          "width": 2400,
+          "height": 941,
+          "bytes": 351428,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-3d-3438.webp",
+          "width": 3438,
+          "height": 1348,
+          "bytes": 637414,
+          "encoding": "quality-96"
+        }
+      ]
+    },
+    "roofpv-wymiary": {
+      "width": 1600,
+      "height": 914,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-wymiary-480.webp",
+          "width": 480,
+          "height": 274,
+          "bytes": 108622,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-wymiary-800.webp",
+          "width": 800,
+          "height": 457,
+          "bytes": 88284,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-wymiary-1200.webp",
+          "width": 1200,
+          "height": 686,
+          "bytes": 157616,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-wymiary-1600.webp",
+          "width": 1600,
+          "height": 914,
+          "bytes": 236546,
+          "encoding": "quality-96"
+        }
+      ]
+    },
+    "roofpv-mapa": {
+      "width": 1600,
+      "height": 827,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-mapa-480.webp",
+          "width": 480,
+          "height": 248,
+          "bytes": 175948,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-mapa-800.webp",
+          "width": 800,
+          "height": 414,
+          "bytes": 172260,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-mapa-1200.webp",
+          "width": 1200,
+          "height": 620,
+          "bytes": 344938,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-mapa-1600.webp",
+          "width": 1600,
+          "height": 827,
+          "bytes": 473290,
+          "encoding": "quality-94"
+        }
+      ]
+    },
+    "roofpv-kopertowy": {
+      "width": 1600,
+      "height": 905,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-kopertowy-480.webp",
+          "width": 480,
+          "height": 272,
+          "bytes": 108652,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-kopertowy-800.webp",
+          "width": 800,
+          "height": 452,
+          "bytes": 77412,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-kopertowy-1200.webp",
+          "width": 1200,
+          "height": 679,
+          "bytes": 136280,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/roofpv-kopertowy-1600.webp",
+          "width": 1600,
+          "height": 905,
+          "bytes": 197786,
+          "encoding": "quality-96"
+        }
+      ]
+    },
+    "rental-pulpit": {
+      "width": 2456,
+      "height": 1347,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-480.webp",
+          "width": 480,
+          "height": 263,
+          "bytes": 13776,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-800.webp",
+          "width": 800,
+          "height": 439,
+          "bytes": 29636,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-1200.webp",
+          "width": 1200,
+          "height": 658,
+          "bytes": 53506,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-1600.webp",
+          "width": 1600,
+          "height": 878,
+          "bytes": 76736,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-2400.webp",
+          "width": 2400,
+          "height": 1316,
+          "bytes": 127444,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-pulpit-2456.webp",
+          "width": 2456,
+          "height": 1347,
+          "bytes": 50086,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "rental-flota": {
+      "width": 2401,
+      "height": 1338,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-480.webp",
+          "width": 480,
+          "height": 267,
+          "bytes": 43874,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-800.webp",
+          "width": 800,
+          "height": 446,
+          "bytes": 101010,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-1200.webp",
+          "width": 1200,
+          "height": 669,
+          "bytes": 198158,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-1600.webp",
+          "width": 1600,
+          "height": 892,
+          "bytes": 293548,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-2400.webp",
+          "width": 2400,
+          "height": 1337,
+          "bytes": 535206,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-flota-2401.webp",
+          "width": 2401,
+          "height": 1338,
+          "bytes": 426760,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "rental-kalendarz": {
+      "width": 1440,
+      "height": 740,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/rental-kalendarz-480.webp",
+          "width": 480,
+          "height": 247,
+          "bytes": 14062,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-kalendarz-800.webp",
+          "width": 800,
+          "height": 411,
+          "bytes": 27088,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-kalendarz-1200.webp",
+          "width": 1200,
+          "height": 617,
+          "bytes": 41228,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-kalendarz-1440.webp",
+          "width": 1440,
+          "height": 740,
+          "bytes": 22014,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "rental-faktury": {
+      "width": 1440,
+      "height": 900,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/rental-faktury-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 18694,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-faktury-800.webp",
+          "width": 800,
+          "height": 500,
+          "bytes": 45888,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-faktury-1200.webp",
+          "width": 1200,
+          "height": 750,
+          "bytes": 62722,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/rental-faktury-1440.webp",
+          "width": 1440,
+          "height": 900,
+          "bytes": 33702,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "frankie-orders": {
+      "width": 3443,
+      "height": 1343,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-480.webp",
+          "width": 480,
+          "height": 187,
+          "bytes": 28800,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-800.webp",
+          "width": 800,
+          "height": 312,
+          "bytes": 57916,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-1200.webp",
+          "width": 1200,
+          "height": 468,
+          "bytes": 107486,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-1600.webp",
+          "width": 1600,
+          "height": 624,
+          "bytes": 151954,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-2400.webp",
+          "width": 2400,
+          "height": 936,
+          "bytes": 264622,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-orders-3443.webp",
+          "width": 3443,
+          "height": 1343,
+          "bytes": 109640,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "frankie-products": {
+      "width": 3447,
+      "height": 1352,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-480.webp",
+          "width": 480,
+          "height": 188,
+          "bytes": 18136,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-800.webp",
+          "width": 800,
+          "height": 314,
+          "bytes": 35906,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-1200.webp",
+          "width": 1200,
+          "height": 471,
+          "bytes": 59836,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-1600.webp",
+          "width": 1600,
+          "height": 628,
+          "bytes": 86076,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-2400.webp",
+          "width": 2400,
+          "height": 941,
+          "bytes": 144672,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-products-3447.webp",
+          "width": 3447,
+          "height": 1352,
+          "bytes": 82994,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "frankie-analytics": {
+      "width": 3438,
+      "height": 1350,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-480.webp",
+          "width": 480,
+          "height": 188,
+          "bytes": 16244,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-800.webp",
+          "width": 800,
+          "height": 314,
+          "bytes": 30482,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-1200.webp",
+          "width": 1200,
+          "height": 471,
+          "bytes": 50428,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-1600.webp",
+          "width": 1600,
+          "height": 628,
+          "bytes": 73336,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-2400.webp",
+          "width": 2400,
+          "height": 942,
+          "bytes": 119798,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/frankie-analytics-3438.webp",
+          "width": 3438,
+          "height": 1350,
+          "bytes": 64582,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "card-frankie": {
+      "width": 2149,
+      "height": 1343,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/card-frankie-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 33586,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-frankie-800.webp",
+          "width": 800,
+          "height": 500,
+          "bytes": 70164,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-frankie-1200.webp",
+          "width": 1200,
+          "height": 750,
+          "bytes": 119440,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-frankie-1600.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 172596,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-frankie-2149.webp",
+          "width": 2149,
+          "height": 1343,
+          "bytes": 58412,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "card-roofpv": {
+      "width": 2157,
+      "height": 1348,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/card-roofpv-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 122100,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-roofpv-800.webp",
+          "width": 800,
+          "height": 500,
+          "bytes": 84816,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-roofpv-1200.webp",
+          "width": 1200,
+          "height": 750,
+          "bytes": 173816,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-roofpv-1600.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 278052,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-roofpv-2157.webp",
+          "width": 2157,
+          "height": 1348,
+          "bytes": 457614,
+          "encoding": "quality-96"
+        }
+      ]
+    },
+    "card-rental": {
+      "width": 2141,
+      "height": 1338,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/card-rental-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 50034,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-rental-800.webp",
+          "width": 800,
+          "height": 500,
+          "bytes": 116306,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-rental-1200.webp",
+          "width": 1200,
+          "height": 750,
+          "bytes": 217436,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-rental-1600.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 331124,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-rental-2141.webp",
+          "width": 2141,
+          "height": 1338,
+          "bytes": 415734,
+          "encoding": "lossless"
+        }
+      ]
+    },
+    "card-bacteria": {
+      "width": 2171,
+      "height": 1357,
+      "variants": [
+        {
+          "path": "zdjecia/ostre-20261009/card-bacteria-480.webp",
+          "width": 480,
+          "height": 300,
+          "bytes": 117600,
+          "encoding": "lossless"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-bacteria-800.webp",
+          "width": 800,
+          "height": 500,
+          "bytes": 82090,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-bacteria-1200.webp",
+          "width": 1200,
+          "height": 750,
+          "bytes": 143172,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-bacteria-1600.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 202480,
+          "encoding": "quality-96"
+        },
+        {
+          "path": "zdjecia/ostre-20261009/card-bacteria-2171.webp",
+          "width": 2171,
+          "height": 1357,
+          "bytes": 288642,
+          "encoding": "quality-96"
+        }
+      ]
+    },
+    "bacteria-hd-menu": {
+      "width": 2048,
+      "height": 853,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-menu.webp",
+          "width": 2048,
+          "height": 853,
+          "bytes": 259880,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "bacteria-hd-gameplay": {
+      "width": 2047,
+      "height": 859,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-gameplay.webp",
+          "width": 2047,
+          "height": 859,
+          "bytes": 192970,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "bacteria-hd-bacteria": {
+      "width": 2048,
+      "height": 860,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-bacteria.webp",
+          "width": 2048,
+          "height": 860,
+          "bytes": 110450,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "bacteria-hd-vehicles": {
+      "width": 2048,
+      "height": 861,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-vehicles.webp",
+          "width": 2048,
+          "height": 861,
+          "bytes": 140590,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "bacteria-hd-clothes": {
+      "width": 2047,
+      "height": 856,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-clothes.webp",
+          "width": 2047,
+          "height": 856,
+          "bytes": 126610,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "bacteria-hd-hats": {
+      "width": 2048,
+      "height": 859,
+      "variants": [
+        {
+          "path": "zdjecia/bacteria-hd-hats.webp",
+          "width": 2048,
+          "height": 859,
+          "bytes": 120924,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "judler-orchestration-v2": {
+      "width": 1600,
+      "height": 1000,
+      "variants": [
+        {
+          "path": "zdjecia/judler-orchestration-v2.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 196514,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "judler-agents-v2": {
+      "width": 1600,
+      "height": 1000,
+      "variants": [
+        {
+          "path": "zdjecia/judler-agents-v2.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 216440,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "judler-workflow-v2": {
+      "width": 1600,
+      "height": 1000,
+      "variants": [
+        {
+          "path": "zdjecia/judler-workflow-v2.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 225842,
+          "encoding": "existing-approved"
+        }
+      ]
+    },
+    "card-monitor-report-v2": {
+      "width": 1600,
+      "height": 1000,
+      "variants": [
+        {
+          "path": "zdjecia/card-monitor-report-v2.webp",
+          "width": 1600,
+          "height": 1000,
+          "bytes": 78154,
+          "encoding": "existing-approved"
+        }
+      ]
+    }
+  },
+  "aliases": {
+    "zdjecia/photonroof-tryby.jpg": "roofpv-tryby",
+    "zdjecia/photonroof-tryby.png": "roofpv-tryby",
+    "zdjecia/photonroof-tryby.webp": "roofpv-tryby",
+    "zdjecia/photonroof-tryby-800.webp": "roofpv-tryby",
+    "zdjecia/photonroof-kreator3d.jpg": "roofpv-3d",
+    "zdjecia/photonroof-kreator3d.png": "roofpv-3d",
+    "zdjecia/photonroof-kreator3d.webp": "roofpv-3d",
+    "zdjecia/photonroof-kreator3d-800.webp": "roofpv-3d",
+    "zdjecia/photonroof-wymiary.jpg": "roofpv-wymiary",
+    "zdjecia/photonroof-wymiary.png": "roofpv-wymiary",
+    "zdjecia/photonroof-wymiary.webp": "roofpv-wymiary",
+    "zdjecia/photonroof-wymiary-800.webp": "roofpv-wymiary",
+    "zdjecia/photonroof-mapa.jpg": "roofpv-mapa",
+    "zdjecia/photonroof-mapa.png": "roofpv-mapa",
+    "zdjecia/photonroof-mapa.webp": "roofpv-mapa",
+    "zdjecia/photonroof-mapa-800.webp": "roofpv-mapa",
+    "zdjecia/photonroof-kopertowy.jpg": "roofpv-kopertowy",
+    "zdjecia/photonroof-kopertowy.png": "roofpv-kopertowy",
+    "zdjecia/photonroof-kopertowy.webp": "roofpv-kopertowy",
+    "zdjecia/photonroof-kopertowy-800.webp": "roofpv-kopertowy",
+    "zdjecia/wypozyczalnia-pulpit.jpg": "rental-pulpit",
+    "zdjecia/wypozyczalnia-pulpit.png": "rental-pulpit",
+    "zdjecia/wypozyczalnia-pulpit.webp": "rental-pulpit",
+    "zdjecia/wypozyczalnia-pulpit-800.webp": "rental-pulpit",
+    "zdjecia/wypozyczalnia-flota.jpg": "rental-flota",
+    "zdjecia/wypozyczalnia-flota.png": "rental-flota",
+    "zdjecia/wypozyczalnia-flota.webp": "rental-flota",
+    "zdjecia/wypozyczalnia-flota-800.webp": "rental-flota",
+    "zdjecia/wypozyczalnia-kalendarz.jpg": "rental-kalendarz",
+    "zdjecia/wypozyczalnia-kalendarz.png": "rental-kalendarz",
+    "zdjecia/wypozyczalnia-kalendarz.webp": "rental-kalendarz",
+    "zdjecia/wypozyczalnia-kalendarz-800.webp": "rental-kalendarz",
+    "zdjecia/wypozyczalnia-faktury.jpg": "rental-faktury",
+    "zdjecia/wypozyczalnia-faktury.png": "rental-faktury",
+    "zdjecia/wypozyczalnia-faktury.webp": "rental-faktury",
+    "zdjecia/wypozyczalnia-faktury-800.webp": "rental-faktury",
+    "zdjecia/frankie-orders-focus.jpg": "frankie-orders",
+    "zdjecia/frankie-orders-focus.png": "frankie-orders",
+    "zdjecia/frankie-orders-focus.webp": "frankie-orders",
+    "zdjecia/frankie-orders-focus-800.webp": "frankie-orders",
+    "zdjecia/frankie-products-focus.jpg": "frankie-products",
+    "zdjecia/frankie-products-focus.png": "frankie-products",
+    "zdjecia/frankie-products-focus.webp": "frankie-products",
+    "zdjecia/frankie-products-focus-800.webp": "frankie-products",
+    "zdjecia/frankie-analytics-focus.jpg": "frankie-analytics",
+    "zdjecia/frankie-analytics-focus.png": "frankie-analytics",
+    "zdjecia/frankie-analytics-focus.webp": "frankie-analytics",
+    "zdjecia/frankie-analytics-focus-800.webp": "frankie-analytics",
+    "zdjecia/card-frankie-interface-v2.jpg": "card-frankie",
+    "zdjecia/card-frankie-interface-v2.png": "card-frankie",
+    "zdjecia/card-frankie-interface-v2.webp": "card-frankie",
+    "zdjecia/card-frankie-interface-v2-800.webp": "card-frankie",
+    "zdjecia/card-roofpv-interface-v2.jpg": "card-roofpv",
+    "zdjecia/card-roofpv-interface-v2.png": "card-roofpv",
+    "zdjecia/card-roofpv-interface-v2.webp": "card-roofpv",
+    "zdjecia/card-roofpv-interface-v2-800.webp": "card-roofpv",
+    "zdjecia/card-rental-interface-v2.jpg": "card-rental",
+    "zdjecia/card-rental-interface-v2.png": "card-rental",
+    "zdjecia/card-rental-interface-v2.webp": "card-rental",
+    "zdjecia/card-rental-interface-v2-800.webp": "card-rental",
+    "zdjecia/card-bacteria-interface-v2.jpg": "card-bacteria",
+    "zdjecia/card-bacteria-interface-v2.png": "card-bacteria",
+    "zdjecia/card-bacteria-interface-v2.webp": "card-bacteria",
+    "zdjecia/card-bacteria-interface-v2-800.webp": "card-bacteria",
+    "zdjecia/bacteria-hd-menu.webp": "bacteria-hd-menu",
+    "zdjecia/bacteria-hd-gameplay.webp": "bacteria-hd-gameplay",
+    "zdjecia/bacteria-hd-bacteria.webp": "bacteria-hd-bacteria",
+    "zdjecia/bacteria-hd-vehicles.webp": "bacteria-hd-vehicles",
+    "zdjecia/bacteria-hd-clothes.webp": "bacteria-hd-clothes",
+    "zdjecia/bacteria-hd-hats.webp": "bacteria-hd-hats",
+    "zdjecia/judler-orchestration-v2.webp": "judler-orchestration-v2",
+    "zdjecia/judler-agents-v2.webp": "judler-agents-v2",
+    "zdjecia/judler-workflow-v2.webp": "judler-workflow-v2",
+    "zdjecia/card-monitor-report-v2.webp": "card-monitor-report-v2"
+  }
+}

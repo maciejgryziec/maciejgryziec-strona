@@ -31,9 +31,13 @@ for name, limit in LIMITS.items():
     if len(packed) > limit:
         issues.append(f"{name}: gzip {len(packed)}B > {limit}B")
 
-for path in sorted((ROOT / "zdjecia").glob("*.webp")):
+for path in sorted((ROOT / "zdjecia").rglob("*.webp")):
     size = path.stat().st_size
     limit = MOBILE_WEBP_LIMIT if path.stem.endswith("-800") else FULL_WEBP_LIMIT
+    if path.parent.name == "ostre-20261009":
+        # Lossless UI exports and photo variants from native screenshots, loaded responsively.
+        width = int(path.stem.rsplit("-", 1)[1])
+        limit = 180_000 if width <= 800 else 500_000 if width <= 1600 else 1_000_000
     if size > limit:
         issues.append(f"{path.relative_to(ROOT)}: {size}B > {limit}B")
     print(f"{path.relative_to(ROOT)}: {size}B / {limit}B")

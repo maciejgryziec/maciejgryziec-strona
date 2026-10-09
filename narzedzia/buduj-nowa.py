@@ -3,6 +3,7 @@
 # do folderu demo/strona/nowa/. Zrodlem tresci podstron sa obecne pliki produkcyjne.
 import re, os, glob, html, json, subprocess, hashlib, unicodedata
 from datetime import date
+from media_assets import finalize_assets
 REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ZR = os.path.join(REPO, "zrodla")
 CEL = REPO
@@ -408,7 +409,7 @@ body.ciemna .gora nav a{color:#fff}
 .studium>figure>picture{display:block;line-height:0;margin:0;padding:0}
 .studium>figure>picture>img{display:block;width:100%;height:auto;margin:0;object-fit:cover}
 
-@media(min-width:821px){.ekran.b .screen-bg{background-image:url("zdjecia/wypozyczalnia-pulpit-800.webp?v=20261006b")}}
+@media(min-width:821px){.ekran.b .screen-bg{background-image:url("zdjecia/ostre-20261009/rental-pulpit-800.webp");background-image:image-set(url("zdjecia/ostre-20261009/rental-pulpit-800.webp") 1x,url("zdjecia/ostre-20261009/rental-pulpit-1600.webp") 2x)}}
 @media(max-width:820px){.ekran.b{display:none}}
 .ekran.a{left:6%;top:6%;width:58%;aspect-ratio:16/10;transform:translate(calc((1 - var(--w)) * -160px), calc(var(--t) * 40px)) rotate(-3deg);opacity:clamp(0, calc(var(--w) * 2.5), 1)}
 .ekran.b{left:44%;top:34%;width:50%;aspect-ratio:16/10;transform:translate(calc((1 - var(--w)) * 160px), calc(var(--t) * -40px)) rotate(2deg);opacity:clamp(0, calc(var(--w) * 2.5 - .4), 1)}
@@ -1394,7 +1395,7 @@ def blok_autora(nazwa):
     if nazwa not in ARTYKULY:
         return ""
     return '''<aside class="autor-box" aria-label="Autor tekstu">
-      <div><span class="autor-znak">MG</span></div>
+      <div><span class="autor-znak" aria-hidden="true"><img src="znak-bialy.svg" width="28" height="17" alt=""></span></div>
       <div><strong>Maciej Gryziec</strong><p>Projektuję aplikacje, integracje i automatyzacje wokół realnego procesu firmy. Na stronie pokazuję zarówno rozwiązania dedykowane, jak i sytuacje, w których lepiej zostać przy gotowym narzędziu.</p><p><a href="o-mnie.html">O mnie</a> · <a href="realizacje.html">Zobacz realizacje</a></p></div>
     </aside>'''
 
@@ -1936,6 +1937,13 @@ zrobione = []
 for plik in sorted(glob.glob(ZR + "/*.html")):
     if os.path.basename(plik) == "index.html": continue
     zrobione.append(podstrona(plik))
+# A single final asset pass for all 33 pages, including error documents and service pages.
+for _page in ["index.html"] + [_name + ".html" for _name in zrobione]:
+    _path = os.path.join(CEL, _page)
+    with open(_path, encoding="utf-8") as _f:
+        _html = _f.read()
+    with open(_path, "w", encoding="utf-8") as _f:
+        _f.write(finalize_assets(_html))
 SITEMAP_IMAGES = {
   "realizacje.html": [
     ("zdjecia/photonroof-tryby.png", "PV Roof Configurator — wybór trybu konfiguratora"),
