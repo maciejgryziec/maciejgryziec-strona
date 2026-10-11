@@ -454,6 +454,12 @@ body.ciemna .gora nav a{color:#fff}
 .pudlo{border-left:3px solid var(--blekit);padding:.2em 0 .2em 18px;margin:2em 0}
 .pudlo h3{margin-top:0}
 a.przycisk{display:inline-block;font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin:22px 0 12px}
+.hero-actions a.przycisk{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border-radius:8px;background:#1550d0;color:#fff;text-decoration:none;line-height:1.4}
+.ciemny .hero-actions a.przycisk{background:#fff;color:#102f64}
+.hero-actions .landing-proof-link{font-size:14px;line-height:1.4}
+.hero-note{font-size:12px;line-height:1.5;max-width:48ch}
+@media(max-width:600px){.hero-actions{align-items:stretch;flex-direction:column}.hero-actions a.przycisk{width:100%;box-sizing:border-box}.hero-actions .landing-proof-link{padding:4px 0}}
 a.przycisk svg{display:none}
 .przewijane{max-width:100%;overflow-x:auto;margin:1.5em 0;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}.przewijane:focus-visible{outline:3px solid #ffd23f;outline-offset:3px}.przewijane table{min-width:460px}
 table{width:100%;border-collapse:collapse;font-size:14px}
@@ -1877,6 +1883,10 @@ def podstrona(plik):
     ciemny = swiat in CIEMNE
     # formularz sprawdzarki w czole zamiast w tresci
     czolo_extra = ""
+    for hero_class in ("hero-actions", "hero-note"):
+        hero_match = re.search(r'<p class="' + hero_class + r'">.*?</p>', tyt, re.S)
+        if hero_match:
+            czolo_extra += hero_match.group(0)
     if nazwa == "sprawdzarka":
         f = re.search(r'<form class="formularz-prosty.*?</form>', body, re.S)
         if f:
@@ -1944,7 +1954,8 @@ for _page in ["index.html"] + [_name + ".html" for _name in zrobione]:
         _html = _f.read()
     if _page == "opisz-projekt.html":
         _html = _html.replace("</head>", '<link rel="stylesheet" href="brief-send.css">\n</head>')
-        _html = _html.replace("</body>", '<script src="brief-send.js" defer></script>\n</body>')
+        _brief_hash = hashlib.sha256(open(os.path.join(REPO, 'brief-send.js'), 'rb').read()).hexdigest()[:12]
+        _html = _html.replace("</body>", '<script src="brief-send.js?v=' + _brief_hash + '" defer></script>\n</body>')
     with open(_path, "w", encoding="utf-8") as _f:
         _f.write(finalize_assets(_html))
 SITEMAP_IMAGES = {

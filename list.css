@@ -404,6 +404,12 @@ body.ciemna .gora nav a{color:#fff}
 .pudlo{border-left:3px solid var(--blekit);padding:.2em 0 .2em 18px;margin:2em 0}
 .pudlo h3{margin-top:0}
 a.przycisk{display:inline-block;font-weight:600}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin:22px 0 12px}
+.hero-actions a.przycisk{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 16px;border-radius:8px;background:#1550d0;color:#fff;text-decoration:none;line-height:1.4}
+.ciemny .hero-actions a.przycisk{background:#fff;color:#102f64}
+.hero-actions .landing-proof-link{font-size:14px;line-height:1.4}
+.hero-note{font-size:12px;line-height:1.5;max-width:48ch}
+@media(max-width:600px){.hero-actions{align-items:stretch;flex-direction:column}.hero-actions a.przycisk{width:100%;box-sizing:border-box}.hero-actions .landing-proof-link{padding:4px 0}}
 a.przycisk svg{display:none}
 .przewijane{max-width:100%;overflow-x:auto;margin:1.5em 0;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}.przewijane:focus-visible{outline:3px solid #ffd23f;outline-offset:3px}.przewijane table{min-width:460px}
 table{width:100%;border-collapse:collapse;font-size:14px}

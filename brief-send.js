@@ -17,6 +17,28 @@
   honeypot.name = 'website'; honeypot.type = 'text'; honeypot.autocomplete = 'off'; honeypot.tabIndex = -1;
   label.appendChild(honeypot); trap.appendChild(label); form.appendChild(trap);
 
+  function leadSource() {
+    try {
+      var source = JSON.parse(sessionStorage.getItem('leadSource') || '{}');
+      if (!source || typeof source !== 'object' || Array.isArray(source)) return '';
+      var lines = [];
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','zrodlo'].forEach(function (key) {
+        if (typeof source[key] === 'string' && source[key]) {
+          lines.push(key + ': ' + source[key].replace(/[\x00-\x1f\x7f]/g,' ').slice(0,120));
+        }
+      });
+      if (typeof source.entry === 'string' && source.entry.charAt(0) === '/') {
+        lines.push('strona wejścia: ' + source.entry.split(/[?#]/)[0].replace(/[\x00-\x1f\x7f]/g,' ').slice(0,180));
+      }
+      if (typeof source.referrer === 'string' && source.referrer) {
+        try {
+          var ref = new URL(source.referrer);
+          if (ref.protocol === 'https:' || ref.protocol === 'http:') lines.push('domena odsyłająca: ' + ref.hostname.slice(0,120));
+        } catch (_) {}
+      }
+      return lines.join('\n').slice(0,1000);
+    } catch (_) { return ''; }
+  }
   async function request(url, options, timeout) {
     var controller = new AbortController();
     var timer = setTimeout(function () { controller.abort(); }, timeout);
@@ -74,6 +96,7 @@
     var fd = new FormData(form), data = {};
     names.forEach(function (name) { data[name] = String(fd.get(name) || '').trim(); });
     data.website = honeypot.value;
+    if (session.supports_source === true) data.zrodlo = leadSource();
     busy = true; button.textContent = 'Wysyłanie...';
     info.textContent = 'Wysyłam wiadomość. Zaczekaj na potwierdzenie.';
     var controls = Array.from(form.querySelectorAll('input,select,textarea,button')).map(function(el){return [el,el.disabled];});

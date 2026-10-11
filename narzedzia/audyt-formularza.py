@@ -23,7 +23,7 @@ def check(name,ok,data=None):
     if not ok:print('FAIL',name,data,flush=True)
 
 try:
-    for mode in ['success','failed','unknown','network','bad-confirmation','unconfigured']:
+    for mode in ['success','legacy','failed','unknown','network','bad-confirmation','unconfigured']:
         k=Karta();k.ws.settimeout(15)
         try:
             k.rozmiar(390,844,1,True)
@@ -33,11 +33,11 @@ try:
             addEventListener('error',e=>window.__formErrors.push(e.message));
             const fetchOriginal=window.fetch.bind(window);
             window.fetch=async function(url,opts){
-              if(String(url)==='/api/contact/session')return new Response(JSON.stringify({ready:MODE!=='unconfigured',token:'test-browser-token'}),{status:200,headers:{'Content-Type':'application/json'}});
+              if(String(url)==='/api/contact/session')return new Response(JSON.stringify({ready:MODE!=='unconfigured',token:'test-browser-token',supports_source:MODE!=='legacy'}),{status:200,headers:{'Content-Type':'application/json'}});
               if(String(url)==='/api/contact'){
                 const payload=JSON.parse(opts.body);window.__mailCalls.push(payload);
                 if(MODE==='network')throw new TypeError('simulated network failure');
-                if(MODE==='success')return new Response(JSON.stringify({ok:true,status:'sent',request_id:payload.request_id}),{status:200,headers:{'Content-Type':'application/json'}});
+                if(MODE==='success'||MODE==='legacy')return new Response(JSON.stringify({ok:true,status:'sent',request_id:payload.request_id}),{status:200,headers:{'Content-Type':'application/json'}});
                 if(MODE==='bad-confirmation')return new Response(JSON.stringify({ok:true,status:'sent',request_id:'wrong-id'}),{status:200,headers:{'Content-Type':'application/json'}});
                 return new Response(JSON.stringify({ok:false,code:MODE==='unknown'?'delivery_unknown':'delivery_failed',message:'Wiadomość nie została potwierdzona. Zachowaj opis.'}),{status:503,headers:{'Content-Type':'application/json'}});
               }
@@ -46,7 +46,7 @@ try:
             try{Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:async function(){window.__clipboardWrites++;}}});}catch(e){}
             '''.replace('MODE',json.dumps(mode))
             k.cmd('Page.addScriptToEvaluateOnNewDocument',source=source)
-            k.idz(base+'/opisz-projekt.html',.7)
+            k.idz(base+'/opisz-projekt.html?utm_source=google&utm_medium=cpc&utm_campaign=konfiguratory&utm_term=konfigurator',.7)
             label=k.js("document.querySelector('#brief-form button[type=submit]').textContent")
             if mode=='unconfigured':
                 check('unconfigured keeps honest existing action','Przygotuj' in label,label)
@@ -60,10 +60,15 @@ try:
                 if state and state['label']!='Wysyłanie...' and state['calls']:break
                 time.sleep(.2)
             check(mode+'/single request',state['calls']==1,state)
-            check(mode+'/no mail-client navigation',state['url']==base+'/opisz-projekt.html',state['url'])
+            check(mode+'/no mail-client navigation',state['url']==base+'/opisz-projekt.html?utm_source=google&utm_medium=cpc&utm_campaign=konfiguratory&utm_term=konfigurator',state['url'])
             check(mode+'/no automatic clipboard',state['clipboard']==0,state['clipboard'])
             check(mode+'/no errors or overflow',not state['errors'] and not state['overflow'],state)
-            if mode=='success':
+            payload=k.js('window.__mailCalls[0]')
+            if mode=='legacy':
+                check('legacy backend gets no unsupported field','zrodlo' not in payload,payload)
+            else:
+                check(mode+'/campaign attribution arrives','utm_campaign: konfiguratory' in payload.get('zrodlo','') and 'utm_source: google' in payload.get('zrodlo',''),payload.get('zrodlo'))
+            if mode in ('success','legacy'):
                 check('success clears draft and confirms',state['label']=='Wysłano' and state['disabled'] and not state['fields'] and 'została wysłana' in state['message'],state)
                 check('success no saved personal draft',k.js("sessionStorage.getItem('briefDraft')") is None)
             else:

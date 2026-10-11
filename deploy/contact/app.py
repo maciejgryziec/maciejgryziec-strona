@@ -26,12 +26,13 @@ ORIGIN = 'https://maciejgryziec.pl'
 MAILBOX = 'kontakt@maciejgryziec.pl'
 MAX_BYTES = 32768
 FIELDS = {'imie':120,'email':180,'firma':180,'telefon':50,'typ':200,
-          'dzis':2500,'problem':1500,'narzedzia':500,'uzytkownicy':100,'budzet':100,'efekt':1000}
+          'dzis':2500,'problem':1500,'narzedzia':500,'uzytkownicy':100,'budzet':100,'efekt':1000,'zrodlo':1000}
 REQUIRED = {'imie','email','typ','dzis','problem'}
 LABELS = {'imie':'Imię i nazwisko','email':'E-mail','firma':'Firma','telefon':'Telefon',
           'typ':'Typ projektu','dzis':'Obecny sposób pracy','problem':'Największy problem',
           'narzedzia':'Używane programy','uzytkownicy':'Liczba użytkowników',
-          'budzet':'Orientacyjny budżet','efekt':'Oczekiwany efekt'}
+          'budzet':'Orientacyjny budżet','efekt':'Oczekiwany efekt',
+          'zrodlo':'Źródło wejścia i kampania (dane z przeglądarki)'}
 EMAIL_RE = re.compile(r"[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?\.[A-Za-z]{2,63}\Z")
 log = logging.getLogger('contact')
 
@@ -47,6 +48,9 @@ def validate(body):
         raise Invalid('Nieprawidłowy format formularza.')
     data = {}
     for name, limit in FIELDS.items():
+        # Preserve the old fingerprint for in-flight/retried legacy requests.
+        if name == 'zrodlo' and name not in body:
+            continue
         value = body.get(name, '')
         if not isinstance(value, str) or len(value) > limit or any(ord(c)<32 and c not in '\n\t\r' for c in value):
             raise Invalid('Sprawdź długość i treść pól formularza.')
@@ -92,7 +96,7 @@ def deliver(data, request_id, cfg):
     message['Auto-Submitted'] = 'auto-generated'
     lines = ['Zapytanie z formularza na maciejgryziec.pl', 'Identyfikator: '+request_id, '']
     for key in FIELDS:
-        lines.extend([LABELS[key]+':', data[key] or 'nie podano', ''])
+        lines.extend([LABELS[key]+':', data.get(key) or 'nie podano', ''])
     lines.append('Odpowiedz na tę wiadomość, aby napisać do zgłaszającego. Nie otwieraj niezaufanych odnośników z treści.')
     message.set_content('\n'.join(lines))
     # Host and port are fixed; form data cannot change SMTP or recipient.
@@ -205,7 +209,7 @@ class Contact:
                     db.rollback()
                     return self.respond(start,'429 Too Many Requests',{'ok':False,'message':'Odczekaj chwilę przed kolejną próbą.'},[('Retry-After','300')])
                 db.execute('INSERT INTO tokens VALUES (?,?)',(client,now));db.commit()
-            return self.respond(start,'200 OK',{'ready':True,'token':self.token(client),'expires_in':3600})
+            return self.respond(start,'200 OK',{'ready':True,'token':self.token(client),'expires_in':3600,'supports_source':True})
         if path != '/api/contact' or method != 'POST':
             return self.respond(start,'405 Method Not Allowed',{'ok':False},[('Allow','POST' if path=='/api/contact' else 'GET')])
         if config is None:

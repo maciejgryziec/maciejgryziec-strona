@@ -47,6 +47,19 @@ class FormTests(unittest.TestCase):
             s,r,h=self.call(b);self.assertTrue(s.startswith('200'));self.assertEqual(r['status'],'sent');self.assertEqual(h['Cache-Control'],'no-store')
         self.assertEqual(len(self.sent),1)
 
+    def test_optional_source_is_forwarded_without_becoming_required(self):
+        b=self.body(); b['zrodlo']='utm_source: google\nutm_campaign: konfiguratory'
+        self.assertTrue(self.call(b)[0].startswith('200'))
+        self.assertEqual(self.sent[-1][0]['zrodlo'],b['zrodlo'])
+        self.assertTrue(self.call(self.body())[0].startswith('200'))
+        self.assertNotIn('zrodlo',self.sent[-1][0])
+        b=self.body(); b['zrodlo']='x'*1001
+        self.assertTrue(self.call(b)[0].startswith('400'))
+        b=self.body(); b['zrodlo']={'bad':'shape'}
+        self.assertTrue(self.call(b)[0].startswith('400'))
+        s,r,_=self.call(method='GET',path='/api/contact/session')
+        self.assertTrue(r['supports_source'])
+
     def test_reused_key_changed_data(self):
         b=self.body();self.call(b);b['dzis']='Zmieniona treść'
         self.assertTrue(self.call(b)[0].startswith('409'));self.assertEqual(len(self.sent),1)
